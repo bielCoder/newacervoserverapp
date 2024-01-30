@@ -17,7 +17,7 @@ class Response
             ],
             "data" => $data,
             "status" => $status
-         ]]) ;
+         ]]) -> setStatusCode($status);;
       }
 
       if($data == null)
@@ -29,7 +29,7 @@ class Response
             ],
             "message" => $message,
             "status" => $status
-         ]]) ;
+         ]]) -> setStatusCode($status);;
       }
 
       if($token !== null)
@@ -43,7 +43,7 @@ class Response
             "token" => $token,
             "message" => $message,
             "status" => $status
-         ]]) ;
+         ]]) -> setStatusCode($status);;
       }
    
 
@@ -55,7 +55,7 @@ class Response
          "data" => $data,
          "message" => $message,
          "status" => $status
-      ]]);
+      ]]) -> setStatusCode($status);;
    }
 
 
