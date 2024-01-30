@@ -1,0 +1,18 @@
+.container-main-footer {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3em;
+    border-top: 1px solid #000;
+}
+
+.title-footer {
+    font-size: .75em;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: .15em;
+    margin-top: 1em;
+
+}

@@ -1,0 +1,135 @@
+/* background smoker */
+.main-login-container {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    background-color: #000;
+    z-index: 1;
+}
+
+.information-login-container {
+    width: 90%;
+    background-image: url(../../../../../assets/img/background.jpg);
+    background-color: #000;
+    background-position: center;
+    background-blend-mode: lighten;
+    z-index: 0;
+    opacity: 10%;
+    display: flex;
+    justify-content: center;
+}
+
+.footer-information {
+    z-index: 10;
+    color: #fff;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 2em;
+    width: 75%;
+    display: flex;
+    justify-content: center;
+}
+
+/*  Section of the auth  */
+.image-logo-auth {
+    width: 120px;
+    height: 120px;
+    background-image: url(../../../../../assets/img/logo.jpg);
+    background-size: cover;
+    mix-blend-mode: darken;
+    margin-bottom: 3em;
+
+}
+
+.auth-login-container {
+    width: 30%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #f1f1f1;
+    align-items: center;
+}
+
+.title-auth {
+    margin-bottom: 1.5em;
+    color: #2f2f2fd7;
+    letter-spacing: .15rem;
+    font-size: 1.2em;
+    text-transform: uppercase;
+}
+
+/* set effects inputs */
+
+.form {
+    width: 25vw;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+   
+}
+
+.form-group {
+    position: relative;
+    padding: 1em;
+}
+
+label {
+    position: absolute;
+    left: 1em;
+    cursor: text;
+    transition: all ease-in-out .5s;
+    color: #797979b4;
+}
+
+input[type="text"],input[type="password"] {
+  
+    border: none;
+    border-bottom: 1px solid #0000005e;
+    outline: none;
+    background-color: #f1f1f1;
+    width: 255px;
+}
+
+input[type=submit] {
+
+    width: 255px;
+    padding: 0.5em;
+    cursor: pointer;
+    background-color: #f1f1f1;
+    border: 1px solid #0000005a;
+    margin: 0 auto;
+}
+
+input[type="submit"]:hover {
+   opacity: 70%;
+}
+
+input[type="text"]:not(:placeholder-shown) ~ label,input[type="password"]:not(:placeholder-shown) ~ label{
+   position: absolute;
+   left: 1.4em;
+   margin-top: -1.2em;
+   transition: all ease-in-out .5s;
+   font-size: .75em;
+   color: #000;
+}
+
+input[type="text"]:focus ~ label,input[type="password"]:focus ~ label{
+   position: absolute;
+   left: 1.4em;
+   margin-top: -1.2em;
+   transition: all ease-in-out .5s;
+   font-size: .75em;
+   color: #000;
+}
+
+/* password failed */
+
+.auth-failed {
+    font-size: .75em;
+}
+
+
+

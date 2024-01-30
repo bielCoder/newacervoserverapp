@@ -1,0 +1,36 @@
+<app-header (showHide)="onReceiveShowHide()"></app-header>
+
+  <div class="container-main-menu-responsive" [class.show-hide]="showHide" [ngSwitch]="access">
+    <ul *ngSwitchCase="'1'">
+      <li><a routerLink="/home"><i class="bi bi-person-fill-gear"></i> TI</a></li>
+      <li><a routerLink="/admin"><i class="bi bi-person-badge-fill"></i> Administradores</a></li>
+      <li><a routerLink="/operators"><i class="bi bi-person-fill-check"></i> Operadores</a></li>
+      <li><a routerLink="/collaborators"><i class="bi bi-person-fill"></i> Colaboradores</a></li>
+      <li><a routerLink="/products"><i class="bi bi-cart-fill"></i> Produtos</a></li>
+      <li><a routerLink="/withdraw"><i class="bi bi-cart-dash-fill"></i> Retirar</a></li>
+
+    </ul>
+    <ul *ngSwitchCase="'2'">
+      <li><a routerLink="/admin"><i class="bi bi-person-badge-fill"></i> Administradores</a></li>
+      <li><a routerLink="/operators"><i class="bi bi-person-fill-check"></i> Operadores</a></li>
+      <li><a routerLink="/collaborators"><i class="bi bi-person-fill"></i> Colaboradores</a></li>
+      <li><a routerLink="/products"><i class="bi bi-cart-fill"></i> Produtos</a></li>
+      <li><a routerLink="/withdraw"><i class="bi bi-cart-dash-fill"></i> Retirar</a></li>
+    </ul>
+ 
+    <ul *ngSwitchCase="'3'">
+      <li><a routerLink="/operators"><i class="bi bi-person-fill-check"></i> Operadores</a></li>
+      <li><a routerLink="/collaborators"><i class="bi bi-person-fill"></i> Colaboradores</a></li>
+      <li><a routerLink="/products"><i class="bi bi-cart-fill"></i> Produtos</a></li>
+      <li><a routerLink="/withdraw"><i class="bi bi-cart-dash-fill"></i> Retirar</a></li>
+    </ul>
+    <ul *ngSwitchCase="'4'">
+      <li><a routerLink="/collaborators"><i class="bi bi-person-fill"></i> Colaboradores</a></li>
+      <li><a routerLink="/products"><i class="bi bi-cart-fill"></i> Produtos</a></li>
+    </ul>
+    <span class="logged">logado: {{ logged }}</span>
+
+
+</div>
+
+

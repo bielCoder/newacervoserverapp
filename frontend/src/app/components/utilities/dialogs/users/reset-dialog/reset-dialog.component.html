@@ -1,0 +1,30 @@
+<div class="main-container">
+    <form [formGroup]="dialogForm" (ngSubmit)="onSubmit(dialogForm)">
+        <div class="header-container">
+            <p class="title">{{ data.name }}</p>
+            <p class="close-modal" (click)="closeModal()"><i class="bi bi-x-circle"></i></p>
+        </div>
+            <div class="container-content">
+                <div class="container-first-group">
+                    <div class="form-group indentify">
+                        <input type="text" name="id" id="id" class="id" placeholder=" " autocomplete="off" [value]="data.id">
+                        <label for="name">ID</label>
+                    </div>
+                <div class="form-group">
+                    <input type="password" formControlName="password" id="password" class="password form-control" placeholder=" " autocomplete="off">
+                    <label for="name">Nova Senha</label>
+                </div>
+                <div class="form-group">
+                    <input type="password" formControlName="password_confirm" id="password_confirm" class="password_confirm form-control" placeholder=" " autocomplete="off" >
+                    <label for="name">Confirmar Senha</label>
+                </div>
+              
+              </div>
+              <p class="error" *ngIf="error !== undefined" [class.error-condition]="error !== undefined">{{ error }}</p>
+            </div>
+        <div class="footer-container">
+            <button type="submit" class="btn btn-outline-success"><i class="bi bi-pencil-square"></i> Salvar Senha</button>
+        </div>
+    </form>
+</div>
+

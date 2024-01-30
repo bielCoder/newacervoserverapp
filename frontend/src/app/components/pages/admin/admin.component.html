@@ -1,0 +1,48 @@
+
+<app-menu-responsive></app-menu-responsive>
+<div class="container-main-users">
+    <div class="container-header-table">
+      <p class="title-page">Admin</p>
+      <div class="container-search">
+        <app-search  (data)="onSearch($event)"></app-search>
+      </div>
+      <a class="register" (click)="navigateRegister()"><i class="bi bi-person-fill-add"></i>cadastrar</a>
+    </div>
+
+    <div class="container-table-user">
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>nome</th>
+                <th>matrícula</th>
+                <th>função</th>
+                <th>departamento</th>
+                <th>e-mail</th>
+                <th class="access">acesso</th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                <tr *ngFor="let user of users" (click)="openDialog(list)" #list>
+                  <td>{{user.id}}</td>
+                  <td class="name">{{user.name}}</td>
+                  <td>{{user.register}}</td>
+                  <td>{{user.function}}</td>
+                  <td>{{user.department}}</td>
+                  <td>{{user.email}}</td>
+                  <td [ngSwitch]="user.access" class="access">
+                    <span *ngSwitchCase="2">Admin</span>
+                  </td>
+                </tr>
+            </tbody>
+          </table>
+    </div>
+</div>
+<app-paginator *ngIf="users" [paginator]="paginator" (paginatorEvent)="nextPage($event)" [alpha]="alpha"></app-paginator>
+
+<div class="container-message-success" *ngIf="success">
+  <span class="success">
+     <p class="message-success"> {{ success }} </p>
+  <div class="progress-bar"></div>
+  </span>
+</div>

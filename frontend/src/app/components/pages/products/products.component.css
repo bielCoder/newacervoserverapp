@@ -1,0 +1,187 @@
+.container-main-users{
+    position: absolute;
+    top: 3.5em;
+    left: 14.5em;
+    height: 73vh;
+    width: 85%;
+    padding: 1em;
+}
+
+.title-page {
+    margin-left: 1.8em;
+    font-size: 1.2em;
+}
+
+.container-table-user {
+    position: relative;
+    height: 73vh;
+    overflow-y: scroll;
+    padding: 2em;
+    z-index: 1;
+
+}
+
+
+
+.table {
+    margin-top: -2.8em;
+}
+
+tr th {
+    text-transform: capitalize;
+    font-size: .80rem;
+}
+
+tr td {
+    font-size: .75rem;
+}
+
+.name {
+    text-transform: capitalize;
+}
+
+tbody tr:hover {
+    cursor: pointer;
+}
+
+/* header table / search and title */
+
+.container-header-table{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2em;
+    align-items: center;
+    padding-right: 2.5em;
+    border-bottom: 1px solid #c1c1c1;
+    margin-left: 1em;
+    padding-bottom: 1em;
+}
+
+a {
+    text-transform: capitalize;
+    display: flex;
+    gap: 0.4em;
+    background-color: transparent;
+    color: #2f2f2f;
+    padding: 0.7em;
+    border-radius: 0.6em;
+    font-size: .75em;
+    letter-spacing: .12em;
+    align-items: center;
+    border: 1px solid #2f2f2fa1;
+}
+
+a:hover {
+    opacity: 85%;
+    background-color: #2f2f2fa1;
+    color: #fff;
+    border-color: transparent;
+}
+
+a i {
+    font-size: 1.2em;
+}
+
+.register {
+    cursor: pointer;
+}
+
+.container-search {
+    position: absolute;
+    display: flex;
+    justify-content: flex-end;
+    right: 0;
+    margin-right: 10em;
+    margin-top: 0.6em;
+}
+
+
+.my-css-class .mat-dialog-container{
+    color: #fff;
+  } 
+
+
+  /* message success */
+
+  .container-message-success {
+    position: fixed;
+    top: 4.3em;
+    right: 60em;
+    z-index: 9;
+    margin-right: -3em;
+    margin-top: 0em;
+}
+
+
+
+
+.success {
+    position: relative;
+    padding-top: 1em;
+    padding-left: 0em;
+    padding-right: 0em;
+    padding-bottom: .2em;
+    background-color: #d7eed5;
+    color: #41b556;
+    border-color: #52b541;
+    display: flex;
+    align-items: start;
+    width: 20vw;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    animation: showTime 5s forwards;
+    z-index: 9999;
+}
+
+.unavailable {
+   color: #b54641;
+}
+
+.available {
+   color: #41b556;
+}
+
+@keyframes showTime {
+    0% {
+       display: block;
+    }
+
+    100% {
+       display: none;
+    }
+}
+
+
+.progress-bar {
+    position: absolute;
+    background-color: #41b554;
+    width: 100%;
+    height: 2px;
+    margin-top: 1em;
+    animation: progress-bar 5s forwards;
+    bottom: 0px;
+}
+
+.message-success {
+    width: 100%;
+    text-align: center;
+    font-size: .75em;
+   
+}
+
+
+
+@keyframes progress-bar {
+    0% {
+        width: 100%;
+    }
+
+    100% {
+        width: 0%;
+    }
+}
+
+
+

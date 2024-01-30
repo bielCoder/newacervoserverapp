@@ -1,0 +1,27 @@
+.search{
+    /* border: none; */
+    /* border-bottom: 1px solid #000; */
+    position: relative;
+    top: -.3em;
+}
+
+
+
+.search::placeholder {
+    font-size: .80em;
+}
+
+.search:not(:placeholder-shown) ~ label{
+    overflow: hidden;
+    color: transparent;
+}
+
+.search ~ label {
+    position: absolute;
+    left: 219px;
+    bottom: 13px;
+    margin-right: 2em;
+    margin-top: 0.4em;
+    color: #0000007d;
+    font-size: .80em;
+}

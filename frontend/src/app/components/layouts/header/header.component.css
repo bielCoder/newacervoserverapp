@@ -1,0 +1,37 @@
+
+
+.container-navbar {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 1em;
+    align-items: center;
+    border-bottom: 1px solid #000;
+    border-top: 1px solid #000;
+
+}
+
+.bi-list {
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.main-title {
+    letter-spacing: .15em;
+    color: #2f2f2fd7;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.logout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-transform: capitalize;
+    font-size: 1em;
+    cursor: pointer;
+}
+

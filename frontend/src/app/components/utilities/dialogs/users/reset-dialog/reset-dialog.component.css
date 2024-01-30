@@ -1,0 +1,175 @@
+::ng-deep .mat-mdc-dialog-container {
+    --mdc-dialog-container-color: #f1f1f1;
+  }
+
+
+  .header-container {
+    width: 100%;
+    border-bottom: 1px solid #c1c1c1;
+    border-top: 1px solid #c1c1c1;
+    padding: .5em;
+    text-align: center;
+  }
+
+  .title {
+    margin-top: 1em;
+    text-transform: capitalize;
+    font-size: 1.2em;
+  }
+
+  .footer-container {
+    display: flex;
+    border-top: 1px solid #c1c1c1;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0.5em;
+    text-align: center;
+    padding-right: 0.5em;
+}
+
+.container-content {
+  height: 17vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.6em;
+  flex-direction: column;
+}
+  
+  .form-group {
+    position: relative;
+  }
+
+
+
+  input {
+    position: relative;
+    margin-bottom: 2.5em;
+    outline: none;
+    padding-left: 0.3em;
+    z-index: 9999;
+    font-size: .75em;
+    width: 20vw;
+}
+
+.btn-outline-success {
+  font-size: .89em;
+  margin-top: 0.2em;
+}
+
+
+input ~ label {
+  position: absolute;
+  left: 0;
+  top: 0.3em;
+  transition: all ease-in-out .5s;
+  text-transform: capitalize;
+  opacity: 50%;
+  cursor: text;
+  z-index: 9999;
+}
+
+  label {
+    margin-left: .5em;
+    cursor: text;
+  }
+
+  input:not(:placeholder-shown) ~ label{
+    margin-top: -2.5em;
+    font-size: .75em;
+    transition: all ease-in-out .5s;
+    color: #2f2f2f;
+    opacity: 100;
+    cursor: text;
+  }
+
+  input:focus ~ label{
+    margin-top: -2.5em;
+    font-size: .75em;
+    transition: all ease-in-out .5s;
+    color: #2f2f2f;
+    opacity: 100%;
+    cursor: text;
+  }
+
+  .access {
+    display: flex;
+  }
+
+  .name {
+    text-transform: capitalize;
+  }
+
+  input[type="radio"] {
+      margin-left: .5em;
+      margin-top: .3em;
+  }
+
+  input[type="radio"] ~ span {
+    position: relative;
+    top: -0.16em;
+    margin-left: .5em;
+}
+
+.indentify {
+  display: none;
+}
+
+.close-modal {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 0.3em;
+  margin-right: 0.2em;
+  font-size: 1.5em;
+  color: #2f2f2f;
+  cursor: pointer;
+  padding: 0.18em;
+}
+
+.btn-success {
+  font-size: .89em;
+  margin-top: 0em;
+}
+
+.error {
+  position: relative;
+  padding-top: 0.5em;
+  padding-bottom: 0.2em;
+  padding-left: 1.2em;
+  padding-right: 0em;
+  background-color: #eed5d5;
+  color: #b54641;
+  border-color: #b54641;
+  display: flex;
+  align-items: start;
+  width: 11vw;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  font-size: .75em;
+}
+
+.error-condition {
+  position: relative;
+  padding-top: 0.5em;
+  padding-bottom: 0.2em;
+  padding-left: 1.2em;
+  padding-right: 0em;
+  background-color: #eed5d5;
+  color: #b54641;
+  border-color: #b54641;
+  display: flex;
+  align-items: start;
+  width: 11vw;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  font-size: .75em;
+  margin-top: -2em;
+  margin-bottom: 0em;
+}
+
+.container-first-group {
+    margin-top: 0.8em;
+}

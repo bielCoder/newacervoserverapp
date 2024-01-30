@@ -1,0 +1,95 @@
+<div class="container-main-modal">
+    <div class="header-container">
+        <p class="title">Cadastrar Funcionário</p>
+        <p class="close-modal" (click)="closeModal()"><i class="bi bi-x-circle"></i></p>
+    </div>
+    <form class="main-form" [formGroup]="createUserForms" (ngSubmit)="onSubmitCreate()">
+        <div class="main-container">
+            <div class="first-group-form">
+            <div class="form-group">
+                <input type="text" formControlName="name" id="name" class="name form-control" placeholder=" " autocomplete="off" [class.is-invalid]="!createUserForms.controls['name'].valid && createUserForms.controls['name'].touched">
+                <label for="name">nome completo</label>
+                <p class="error" *ngIf="!createUserForms.controls['name'].valid && createUserForms.controls['name'].touched" >* campo obrigatório</p>
+                <p class="error" *ngIf="error !== undefined && error === '* insira o seu nome completo'">{{ error }}</p>
+            </div>
+            <div class="form-group">
+                <input type="text" formControlName="register" id="register" class="register form-control" placeholder=" " autocomplete="off" [class.is-invalid]="!createUserForms.controls['register'].valid && createUserForms.controls['register'].touched">
+                <label for="register">matrícula</label>
+            </div>
+            <p class="error" *ngIf="!createUserForms.controls['register'].valid && createUserForms.controls['register'].touched">* campo obrigatório</p>
+            <div class="form-group">
+                <input type="text" formControlName="function" id="function" class="function form-control" placeholder=" " autocomplete="off" [class.is-invalid]="!createUserForms.controls['function'].valid && createUserForms.controls['function'].touched">
+                <label for="function">função</label>
+            </div>
+            <p class="error" *ngIf="!createUserForms.controls['function'].valid && createUserForms.controls['function'].touched" >* campo obrigatório</p>
+            <div class="form-group">
+                <input type="text" formControlName="department" id="department" class="department form-control" placeholder=" " autocomplete="off" [class.is-invalid]="!createUserForms.controls['department'].valid && createUserForms.controls['department'].touched">
+                <label for="department">departamento</label>
+            </div> 
+            <p class="error" *ngIf="error !== undefined && error !== '* campo aceita apenas e-mail.'  && error !== '* insira o seu nome completo'" [class.generic-error]="error !== undefined && error !== '* campo aceita apenas e-mail.'  && error !== '* insira o seu nome completo'" [class.erro-undefined]="error !== undefined && error !== '* campo aceita apenas e-mail.'  && error !== '* insira o seu nome completo' && error">{{ error }}</p>
+            <p class="error" *ngIf="!createUserForms.controls['department'].valid && createUserForms.controls['department'].touched" >* campo obrigatório</p>
+            </div>
+           
+            <div class="second-group-form" [class.is-invalid-input-position]="!createUserForms.controls['email'].valid && createUserForms.controls['email'].touched"> 
+                <div class="form-group">
+                    <input type="email" formControlName="email" id="email" class="email form-control" placeholder=" " autocomplete="off" [class.is-invalid]="!createUserForms.controls['email'].valid && createUserForms.controls['email'].touched">
+                    <label for="email">email</label>
+                </div>
+               
+                <p class="error" *ngIf="!createUserForms.controls['email'].valid && createUserForms.controls['email'].touched" >* campo obrigatório</p>
+                <div class="form-group">
+                    <input type="password" formControlName="password" id="password" class="password form-control" placeholder=" " autocomplete="off" [class.is-invalid]="!createUserForms.controls['password'].valid && createUserForms.controls['password'].touched">
+                    <label for="password">senha</label>
+                </div>
+                <p class="error" *ngIf="!createUserForms.controls['password'].valid && createUserForms.controls['password'].touched">* campo obrigatório</p>
+                <div class="form-group">
+                    <input type="password" formControlName="password_confirm" id="password_confirm" class="password_confirm form-control" placeholder=" " autocomplete="off" [class.is-invalid]="!createUserForms.controls['password_confirm'].valid && createUserForms.controls['password_confirm'].touched">
+                    <label for="password_confirm">confirmar senha</label>
+                </div>
+                <p class="error" *ngIf="!createUserForms.controls['password_confirm'].valid && createUserForms.controls['password_confirm'].touched">* campo obrigatório</p>
+                <p class="error" *ngIf="passwordNotValid !== undefined">{{ passwordNotValid }}</p>
+
+                <div class="form-group access">
+                    <span>acesso:</span>
+                    <div class="container-group">
+                          <input type="radio" formControlName="access" id="root" class="root" autocomplete="off" value={{1}} *ngIf="access == '1'" ><span  *ngIf="access == '1'" >root</span>
+                        <input type="radio" formControlName="access" id="admin" class="admin"  autocomplete="off" value={{2}} ><span><abbr title="administrador">adm</abbr></span>
+                        <input type="radio" formControlName="access" id="operator" class="operator"  autocomplete="off" value={{3}} ><span><abbr title="operador">oper</abbr></span>
+                        <input type="radio" formControlName="access" id="collaborator" class="collaborator"  autocomplete="off" value={{4}} ><span><abbr title="colaborador">col</abbr></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+           
+           
+        <div class="footer-container">
+            <button type="submit" class="btn btn-outline-success"><i class="bi bi-person-fill-add"></i> Salvar Dados</button>
+        </div>
+    </form>
+</div>
+
+ <!-- 
+
+    <div class="container-format-position-elements">
+        <div class="container-first-group"  [class.spacing-top]="createUserForms.controls['department'].valid">
+           
+        </div>
+
+        <div class="container-second-group">
+           
+           
+            <p class="error" *ngIf="error === '* campo aceita apenas e-mail.'">{{ error }}</p>
+           
+
+         
+          
+        </div>
+    </div>
+   
+ 
+   
+</form> -->
+<!--  message error  -->
+<!-- 
+            <p class="error" *ngIf="!createUserForms.controls['department'].valid && createUserForms.controls['department'].touched" >* campo obrigatório</p>
+        </div> --> 

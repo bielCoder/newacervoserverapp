@@ -1,0 +1,26 @@
+<div class="container-main-modal">
+    <div class="header-container">
+        <p class="title" *ngIf="route.url === '/withdraw' else change">Confirmar Retirada</p>
+        <ng-template #change>
+            <p class="title">Confirmar Devolução</p>
+        </ng-template>
+        <p class="close-modal" (click)="closeModal()"><i class="bi bi-x-circle"></i></p>
+    </div>
+    <form class="main-form" [formGroup]="formulario" (ngSubmit)="onSubmit()">
+        <div class="main-container">
+            <p class="title-confirmation">Deseja realmente retirar esses produtos ? <br>Confirme com sua senha:</p>
+                <div class="form-group">
+                    <input type="text" formControlName="register" id="register" class="register" placeholder=" " autocomplete="off" value="{{data.withdraw.users.register}}">
+                    <label for="register">Matrícula</label>
+                </div>
+                <div class="form-group">
+                    <input type="password" formControlName="password" id="password" class="password" placeholder=" " autocomplete="off">
+                    <label for="password">Senha</label>
+                </div>
+        </div>
+        <div class="footer-container">
+            <button type="submit" class="btn btn-success"><i class="bi bi-cart-plus-fill"></i> Confirmar Retirada</button>
+            <button type="button" (click)="closeModal()" class="btn btn-secondary">Cancelar</button>
+        </div>
+    </form>
+</div>

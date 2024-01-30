@@ -1,0 +1,8 @@
+    <div class="main-container-paginator">
+        <mat-paginator [length]="paginator?.total"
+        [pageSize]="paginator?.per_page"
+        [pageSizeOptions]="[15,20,50]"
+        (page)="handlePagination($event)" 
+            aria-label="Select page">
+        </mat-paginator>
+    </div>
