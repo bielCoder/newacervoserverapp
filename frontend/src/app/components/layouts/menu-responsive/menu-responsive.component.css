@@ -7,19 +7,20 @@
 }
 
 .container-main-menu-responsive {
-    position: relative;
-    background-color: #2f2f2fd7;
+    position: fixed;
+    top: 0px;
+    background-color: #2f2f2f;
     color: #fff;
     height: 110%;
     width: 15%;
     display: flex;
     align-items: start;
     transition: all ease-in-out .5s;
-    z-index: 1;
+    z-index: 0;
     flex-direction: column;
     justify-content: center;
+    border-bottom: 1px solid #2f2f2fd7;
 }
-
 a {
     color: #fff;
 }

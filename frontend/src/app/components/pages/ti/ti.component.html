@@ -1,6 +1,6 @@
 
 <app-menu-responsive></app-menu-responsive>
-<div class="container-position-all-elements">
+
 <div class="container-main-users">
     <div class="container-header-table">
       <p class="title-page">TI</p>
@@ -9,7 +9,7 @@
       </div>
       <a class="register" (click)="navigateRegister()"><i class="bi bi-person-fill-add"></i>cadastrar</a>
     </div>
-
+    <!--
     <div class="container-table-user">
         <table class="table table-hover">
             <thead>
@@ -37,18 +37,17 @@
                 </tr>
             </tbody>
           </table>
-    </div>
-   
-</div>
+    </div> -->
 
-<app-paginator [paginator]="paginator" [alpha]="alpha" (paginatorEvent)="nextPage($event)" ></app-paginator>
 
-<div class="container-message-success" *ngIf="success !== null">
+<!-- <app-paginator [paginator]="paginator" [alpha]="alpha" (paginatorEvent)="nextPage($event)" ></app-paginator> -->
+
+<!-- <div class="container-message-success" *ngIf="success !== null">
   <span class="success" >
      <p class="message-success"> {{ success }} </p>
   <div class="progress-bar"></div>
   </span>
-</div>
+</div> -->
 
 </div>
 
