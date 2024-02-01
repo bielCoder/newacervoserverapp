@@ -1,11 +1,12 @@
 .container-main-users {
     position: relative;
-    top: 3.3em;
-    left: 14.5em;
-    height: 100vh;
+    top: 7.3em;
+    left: 14.67em;
+    height: auto;
     width: 85%;
     padding: 1em;
-}
+
+} 
 
 .title-page {
     margin-left: 1.8em;
@@ -18,13 +19,21 @@
     overflow-y: scroll;
     padding: 2em;
     z-index: 1;
-
 }
 
 
 
 .table {
     margin-top: -2.8em;
+}
+
+.bi-arrow-down-up  {
+    position: relative;
+    left: 44px;
+}
+
+thead tr {
+    cursor: pointer;
 }
 
 tr th {
@@ -34,6 +43,10 @@ tr th {
 
 tr td {
     font-size: .75rem;
+}
+
+.span {
+    display: flex;
 }
 
 .name {
@@ -47,7 +60,7 @@ tbody tr:hover {
 /* header table / search and title */
 
 .container-header-table{
-    position: relative;
+
     display: flex;
     justify-content: space-between;
     margin-bottom: 2em;
@@ -88,14 +101,13 @@ a i {
 }
 
 .container-search {
-    position: absolute;
+    position: relative;
     display: flex;
     justify-content: flex-end;
-    right: 0;
-    margin-right: 10em;
-    margin-top: 0.6em;
+    left: 25em;
+    margin-right: 1em;
+    margin-top: 0.7em 
 }
-
 
 .my-css-class .mat-dialog-container{
     color: #fff;
@@ -180,4 +192,6 @@ a i {
 }
 
 
-
+.bi-arrow-down-up {
+    font-weight: bold;
+}

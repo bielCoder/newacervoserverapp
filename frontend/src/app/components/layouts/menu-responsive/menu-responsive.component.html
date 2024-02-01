@@ -1,5 +1,5 @@
 <app-header (showHide)="onReceiveShowHide()"></app-header>
-
+  <div class="design-line"></div>
   <div class="container-main-menu-responsive" [class.show-hide]="showHide" [ngSwitch]="access">
     <ul *ngSwitchCase="'1'">
       <li><a routerLink="/home"><i class="bi bi-person-fill-gear"></i> TI</a></li>
