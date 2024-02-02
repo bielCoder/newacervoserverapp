@@ -41,10 +41,12 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::controller(UserController::class) -> group(function() {
             Route::get('/search','search') -> name('User - Search');
             Route::get('/','index') -> name('User - Index');
+            Route::put('orderby','index') -> name('User - OrderBy');
             Route::delete('/{id}','destroy') -> name('User - Destroy');
             Route::put('/{id}','update') -> name('User - Update');
             Route::get('/{id}','show') -> name('User - Show');
             Route::put('/reset/{id}','reset') -> name('User - Reset');
+        
         });
     });
 

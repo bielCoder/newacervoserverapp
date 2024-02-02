@@ -3,10 +3,9 @@
     top: 7.3em;
     left: 14.67em;
     height: auto;
-    width: 85%;
+    width: 84%;
     padding: 1em;
-
-} 
+}
 
 .title-page {
     margin-left: 1.8em;
@@ -15,7 +14,7 @@
 
 .container-table-user {
     position: relative;
-    height: 73vh;
+    height: 500px;
     overflow-y: scroll;
     padding: 2em;
     z-index: 1;
@@ -31,6 +30,17 @@
     position: relative;
     left: 44px;
 }
+
+.to-right {
+        position: relative;
+        left: 70px;
+}
+
+.to-right-too {
+    position: relative;
+    left: 60px;
+}
+
 
 thead tr {
     cursor: pointer;
@@ -105,8 +115,8 @@ a i {
     display: flex;
     justify-content: flex-end;
     left: 25em;
-    margin-right: 1em;
-    margin-top: 0.7em 
+    margin-right: 3em;
+    margin-top: 0.7em;
 }
 
 .my-css-class .mat-dialog-container{
@@ -194,4 +204,47 @@ a i {
 
 .bi-arrow-down-up {
     font-weight: bold;
+}
+
+
+.container-paginator  {
+    position: relative;
+    margin-top: 164px;
+    width: 100%;
+    margin-left: -30px;
+}
+
+.design-lign {
+    width: 50%;
+    height: 1px;
+    background-color: #2f2f2f;
+    position: relative;
+    top: 0px;
+    left: 0px;
+}
+
+
+.container-footer {
+    position: relative;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.container-lign-footer {
+    position: absolute;
+    border-top: 1px solid #c1c1c1;
+    margin-top: 20px;
+    width: 81%;
+    left: 233px;
+    display: flex;
+    justify-content: end;
+}
+
+.container-lign-footer p {
+    color: #696969;
+    font-size: .75em;
+    margin-right: 1em;
 }

@@ -22,8 +22,10 @@ export class TIComponent implements OnInit {
   @Output() paginator!:any;
   success!: any;
   search!:any;
-  @Output() alpha:string = 'users'
- 
+  @Output() alpha:string = 'users';
+  trueOrFalse: boolean = false;
+  order: string =  'asc'
+  data: Date = new Date();
   
   constructor(private tiService: UsersService, private router: Router, public dialog: MatDialog) { 
     
@@ -106,5 +108,29 @@ export class TIComponent implements OnInit {
         email: `${ element.children[5].innerHTML }`,
         access: `${ element.children[6].getAttribute('ng-reflect-ng-switch')}`
         }})
+  }
+
+
+  // Order BY
+
+  changeOrderBy()
+  {
+    this.trueOrFalse = !this.trueOrFalse;
+    if(!this.trueOrFalse)
+    {
+      this.order = 'asc';
+    } else {
+      this.order = 'desc'
+    }
+
+    this.tiService.orderBy(this.order).subscribe(
+      (data: any) => {
+        this.users = data;
+        this.paginator = this.users.users.data[0]
+        this.users = this.users.users.data[0].data
+      },(error) => {
+        console.log(error)
+      }
+    );
   }
 }

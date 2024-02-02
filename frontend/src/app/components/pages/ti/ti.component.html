@@ -13,13 +13,13 @@
     <div class="container-table-user">
         <table class="table table-hover">
             <thead>
-              <tr>
+              <tr (click)="changeOrderBy()">
                 <th>#</th>
                 <th>nome<i class="bi bi-arrow-down-up"></i></th>
                 <th>matrícula<i class="bi bi-arrow-down-up"></i></th>
                 <th>função<i class="bi bi-arrow-down-up"></i></th>
-                <th>departamento<i class="bi bi-arrow-down-up"></i></th>
-                <th>e-mail<i class="bi bi-arrow-down-up"></i></th>
+                <th>departamento<i class="bi bi-arrow-down-up to-right"></i></th>
+                <th>e-mail<i class="bi bi-arrow-down-up to-right-too"></i></th>
                 <th>acesso</th>
               </tr>
             </thead>
@@ -37,10 +37,12 @@
                 </tr>
             </tbody>
           </table>
+       
     </div>
 
+   
 
-<!-- <app-paginator [paginator]="paginator" [alpha]="alpha" (paginatorEvent)="nextPage($event)" ></app-paginator> -->
+ 
 
 <!-- <div class="container-message-success" *ngIf="success !== null">
   <span class="success" >
@@ -51,3 +53,13 @@
 
 </div>
 
+<div class="container-paginator">
+  <app-paginator [paginator]="paginator" [alpha]="alpha" (paginatorEvent)="nextPage($event)" ></app-paginator>
+</div>
+
+
+<div class="container-footer">
+  <div class="container-lign-footer">
+    <p>Acervo&#64;{{ data | date: 'Y'}}</p>
+  </div>
+</div>

@@ -8,7 +8,7 @@
 
 .container-main-menu-responsive {
     position: fixed;
-    top: 47px;
+    top: 0px;
     background-color: #2f2f2f;
     color: #fff;
     height: 100vh;

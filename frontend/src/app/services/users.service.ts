@@ -46,4 +46,12 @@ export class UsersService {
   {
     return this.http.get<Users>(`${this.users}/${id}`)
   }
+
+  orderBy(order: string):Observable<Users>
+  {
+    const object = {
+      "order": order
+    }
+    return this.http.put<Users>(`http://10.3.0.140/public/api/users/orderby`,object);
+  }
 }

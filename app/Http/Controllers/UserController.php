@@ -12,24 +12,34 @@ use Laravel\Sanctum\PersonalAccessToken;
 
 class UserController extends Controller
 {
+    private $order = "asc";
 
     public function __construct(private User $user, private Response $response){}
 
+    
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * 
      */
+
+
     public function index(Request $request)
     {
+       if(!empty($request -> order))
+       {
+         $this -> order = $request -> order;
+       }
         try {
            return $this -> response -> format(
                 "users","application\json","get",
-                [$this -> user -> where('access',1) -> paginate((int)$request -> per_page),
+                [
+                $this -> user -> where('access',1) -> orderBy("id",(string) $this -> order) -> paginate((int)$request -> per_page),
                 $this -> user -> where('access',2) -> paginate((int)$request -> per_page),
                 $this -> user -> where('access',3) -> paginate((int)$request -> per_page),
                 $this -> user -> where('access',4) -> paginate((int)$request -> per_page)
-            ],
+                ],
                 null,null,200
             );
         } catch (\PDOException $e)
