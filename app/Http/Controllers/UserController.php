@@ -36,9 +36,9 @@ class UserController extends Controller
                 "users","application\json","get",
                 [
                 $this -> user -> where('access',1) -> orderBy("id",(string) $this -> order) -> paginate((int)$request -> per_page),
-                $this -> user -> where('access',2) -> paginate((int)$request -> per_page),
-                $this -> user -> where('access',3) -> paginate((int)$request -> per_page),
-                $this -> user -> where('access',4) -> paginate((int)$request -> per_page)
+                $this -> user -> where('access',2) -> orderBy("id",(string) $this -> order) -> paginate((int)$request -> per_page),
+                $this -> user -> where('access',3) -> orderBy("id",(string) $this -> order) -> paginate((int)$request -> per_page),
+                $this -> user -> where('access',4) -> orderBy("id",(string) $this -> order) -> paginate((int)$request -> per_page)
                 ],
                 null,null,200
             );

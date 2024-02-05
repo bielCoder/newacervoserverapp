@@ -1,5 +1,6 @@
 
 <app-menu-responsive></app-menu-responsive>
+
 <div class="container-main-users">
     <div class="container-header-table">
       <p class="title-page">Operadores</p>
@@ -8,18 +9,18 @@
       </div>
       <!-- <a class="register" (click)="navigateRegister()"><i class="bi bi-person-fill-add"></i>cadastrar</a> -->
     </div>
-
+    
     <div class="container-table-user">
         <table class="table table-hover">
             <thead>
-              <tr>
+              <tr  (click)="changeOrderBy()">
                 <th>#</th>
-                <th>nome</th>
-                <th>matrícula</th>
-                <th>função</th>
-                <th>departamento</th>
+                <th>nome<i class="bi bi-arrow-down-up"></i></th>
+                <th>matrícula<i class="bi bi-arrow-down-up"></i></th>
+                <th>função<i class="bi bi-arrow-down-up"></i></th>
+                <th>departamento<i class="bi bi-arrow-down-up to-right"></i></th>
                 <th>e-mail</th>
-                <th class="access">acesso</th>
+                <!-- <th>acesso</th> -->
               </tr>
             </thead>
             <tbody class="table-group-divider">
@@ -30,21 +31,35 @@
                   <td>{{user.function}}</td>
                   <td>{{user.department}}</td>
                   <td>{{user.email}}</td>
-                  <td [ngSwitch]="user.access" class="access">
-                    <span *ngSwitchCase="2">Admin</span>
-                  </td>
+                  <!-- <td [ngSwitch]="user.access">
+                    <span *ngSwitchCase="1">Root</span>
+                  </td> -->
                 </tr>
             </tbody>
           </table>
+       
     </div>
-</div>
 
-<app-paginator *ngIf="users" [paginator]="paginator" (paginatorEvent)="nextPage($event)" [alpha]="alpha"></app-paginator>
+   
 
+ 
 
-<div class="container-message-success" *ngIf="success">
-  <span class="success">
+<div class="container-message-success" *ngIf="success !== null">
+  <span class="success" >
      <p class="message-success"> {{ success }} </p>
   <div class="progress-bar"></div>
   </span>
+</div>
+
+</div>
+
+<div class="container-paginator">
+  <app-paginator [paginator]="paginator" [alpha]="alpha" (paginatorEvent)="nextPage($event)" ></app-paginator>
+</div>
+
+
+<div class="container-footer">
+  <div class="container-lign-footer">
+    <p>Acervo&#64;{{ data | date: 'Y'}}</p>
+  </div>
 </div>

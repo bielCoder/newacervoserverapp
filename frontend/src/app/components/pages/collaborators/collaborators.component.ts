@@ -22,7 +22,9 @@ export class CollaboratorsComponent implements OnInit {
   success!: any;
   search!:any;
 
-
+  trueOrFalse: boolean = false;
+  order: string =  'asc'
+  data: Date = new Date();
   
   constructor(private tiService: UsersService, private router: Router, public dialog: MatDialog) { 
     
@@ -106,4 +108,27 @@ export class CollaboratorsComponent implements OnInit {
     })
     console.log(element)
   }
+
+   // Order BY
+
+   changeOrderBy()
+   {
+     this.trueOrFalse = !this.trueOrFalse;
+     if(!this.trueOrFalse)
+     {
+       this.order = 'asc';
+     } else {
+       this.order = 'desc'
+     }
+ 
+     this.tiService.orderBy(this.order).subscribe(
+       (data: any) => {
+         this.users = data;
+         this.paginator = this.users.users.data[3]
+         this.users = this.users.users.data[3].data
+       },(error) => {
+         console.log(error)
+       }
+     );
+   }
 }

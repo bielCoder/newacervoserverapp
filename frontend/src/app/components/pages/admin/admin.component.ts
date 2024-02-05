@@ -23,6 +23,10 @@ export class AdminComponent implements OnInit {
   search!:any;
   @Output() alpha: string = 'users'
 
+  trueOrFalse: boolean = false;
+  order: string =  'asc'
+  data: Date = new Date();
+
   
   constructor(private tiService: UsersService, private router: Router, public dialog: MatDialog) { 
     
@@ -110,5 +114,28 @@ export class AdminComponent implements OnInit {
         }
     })
     console.log(element)
+  }
+
+  // Order BY
+
+  changeOrderBy()
+  {
+    this.trueOrFalse = !this.trueOrFalse;
+    if(!this.trueOrFalse)
+    {
+      this.order = 'asc';
+    } else {
+      this.order = 'desc'
+    }
+
+    this.tiService.orderBy(this.order).subscribe(
+      (data: any) => {
+        this.users = data;
+        this.paginator = this.users.users.data[1]
+        this.users = this.users.users.data[1].data
+      },(error) => {
+        console.log(error)
+      }
+    );
   }
 }

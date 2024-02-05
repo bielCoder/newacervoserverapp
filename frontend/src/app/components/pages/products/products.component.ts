@@ -18,6 +18,10 @@ export class ProductsComponent implements OnInit {
   alpha: string = "products"
   search:any;
   success!: string | null;
+
+  data: Date = new Date();
+
+
   constructor(private productService: ProductsService, public dialog: MatDialog){}
 
   ngOnInit(): void {

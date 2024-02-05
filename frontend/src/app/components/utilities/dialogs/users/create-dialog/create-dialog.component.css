@@ -163,13 +163,13 @@ input ~ label {
   padding: 0.18em;
 }
 
-.error{
+.error {
   font-size: .75em;
   background-color: #eed5d5;
   color: #b54641;
   border-color: #b54641;
   padding: 0.5em;
-  width: 13.3vw;
+  width: 267px;
   margin-top: -1.5em;
   margin-bottom: 1.5em;
 }

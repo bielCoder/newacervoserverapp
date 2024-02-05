@@ -1,9 +1,9 @@
-.container-main-users{
-    position: absolute;
-    top: 3.5em;
-    left: 14.5em;
-    height: 73vh;
-    width: 85%;
+.container-main-users {
+    position: relative;
+    top: 7.3em;
+    left: 14.67em;
+    height: auto;
+    width: 84%;
     padding: 1em;
 }
 
@@ -14,7 +14,7 @@
 
 .container-table-user {
     position: relative;
-    height: 73vh;
+    height: 500px;
     overflow-y: scroll;
     padding: 2em;
     z-index: 1;
@@ -26,6 +26,26 @@
     margin-top: -2.8em;
 }
 
+.bi-arrow-down-up  {
+    position: relative;
+    left: 44px;
+}
+
+.to-right {
+        position: relative;
+        left: 70px;
+}
+
+.to-right-too {
+    position: relative;
+    left: 60px;
+}
+
+
+thead tr {
+    cursor: pointer;
+}
+
 tr th {
     text-transform: capitalize;
     font-size: .80rem;
@@ -33,6 +53,10 @@ tr th {
 
 tr td {
     font-size: .75rem;
+}
+
+.span {
+    display: flex;
 }
 
 .name {
@@ -84,17 +108,17 @@ a i {
 
 .register {
     cursor: pointer;
+    margin-left: 5px;
+    
 }
 
 .container-search {
     position: absolute;
-    display: flex;
-    justify-content: flex-end;
-    right: 0;
-    margin-right: 10em;
-    margin-top: 0.6em;
+    top: 0px;
+    right: 0px;
+    margin-top: 5px;
+    margin-right: 136px;
 }
-
 
 .my-css-class .mat-dialog-container{
     color: #fff;
@@ -111,6 +135,7 @@ a i {
     margin-right: -3em;
     margin-top: 0em;
 }
+
 
 
 
@@ -178,3 +203,50 @@ a i {
 }
 
 
+.bi-arrow-down-up {
+    position: relative;
+    left: 52px;
+}
+
+
+.container-paginator  {
+    position: relative;
+    margin-top: 164px;
+    width: 100%;
+    margin-left: -30px;
+}
+
+.design-lign {
+    width: 50%;
+    height: 1px;
+    background-color: #2f2f2f;
+    position: relative;
+    top: 0px;
+    left: 0px;
+}
+
+
+.container-footer {
+    position: relative;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.container-lign-footer {
+    position: absolute;
+    border-top: 1px solid #c1c1c1;
+    margin-top: 20px;
+    width: 81%;
+    left: 233px;
+    display: flex;
+    justify-content: end;
+}
+
+.container-lign-footer p {
+    color: #696969;
+    font-size: .75em;
+    margin-right: 1em;
+}
