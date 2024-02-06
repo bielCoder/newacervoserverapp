@@ -1,75 +1,76 @@
 <div class="main-container">
     <form (ngSubmit)="onSubmit(dialogForm)" [formGroup]="dialogForm">
         <div class="header-container">
-            <p class="title">{{data.product}} #{{data.id}}</p>
+            <p class="title">Editar Produto</p>
             <p class="close-modal" (click)="closeModal()"><i class="bi bi-x-circle"></i></p>
         </div>
             <div class="container-content">
-                <div class="container-first-group">
-                    <div class="form-group indentify">
-                        <input type="text" formControlName="id" id="id" class="id" placeholder=" " autocomplete="off" value="{{ data.id  }}">
-                        <label for="name">id</label>
+                <div class="first-group-division">
+                    <div class="form-group">
+                        <input type="text" formControlName="product" id="product" class="product form-control" placeholder=" " autocomplete="off" value="">
+                        <label for="product">produto</label>
+                    </div>
+                    <p class="error" *ngIf="!dialogForm.controls['product'].valid && dialogForm.controls['product'].touched">* campo obrigatório</p>
+
+                    <div class="form-group">
+                        <input type="text" formControlName="brand" id="brand" class="brand form-control" placeholder=" " autocomplete="off" value="">
+                        <label for="brand">marca</label>
                     </div>
 
-                <div class="form-group">
-                    <input type="text" formControlName="product" id="product" class="product" placeholder=" " autocomplete="off" value="{{ data.product }}">
-                    <label for="product">produto</label>
-                 
-                </div>
-                <p class="error" *ngIf="!dialogForm.controls['product'].valid">* campo obrigatório</p>
-
-
-                <div class="form-group">
-                    <input type="text" formControlName="brand" id="brand" class="brand" placeholder=" " autocomplete="off" value="{{ data.brand }}">
-                    <label for="brand">marca</label>
-                </div>
-
-                <div class="form-group">
-                    <input type="text" formControlName="size" id="size" class="size" placeholder=" " autocomplete="off" value="{{ data.size }}">
-                    <label for="size">tamanho</label>
-                </div>
-
-                <div class="form-group observation">
-                    <label for="observation" >Observação:</label>
-                    <textarea cols="21" rows="1" type="text" formControlName="observation" id="observation" class="observation" placeholder=" " autocomplete="off" value="{{data.observation}}"></textarea>
-                 </div>
-
-            
-              </div>
-              <div class="container-second-group" [class.breakdown-true]="!showHideDescription">
-                <div class="form-group">
-                    <input type="text" formControlName="sexo" id="sexo" class="sexo" placeholder=" " autocomplete="off" value="{{ data.sexo }}">
-                    <label for="sexo">sexo</label>
-                </div>
-                <div class="form-group">
-                    <input type="text" formControlName="color" id="color" class="color" placeholder=" " autocomplete="off" value="{{ data.color }}">
-                    <label for="color">cor</label>
-                </div>
-
-                <div class="form-group breakdown">
-                    <span for="breakdown-false">Produto possui avaria:</span>
-                    <div class="container-group">
-                        <input type="radio" formControlName="breakdown" id="breakdown-true" class="breakdown" autocomplete="off" value={{1}} (change)="onChangeRadio(radioTrue)" #radioTrue><span>sim</span>
-                        <input type="radio" formControlName="breakdown" id="breakdown-false" class="breakdown" autocomplete="off" value={{0}} (change)="onChangeRadio(radioFalse)" #radioFalse><span>não</span>
+                    <div class="form-group">
+                        <input type="text" formControlName="color" id="color" class="color form-control" placeholder=" " autocomplete="off" value="">
+                        <label for="color">cor</label>
                     </div>
-                </div>
+
+                    <!-- <div class="form-group amount">
+                        <input type="number" formControlName="amount" id="amount" class="amount form-control" placeholder=" " autocomplete="off" value="">
+                        <label for="amount">quantidade</label>
+                    </div> -->
+
+                    <div class="form-group breakdown">
+                        <span for="breakdown-false" class="avaria">Produto possui avaria:</span>
+                        <div class="container-group">
+                            <input type="radio" name="breakdown" id="breakdown-true" class="breakdown" autocomplete="off" value={{1}} (change)="onChangeRadio(radioTrue)" #radioTrue><span>sim</span>
+                            <input type="radio" name="breakdown" id="breakdown-false" class="breakdown" autocomplete="off" value={{0}} (change)="onChangeRadio(radioFalse)" #radioFalse checked><span>não</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group description" *ngIf="showHideDescription">
+                        <label for="description">Descreva a avaria:</label>
+                        <textarea cols="21" rows="1" type="text" formControlName="description" id="description" class="description form-control" placeholder=" " autocomplete="off" ></textarea>
+                    </div>
                
-                <!-- <div class="form-group">
-                    Não vou utilizar esse campo , pois os dados de quantidade de produtos existentes em estoques serão registrados na criação do produto e na baixa .
-                    <input type="number" formControlName="amount" id="amount" class="amount" placeholder=" " autocomplete="off" value="{{ data.amount }}">
-                    <label for="amount">quantidade</label>
-                </div> 
-                -->
-               
-                 
-                <div class="form-group description" *ngIf="showHideDescription">
-                    <label for="description">Descreva a avaria:</label>
-                    <textarea cols="21" rows="1" type="text" formControlName="description" id="description" class="description" placeholder=" " autocomplete="off" value="{{ data.description }}" ></textarea>
+                  
                 </div>
-              </div>
+
+                <div class="second-group-division" [class.break-down]="!showHideDescription" [class.show-description]="showHideDescription">
+                   
+                    <p class="error" *ngIf="!dialogForm.controls['code'].valid && dialogForm.controls['code'].touched">* campo obrigatório</p>
+                    <p class="error" *ngIf="error !== undefined">{{ error }}</p>
+
+                    <div class="form-group">
+                        <input type="text" formControlName="size" id="size" class="size form-control" placeholder=" " autocomplete="off" value="">
+                        <label for="size">tamanho</label>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" formControlName="sexo" id="sexo" class="sexo form-control" placeholder=" " autocomplete="off">
+                        <label for="sexo">sexo</label>
+                    </div>
+
+                    
+                    <div class="form-group observation" [class.has-avaria]="showHideDescription">
+                        <label for="observation" >Observação:</label>
+                        <textarea cols="21" rows="1" type="text" formControlName="observation" id="observation" class="form-control" placeholder=" " autocomplete="off" ></textarea>
+                    </div>
+                  
+                  
+
+                </div>
             </div>
         <div class="footer-container">
-            <button type="submit" class="btn btn-warning"><i class="bi bi-pencil-square"></i> Editar Dados</button>
+           
+            <button type="submit" class="btn btn-outline-success"><i class="bi bi-cart-plus-fill"></i> Cadastrar Produto</button>
         </div>
     </form>
 </div>

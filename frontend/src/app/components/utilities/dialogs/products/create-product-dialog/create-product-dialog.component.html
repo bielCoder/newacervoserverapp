@@ -22,10 +22,10 @@
                         <label for="color">cor</label>
                     </div>
 
-                    <div class="form-group amount">
+                    <!-- <div class="form-group amount">
                         <input type="number" formControlName="amount" id="amount" class="amount form-control" placeholder=" " autocomplete="off" value="">
                         <label for="amount">quantidade</label>
-                    </div>
+                    </div> -->
 
                     <div class="form-group breakdown">
                         <span for="breakdown-false" class="avaria">Produto possui avaria:</span>
@@ -50,6 +50,7 @@
                         <span class="generator" (click)="codeGenerator()">gerar novo</span>
                     </div>
                     <p class="error" *ngIf="!dialogForm.controls['code'].valid && dialogForm.controls['code'].touched">* campo obrigatório</p>
+                    <p class="error" *ngIf="error !== undefined">{{ error }}</p>
 
                     <div class="form-group">
                         <input type="text" formControlName="size" id="size" class="size form-control" placeholder=" " autocomplete="off" value="">
@@ -72,6 +73,7 @@
                 </div>
             </div>
         <div class="footer-container">
+           
             <button type="submit" class="btn btn-outline-success"><i class="bi bi-cart-plus-fill"></i> Cadastrar Produto</button>
         </div>
     </form>

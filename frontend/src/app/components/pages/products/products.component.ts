@@ -34,9 +34,7 @@ export class ProductsComponent implements OnInit {
      this.productService.search().subscribe(
       (data) => {
         this.search = data;
-        this.search = this.search.products.data.filter((data: Products) => {
-          return data.low == false
-        })
+        this.search = this.search.products.data
       }
     )
   }
@@ -46,9 +44,7 @@ export class ProductsComponent implements OnInit {
     this.productService.all().subscribe(
       (data) => {
         this.object = data;
-        this.products = this.object.products.data.data.filter((data:Products) => {
-          return data.low == false
-        });
+        this.products = this.object.products.data.data
         this.paginator = this.object.products.data
       }
     );
@@ -57,15 +53,9 @@ export class ProductsComponent implements OnInit {
   // campo busca
   onSearch(event:any)
   {     
-        if(event === '')
-        {
-          this.products = this.paginator.data.filter((data: Products) => {
-              return data.low === false
-          });
-        }
-        this.products = this.search.filter((products: Products) => {
-          return products.product.toLowerCase().includes(event) && products.low == false;
-        })
+     this.products = this.search.filter((data: Products) => {
+      return data.product.toLowerCase().includes(event) && data.pending == false;
+     })
   }
 
   nextPage(event: any)

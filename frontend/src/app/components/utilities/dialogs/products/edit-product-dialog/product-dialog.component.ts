@@ -60,13 +60,7 @@ export class ProductDialogComponent implements OnInit {
 
   onChangeRadio(event: any)
   {
-    if(event.getAttribute('ng-reflect-value') === '0')
-    {
-      this.showHideDescription = false;
-    } else {
-      this.showHideDescription = true;
-
-    }
+    this.showHideDescription = !this.showHideDescription
   }
 
   onSubmit(data: FormGroup)
@@ -99,4 +93,6 @@ export class ProductDialogComponent implements OnInit {
     )
     console.log(data)
   }
+
+  
 }

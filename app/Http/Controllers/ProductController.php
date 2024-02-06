@@ -47,14 +47,14 @@ class ProductController extends Controller
     public function store(ProductRegister $request)
     {
         try {
-            $created = $this -> product -> create($request -> all());
-            return $this -> response -> format("products","application\json","post",$created -> getOriginal(),null,"produto criado com sucesso.",202);
+            $this -> product -> create($request -> all());
+            return $this -> response -> format("products","application\json","post",$request -> all(),null,"Produto registrado com sucesso.",202);
         } catch(\PDOException $e)
         {
-            return $this -> response -> error("products","application\json","post",$e -> getMessage(),$e -> getCode());
+            return $this -> response -> error("products","application\json","post",$e -> getMessage(),intval($e -> getCode()));
         }catch(\Exception $e)
         {
-            return $this -> response -> error("products","application\json","post",$e -> getMessage(),$e -> getCode());
+            return $this -> response -> error("products","application\json","post",$e -> getMessage(),intval($e -> getCode()));
         }
         
     }

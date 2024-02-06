@@ -30,15 +30,22 @@
             <tbody class="table-group-divider">
                 <tr *ngFor="let product of products" (click)="openDialog(product)" #list>
                   <td>{{ product.id }}</td>
-                  <td class="name">{{ product.product }}</td>
+                  <td>{{ product.product }}</td>
+                  <td>{{ product.code }}</td>
                   <td>{{ product.brand }}</td>
                   <td>{{ product.color }}</td>
                   <td>{{ product.size }}</td>
                   <td>{{ product.sexo }}</td>
                   <td>{{ product.observation }}</td>
-                  <td>{{ product.breakdown }}</td>
+                  <td *ngIf="product.breakdown; else breakdown">Sim</td>
+                  <ng-template #breakdown>
+                    <td>Não</td>
+                  </ng-template>
                   <td>{{ product.description }}</td>
-                  <td>{{ product.pending }}</td>
+                  <td class="available" *ngIf="!product.pending; else pending">Dísponivel</td>
+                  <ng-template #pending>
+                    <td class="unavailable">Em uso</td>
+                  </ng-template>
                 </tr>
             </tbody>
           </table>

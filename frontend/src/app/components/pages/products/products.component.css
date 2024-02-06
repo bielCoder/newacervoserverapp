@@ -249,3 +249,13 @@ a i {
     font-size: .75em;
     margin-right: 1em;
 }
+
+.unavailable {
+    color: #b54641;
+    font-weight: 800;
+ }
+ 
+ .available {
+    color: #41b556;
+    font-weight: 800;
+ }
