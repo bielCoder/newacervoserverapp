@@ -30,8 +30,8 @@
                     <div class="form-group breakdown">
                         <span for="breakdown-false" class="avaria">Produto possui avaria:</span>
                         <div class="container-group">
-                            <input type="radio" name="breakdown" id="breakdown-true" class="breakdown" autocomplete="off" value={{1}} (change)="onChangeRadio(radioTrue)" #radioTrue><span>sim</span>
-                            <input type="radio" name="breakdown" id="breakdown-false" class="breakdown" autocomplete="off" value={{0}} (change)="onChangeRadio(radioFalse)" #radioFalse checked><span>não</span>
+                            <input type="radio" name="breakdown" id="breakdown-true"  class="breakdown" autocomplete="off" value={{1}} (change)="onChangeRadio(radioTrue)" [checked]="showHideDescription" #radioTrue><span>sim</span>
+                            <input type="radio" name="breakdown" id="breakdown-false" class="breakdown" autocomplete="off" value={{0}} (change)="onChangeRadio(radioFalse)" [checked]="!showHideDescription" #radioFalse checked><span>não</span>
                         </div>
                     </div>
 
@@ -70,7 +70,7 @@
             </div>
         <div class="footer-container">
            
-            <button type="submit" class="btn btn-outline-success"><i class="bi bi-cart-plus-fill"></i> Cadastrar Produto</button>
+            <button type="submit" class="btn btn-outline-dark"><i class="bi bi-pencil-fill"></i> Editar Produto</button>
         </div>
     </form>
 </div>

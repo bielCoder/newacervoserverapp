@@ -1,15 +1,15 @@
 .container-main-users {
     position: relative;
-    top: 7.3em;
-    left: 14.67em;
+    top: 111px;
+    left: 15%;
     height: auto;
-    width: 84%;
-    padding: 1em;
+    width: 85%;
 }
 
 .title-page {
-    margin-left: 1.8em;
+    margin: 0 auto;
     font-size: 1.2em;
+    margin-left: 20px;
 }
 
 .container-table-user {
@@ -73,12 +73,12 @@ tbody tr:hover {
     position: relative;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 2em;
     align-items: center;
-    padding-right: 2.5em;
+    padding-right: 0em;
     border-bottom: 1px solid #c1c1c1;
-    margin-left: 1em;
-    padding-bottom: 1em;
+    margin-left: 0em;
+    padding-top: 0px;
+    padding-bottom: 0em;
 }
 
 a {
@@ -106,19 +106,19 @@ a i {
     font-size: 1.2em;
 }
 
-.register {
+.register{
     cursor: pointer;
     margin-left: 5px;
-    
+    margin-right: 20px;
 }
 
-.container-search {
+/* .container-search{
     position: absolute;
     top: 0px;
     right: 0px;
     margin-top: 5px;
-    margin-right: 136px;
-}
+    margin-right: 141px;
+} */
 
 .my-css-class .mat-dialog-container{
     color: #fff;
@@ -129,11 +129,11 @@ a i {
 
   .container-message-success {
     position: fixed;
-    top: 4.3em;
-    right: 60em;
+    top: 3.3em;
+    right: 52em;
     z-index: 9;
     margin-right: -3em;
-    margin-top: 0em;
+    margin-top: 0.3em;
 }
 
 

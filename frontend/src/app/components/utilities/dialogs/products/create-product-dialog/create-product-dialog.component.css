@@ -157,36 +157,44 @@ input ~ label {
 }
 
 .observation {
+  font-size: .85em;
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-top: -0.6em;
-}
-
-.observation label {
-  font-size: .75em;
+  margin-top: -1.5em;
+  }
+  
+  .observation label {
   transition: all ease-in-out .5s;
   color: #2f2f2f;
   opacity: 100%;
-}
-
-
-.description {
+  }
+  
+  
+  .description {
+    font-size: .85em;
   display: flex;
   flex-direction: column;
   width: 100%;
   margin-top: -0.8em;
-}
-
-.description label {
-  font-size: .75em;
+  }
+  
+  .description label {
   transition: all ease-in-out .5s;
   color: #2f2f2f;
   opacity: 100%;
   margin-top: 1em;
   position: relative;
   top: -1em;
-}
+  }
+  
+  textarea {
+    font-size: .75em;
+  }
+
+  .break-down {
+    margin-top: -4.2em;
+  }
 
 .breakdown {
   position: relative;
@@ -221,7 +229,7 @@ span {
 } */
 
 .break-down{
-  margin-top: 0.8em;
+  margin-top: -.5em;
 }
 
 .generator {
@@ -250,7 +258,7 @@ span {
 
 
 .show-description {
-  margin-top: -2.2em;
+  margin-top: -3.5em;
 }
 
 .avaria {
@@ -259,5 +267,11 @@ span {
 
 .has-avaria {
   position: relative;
-  top: 2.3em;
+  top: 0em;
+}
+
+
+
+.second-group-division {
+  width: 16vw;
 }

@@ -1,11 +1,15 @@
-.search{
+ .search{
+    position: relative;
     /* border: none; */
     /* border-bottom: 1px solid #000; */
-    position: relative;
-    top: -.3em;
+ 
 }
 
-
+.form-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
 
 .search::placeholder {
     font-size: .80em;
@@ -18,10 +22,9 @@
 
 .search ~ label {
     position: absolute;
-    left: 219px;
-    bottom: 13px;
-    margin-right: 2em;
-    margin-top: 0.4em;
+    right: 0px;
+    margin: 0 auto;
+    margin-right: .75em;
     color: #0000007d;
     font-size: .80em;
 }

@@ -48,6 +48,7 @@ export class CreateWithdrawComponent {
       this.loginService.loginStore(this.formulario.value).subscribe(
       (data) => {
         this.object = data;
+        console.log(this.data);
         if(this.object.users.status === 202)
         {
           this.withdrawService.store(this.data).subscribe(

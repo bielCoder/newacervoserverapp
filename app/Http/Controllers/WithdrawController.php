@@ -48,8 +48,8 @@ class WithdrawController extends Controller
 
          for($i = 0; $i < count($request -> withdraw["products"]); $i++) {
                 $baggage -> create([
-                "user_id" =>  $request -> withdraw["users"]["id"],
-                "product_id" => $request -> withdraw["products"][$i]["id"]         
+                "users" =>  $request -> withdraw["users"]["id"],
+                "products" => $request -> withdraw["products"][$i]["id"]         
                 ]);
                 $products -> where('id',$request -> withdraw["products"][$i]["id"]) -> update([
                     "pending" => true

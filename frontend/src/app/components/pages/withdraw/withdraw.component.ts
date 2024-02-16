@@ -53,11 +53,11 @@ export class WithdrawComponent implements OnInit {
           this.search = data;
 
           this.searchTwo = this.search.products.data.filter((data: Products) => {
-            return data.low == false && data.pending == true
+            return data.pending == true
           })
 
           this.search = this.search.products.data.filter((data: Products) => {
-            return data.low == false && data.pending == false
+            return data.pending == false
           })
 
 
@@ -92,10 +92,14 @@ export class WithdrawComponent implements OnInit {
 
   getProductSend(data: HTMLInputElement)
   {
+
+   
     const find = this.search.filter((value: any) => {
       this.failed = undefined;
       return value.code == data.value
     })
+
+    console.log(find);
 
     const findTwo = this.searchTwo.filter((value: any) => {
       this.failed = undefined;

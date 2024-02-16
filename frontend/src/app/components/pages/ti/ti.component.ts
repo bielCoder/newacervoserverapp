@@ -106,7 +106,7 @@ export class TIComponent implements OnInit {
         function: `${ element.children[3].innerHTML }`,
         department: `${ element.children[4].innerHTML }`,
         email: `${ element.children[5].innerHTML }`,
-        access: `${ element.children[6].getAttribute('ng-reflect-ng-switch')}`
+        access: `${ element.children[6].getAttribute('id')}`
         }})
   }
 

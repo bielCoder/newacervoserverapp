@@ -40,16 +40,14 @@ export class ProductDialogComponent implements OnInit {
       color: new FormControl(this.data.color),
       amount: new FormControl(this.data.amount,[Validators.required]),
       observation: new FormControl(this.data.observation),
-      breakdown: `${this.data.breakdown}`,
+      breakdown: this.data.breakdown,
       description: new FormControl(this.data.description)
     })
-
     if(!this.data.breakdown)
     {
       this.showHideDescription = false;
     } else {
       this.showHideDescription = true;
-
     }
   }
 
@@ -61,23 +59,53 @@ export class ProductDialogComponent implements OnInit {
   onChangeRadio(event: any)
   {
     this.showHideDescription = !this.showHideDescription
+   
+
+    this.dialogForm.setValue({
+      id: this.dialogForm.value.id,
+      product:  this.dialogForm.value.product,
+      code:  this.dialogForm.value.code,
+      brand:  this.dialogForm.value.brand,
+      size:  this.dialogForm.value.size,
+      sexo:  this.dialogForm.value.sexo,
+      color:  this.dialogForm.value.color,
+      amount:  this.dialogForm.value.amount,
+      observation:  this.dialogForm.value.observation,
+      breakdown:  event.value,
+      description:  this.dialogForm.value.description 
+    })
   }
 
   onSubmit(data: FormGroup)
   {
-    if(data.value.breakdown == '1')
+    if(data.value.breakdown == 1)
     {
       data.value.breakdown = true;
     } else {
       data.value.breakdown = false;
     }
+
+    this.dialogForm.setValue({
+      id: data.value.id,
+      product: data.value.product,
+      code: data.value.code,
+      brand: data.value.brand,
+      size: data.value.size,
+      sexo: data.value.sexo,
+      color: data.value.color,
+      amount: data.value.amount,
+      observation: data.value.observation,
+      breakdown: data.value.breakdown,
+      description: data.value.description 
+    })
+
    
     if(!this.showHideDescription)
     {
       data.value.description = null
     }
 
-    this.productService.edit(data.value).subscribe(
+    this.productService.edit(this.dialogForm.value).subscribe(
 
       (data) => {
         this.object = data;
@@ -91,7 +119,6 @@ export class ProductDialogComponent implements OnInit {
         this.error = error.message
       }
     )
-    console.log(data)
   }
 
   

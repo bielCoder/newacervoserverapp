@@ -24,11 +24,9 @@ class ProductUpdate extends FormRequest
     public function rules()
     {
         return [
-            'product' => ['required','string','lowercase'],
+            'product' => ['required','string'],
             // 'code' => ['required','unique:products,code','lowercase'],
-            'brand' => 'lowercase',
-            'color' => 'lowercase',
-            'size' => ['lowercase','max:3'],
+            'size' => ['max:3'],
             'sexo' => ['required','string'],
             // 'observation' => 'string',
             'breakdown' => ['required','boolean'],

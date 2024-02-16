@@ -96,10 +96,10 @@ export class AdminComponent implements OnInit {
   }
 
   // abre o modal de atualização de dados
-   openDialog(element: HTMLElement)
+  openDialog(element: HTMLElement)
   {
     this.dialog.open(DialogComponent,{
-      width: '600px',
+      width: '650px',
       height:'auto',
       position:{top: '100px'},
       disableClose:true,
@@ -110,10 +110,8 @@ export class AdminComponent implements OnInit {
         function: `${ element.children[3].innerHTML }`,
         department: `${ element.children[4].innerHTML }`,
         email: `${ element.children[5].innerHTML }`,
-        access: `${ element.children[6].getAttribute('ng-reflect-ng-switch')}`
-        }
-    })
-    console.log(element)
+        access: `${ element.children[6].getAttribute('id')}`
+        }})
   }
 
   // Order BY

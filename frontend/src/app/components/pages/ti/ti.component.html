@@ -1,4 +1,3 @@
-
 <app-menu-responsive></app-menu-responsive>
 
 <div class="container-main-users">
@@ -8,8 +7,8 @@
         <app-search  (data)="onSearch($event)"></app-search>
       </div>
       <a class="register" (click)="navigateRegister()"><i class="bi bi-person-fill-add"></i>cadastrar</a>
-    </div>
-    
+    </div> 
+<!--     
     <div class="container-table-user">
         <table class="table table-hover">
             <thead>
@@ -31,18 +30,18 @@
                   <td>{{user.function}}</td>
                   <td>{{user.department}}</td>
                   <td>{{user.email}}</td>
-                  <td [ngSwitch]="user.access">
-                    <span *ngSwitchCase="1">Root</span>
+                  <td *ngIf="user.access" id="{{user.access}}">
+                   Root
                   </td>
                 </tr>
             </tbody>
           </table>
        
-    </div>
+    </div> -->
 
    
 
- 
+<!--  
 
 <div class="container-message-success" *ngIf="success !== null">
   <span class="success" >
@@ -61,5 +60,5 @@
 <div class="container-footer">
   <div class="container-lign-footer">
     <p>Acervo&#64;{{ data | date: 'Y'}}</p>
-  </div>
+  </div> -->
 </div>
