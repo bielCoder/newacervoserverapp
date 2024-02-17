@@ -9,27 +9,44 @@
 .title-page {
     margin: 0 auto;
     font-size: 1.2em;
-    margin-left: 20px;
+    margin-left: 0px;
 }
 
 .container-table-user {
     position: relative;
     height: 500px;
     overflow-y: scroll;
-    padding: 2em;
+    padding: 0;
     z-index: 1;
+    width: 76vw;
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 10px;
 }
 
 
 
 .table {
-    margin-top: -2.8em;
+    margin-top: -10px;
 }
 
 .bi-arrow-down-up  {
     position: relative;
     left: 44px;
 }
+
+.bi-arrow-down {
+    position: relative;
+    left: 44px;
+    display: none;
+}
+
+.bi-arrow-up {
+    position: relative;
+    left: 44px;
+    display: none;
+}
+
 
 .to-right {
         position: relative;
@@ -69,16 +86,21 @@ tbody tr:hover {
 
 /* header table / search and title */
 
-.container-header-table{
+.container-header-table {
     position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-right: 0em;
+    padding-right: 0;
     border-bottom: 1px solid #c1c1c1;
-    margin-left: 0em;
-    padding-top: 0px;
-    padding-bottom: 0em;
+    margin-left: 0;
+    padding-top: 0;
+    padding-bottom: 10px;
+    width: 76vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 a {
@@ -109,16 +131,13 @@ a i {
 .register{
     cursor: pointer;
     margin-left: 5px;
-    margin-right: 20px;
+    margin-right: 0px;
 }
 
-/* .container-search{
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    margin-top: 5px;
-    margin-right: 141px;
-} */
+.container-search{
+    position: relative;
+    margin: 0;
+}
 
 .my-css-class .mat-dialog-container{
     color: #fff;
@@ -151,7 +170,7 @@ a i {
     color: #41b556;
     border-color: #52b541;
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     width: 20vw;
     justify-content: center;
     flex-direction: column;
@@ -208,11 +227,13 @@ a i {
 }
 
 
-.container-paginator  {
+.container-paginator {
     position: relative;
-    margin-top: 164px;
-    width: 100%;
-    margin-left: -30px;
+    top: 80px;
+    margin-top: 0px;
+    width: 76vw;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .design-lign {
@@ -228,7 +249,7 @@ a i {
 .container-footer {
     position: relative;
     left: 0px;
-    top: 0px;
+    top: 80px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -237,11 +258,10 @@ a i {
 .container-lign-footer {
     position: absolute;
     border-top: 1px solid #c1c1c1;
-    margin-top: 20px;
-    width: 81%;
-    left: 233px;
+    margin-top: 10px;
+    width: 76vw;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end; 
 }
 
 .container-lign-footer p {
