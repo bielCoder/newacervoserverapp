@@ -87,7 +87,7 @@ export class TIComponent implements OnInit {
     this.dialog.open(CreateDialogComponent,{
       width: '50%',
       height:'auto',
-      position:{top: '100px'},
+      position:{top: '3em'},
       disableClose:true,
     })
   }
@@ -98,7 +98,7 @@ export class TIComponent implements OnInit {
     this.dialog.open(DialogComponent,{
       width: '50%',
       height:'auto',
-      position:{top: '100px'},
+      position:{top: '3em'},
       disableClose:true,
       data:{
         id: `${ element.children[0].innerHTML }`, 

@@ -22,4 +22,10 @@ export class WithdrawService {
   {
     return this.http.get<Products[]>(`${environment.server}/withdraw/${id}`);
   }
+
+  delete(data: any)
+  {
+    return this.http.delete(`${environment.server}/withdraw/${data.withdraw.users.id}`);
+  }
+  
 }

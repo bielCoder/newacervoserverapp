@@ -56,22 +56,19 @@
 
  
 
+    <div class="container-paginator">
+      <app-paginator [paginator]="paginator" [alpha]="alpha" (paginatorEvent)="nextPage($event)" ></app-paginator>
+    </div>
+
+    <div class="container-footer">
+      <div class="container-lign-footer">
+        <p>Acervo&#64;{{ data | date: 'Y'}}</p>
+      </div>
+
+
 <div class="container-message-success" *ngIf="success !== null">
   <span class="success" >
      <p class="message-success"> {{ success }} </p>
   <div class="progress-bar"></div>
   </span>
-</div>
-
-</div>
-
-<div class="container-paginator">
-  <app-paginator [paginator]="paginator" [alpha]="alpha" (paginatorEvent)="nextPage($event)" ></app-paginator>
-</div>
-
-
-<div class="container-footer">
-  <div class="container-lign-footer">
-    <p>Acervo&#64;{{ data | date: 'Y'}}</p>
-  </div>
 </div>

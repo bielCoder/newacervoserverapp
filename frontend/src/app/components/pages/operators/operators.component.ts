@@ -25,6 +25,8 @@ export class OperatorsComponent implements OnInit {
   trueOrFalse: boolean = false;
   order: string =  'asc'
   data: Date = new Date();
+  orderByIcon: string = 'bi bi-arrow-down-up';
+
 
 
   
@@ -132,5 +134,62 @@ export class OperatorsComponent implements OnInit {
           console.log(error)
         }
       );
+    }
+
+    effectIconOrderBYOver()
+    {
+      // get elements by class
+     const twoArrows = document.getElementsByClassName('bi bi-arrow-down-up');
+  
+     const upArrow = document.getElementsByClassName('bi bi-arrow-up')
+  
+     const upDown = document.getElementsByClassName('bi bi-arrow-down')
+  
+  
+    //  set visibilities
+     for(let i=0; i < twoArrows.length; i++)
+     {
+      twoArrows[i].setAttribute('style','display:none');
+     }
+  
+     for(let i=0; i < upArrow.length; i++)
+     {
+      upArrow[i].setAttribute('style','display:inline');
+     }
+  
+     for(let i=0; i < upDown.length; i++)
+     {
+      upDown[i].setAttribute('style','display:inline');
+     }
+      
+    }
+
+
+    effectIconOrderBYOut()
+    {
+      // get elements by class
+     const twoArrows = document.getElementsByClassName('bi bi-arrow-down-up');
+  
+     const upArrow = document.getElementsByClassName('bi bi-arrow-up')
+  
+     const upDown = document.getElementsByClassName('bi bi-arrow-down')
+  
+  
+    //  set visibilities
+     for(let i=0; i < twoArrows.length; i++)
+     {
+      twoArrows[i].setAttribute('style','display:inline');
+     }
+  
+     for(let i=0; i < upArrow.length; i++)
+     {
+      upArrow[i].setAttribute('style','display:none');
+     }
+  
+     for(let i=0; i < upDown.length; i++)
+     {
+      upDown[i].setAttribute('style','display:none');
+     }
+      
     }
 }

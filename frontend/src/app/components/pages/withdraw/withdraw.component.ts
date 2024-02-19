@@ -23,6 +23,8 @@ export class WithdrawComponent implements OnInit {
     alpha: string = "products";
     failed!: any;
     success!: any;
+    data: Date = new Date();
+
     
 
     @ViewChild('lignProduct') lignProduct!: ElementRef
@@ -144,11 +146,11 @@ export class WithdrawComponent implements OnInit {
       products: data,
       users: users
     }}
-
+    console.log(withdraw);
     this.dialogs.open(CreateWithdrawComponent,{
-      width: '45vw',
+      width: '50%',
       height:'auto',
-      position:{ top:'100px'},
+      position:{top: '3em'},
       disableClose:true,
       data: withdraw
     })

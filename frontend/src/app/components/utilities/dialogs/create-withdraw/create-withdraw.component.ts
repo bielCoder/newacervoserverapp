@@ -69,7 +69,29 @@ export class CreateWithdrawComponent {
       }
     )
    } else {
-    console.log('não entrei')
+    this.loginService.loginStore(this.formulario.value).subscribe(
+      (data) => {
+        this.object = data;
+        console.log(this.data);
+        if(this.object.users.status === 202)
+        {
+          this.withdrawService.delete(this.data).subscribe(
+            (data) => {
+              this.error = undefined;
+              this.success = data;
+              this.success = this.success.withdraw.message
+              window.localStorage.setItem('message', this.success);
+              this.dialog.closeAll();
+              window.history.go();
+            }
+          )
+        } else {
+          return;
+        }
+      },(data) => {
+        this.error = data.users.message
+      }
+    )
    }
    
   }

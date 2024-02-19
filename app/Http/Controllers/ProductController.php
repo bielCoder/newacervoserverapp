@@ -51,10 +51,11 @@ class ProductController extends Controller
             return $this -> response -> format("products","application\json","post",$request -> all(),null,"Produto registrado com sucesso.",202);
         } catch(\PDOException $e)
         {
-            return $this -> response -> error("products","application\json","post",$e -> getMessage(),intval($e -> getCode()));
+            return $this -> response -> error("products","application\json","post",$e -> getMessage(),500);
         }catch(\Exception $e)
         {
-            return $this -> response -> error("products","application\json","post",$e -> getMessage(),intval($e -> getCode()));
+        
+            return $this -> response -> error("products","application\json","post",$e -> getMessage(),500);
         }
         
     }

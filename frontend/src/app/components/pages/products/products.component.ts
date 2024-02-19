@@ -66,9 +66,9 @@ export class ProductsComponent implements OnInit {
   createProduct()
   {
     this.dialog.open(CreateProductDialogComponent,{
-      width: '700px',
+      width: '50%',
       height:'auto',
-      position:{top: '100px'},
+      position:{top: '3em'},
       disableClose:true,
     })
   }
@@ -76,9 +76,9 @@ export class ProductsComponent implements OnInit {
   openDialog(element: Products)
   {
     this.dialog.open(ProductDialogComponent,{
-      width: '600px',
+      width: '50%',
       height:'auto',
-      position:{top: '100px'},
+      position:{top: '3em'},
       disableClose:true,
       data: element
     })

@@ -48,8 +48,8 @@ class WithdrawController extends Controller
 
          for($i = 0; $i < count($request -> withdraw["products"]); $i++) {
                 $baggage -> create([
-                "users" =>  $request -> withdraw["users"]["id"],
-                "products" => $request -> withdraw["products"][$i]["id"]         
+                "user_id" =>  $request -> withdraw["users"]["id"],
+                "product_id" => $request -> withdraw["products"][$i]["id"]         
                 ]);
                 $products -> where('id',$request -> withdraw["products"][$i]["id"]) -> update([
                     "pending" => true
@@ -58,7 +58,7 @@ class WithdrawController extends Controller
             return $this -> response -> format("withdraw","application/json","post",null,null,"Retirada efetuada com sucesso",202);
     
     }
-
+    
     /**
      * Display the specified resource.
      *
@@ -121,8 +121,28 @@ class WithdrawController extends Controller
      * @param  \App\Models\Withdraw  $withdraw
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Withdraw $withdraw)
+    public function destroy(Withdraw $withdraw, $id,User $users,Request $request)
     {
-        //
+        $user = $users -> where('id',$id) -> first();
+    
+        $counter = count($user -> products() -> get());
+        return response() -> json($counter);
+
+
+        // fazer o backend da devolução.....
+            // for($i = 0; $i < $counter; $i++)
+            // {
+            //     if($user !== null)
+            //     {
+            //         // $user -> products() -> where('product_id',$request -> withdraw["products"][$i]["id"]) -> delete();
+            //         return response() -> json($products);
+            //     }
+            //     try {
+            //         return $this -> response -> format("withdraw","application/json","get",null,null,"Produto removido com sucesso!",200);
+            //     } catch(\Exception $e) {
+            //         return $this -> response -> format("withdraw","application/json","get",$e -> getMessage(), null, null, 500);
+            //     }
+         
+            // }
     }
 }
