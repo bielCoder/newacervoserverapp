@@ -274,3 +274,8 @@ a i {
     color: #41b556;
     font-weight: bold;
 }
+
+.unavailable {
+    color: #b54641;
+    font-weight: bold;
+}

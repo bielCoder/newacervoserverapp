@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('product_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-            $table->softDeletes();
+            // $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -32,8 +32,8 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('users_products');
-        Schema::table('baggage',function(Blueprint $table){
-            $table -> dropSoftDeletes();
-        });
+        // Schema::table('baggage',function(Blueprint $table){
+        //     $table -> dropSoftDeletes();
+        // });
     }
 };

@@ -53,21 +53,23 @@ export class GiveBackComponent implements OnInit {
       this.backDrop.show(this.route.snapshot.params['id']).subscribe(
         (data) => {
           this.productsInUse = data;
-          console.log(this.productsInUse)
-          this.productsInUse = this.productsInUse.withdraw.data;
-       
-      
+          this.productsInUse = this.productsInUse?.withdraw.data;      
         }
       )
 
-          // all products
+      // all products
 
-          this.productsService.search().subscribe(
-            (data) => {
-             this.allProducts = data;
-             this.allProducts = this.allProducts.products.data
-            }
-          )
+      this.productsService.search().subscribe(
+        (data) => {
+          this.allProducts = data;
+          this.allProducts = this.allProducts.products.data
+        }
+      )
+
+      // clear message 
+
+      window.localStorage.removeItem('message');
+
     }
 
 
@@ -170,9 +172,6 @@ export class GiveBackComponent implements OnInit {
      });
     
     this.productsInUse.push(productReturn[0]);
-    
-   
-    
   }
 
   onCartRemove(id: number)

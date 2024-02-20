@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -25,7 +25,14 @@ export class WithdrawService {
 
   delete(data: any)
   {
-    return this.http.delete(`${environment.server}/withdraw/${data.withdraw.users.id}`);
+
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      body: data.withdraw.products,
+    };
+    return this.http.delete(`${environment.server}/withdraw/${data.withdraw.users.id}`,options);
   }
   
-}
+} 

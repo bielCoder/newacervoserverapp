@@ -121,28 +121,23 @@ class WithdrawController extends Controller
      * @param  \App\Models\Withdraw  $withdraw
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Withdraw $withdraw, $id,User $users,Request $request)
+    public function destroy(Withdraw $withdraw,Request $request, Product $products)
     {
-        $user = $users -> where('id',$id) -> first();
-    
-        $counter = count($user -> products() -> get());
-        return response() -> json($counter);
+        for($i = 0; $i < $request -> all(); $i++) {
+            $withdraw -> where('product_id',$request -> all()[$i]["id"]) -> delete();
+            $products -> where('id',$request -> all()[$i]["id"]) -> update([
+                "pending" => false
+               ]);
+        }
 
-
-        // fazer o backend da devolução.....
-            // for($i = 0; $i < $counter; $i++)
-            // {
-            //     if($user !== null)
-            //     {
-            //         // $user -> products() -> where('product_id',$request -> withdraw["products"][$i]["id"]) -> delete();
-            //         return response() -> json($products);
-            //     }
-            //     try {
-            //         return $this -> response -> format("withdraw","application/json","get",null,null,"Produto removido com sucesso!",200);
-            //     } catch(\Exception $e) {
-            //         return $this -> response -> format("withdraw","application/json","get",$e -> getMessage(), null, null, 500);
-            //     }
-         
+            sleep(1);
+      
+            return $this -> response -> format("withdraw","application/json","delete",null,null, 'Remoção realizada com sucesso.', 200); 
+       // try {
+            // } catch(\Exception $e) {
+            //     return $this -> response -> error("withdraw","application/json","get",$e -> getMessage(), null, null, 500);
+            // } catch(\PDOException $e) {
+            //     return $this -> response -> error("withdraw","application/json","get",$e -> getMessage(), null, null, 500);
             // }
     }
 }
