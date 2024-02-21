@@ -100,9 +100,15 @@
 <div class="container-position-btn-success">
   <button class="btn btn-outline-success"  (click)="submitDialog(productsList,users[0])"  [disabled]="productsList.length === 0" ><i class="bi bi-cart-plus-fill"></i> Devolver Produtos</button>
 </div>
+
+<div class="container-footer">
+  <div class="container-lign-footer">
+    <p>Acervo&#64;{{ data | date: 'Y'}}</p>
+  </div>
+</div> 
  
 <div class="container-message-success" *ngIf="success !== null">
-  <span class="success" >
+  <span class="success">
      <p class="message-success"> {{ success }} </p>
   <div class="progress-bar"></div>
   </span>

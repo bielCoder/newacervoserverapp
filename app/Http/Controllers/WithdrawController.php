@@ -5,14 +5,16 @@ namespace App\Http\Controllers;
 use App\Classes\Utilities\Response;
 use App\Models\Withdraw;
 use App\Http\Controllers\Controller;
-use App\Models\{Product, User};
+use App\Models\{Historic, Product, User};
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
 
 class WithdrawController extends Controller
 {
 
 
     private $productsInUse;
+ 
 
     /**
      * Display a listing of the resource.
@@ -43,7 +45,7 @@ class WithdrawController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Withdraw $baggage, Product $products)
+    public function store(Request $request, Withdraw $baggage, Product $products,Historic $historic)
     {
 
          for($i = 0; $i < count($request -> withdraw["products"]); $i++) {
@@ -51,8 +53,17 @@ class WithdrawController extends Controller
                 "user_id" =>  $request -> withdraw["users"]["id"],
                 "product_id" => $request -> withdraw["products"][$i]["id"]         
                 ]);
+
                 $products -> where('id',$request -> withdraw["products"][$i]["id"]) -> update([
                     "pending" => true
+                ]);
+
+                $historic -> create([
+                    "user_id" => $request -> withdraw["users"]["id"],
+                    "product_id" => $request -> withdraw["products"][$i]["id"],
+                    "withdraw" => new Date('d-m-Y'),
+                    "devolution" => null,
+                    "days" => null
                 ]);
          }
             return $this -> response -> format("withdraw","application/json","post",null,null,"Retirada efetuada com sucesso",202);
@@ -81,12 +92,12 @@ class WithdrawController extends Controller
                 try {
                     return $this -> response -> format("withdraw","application/json","get",$this -> productsInUse,null,null,200);
                 } catch(\Exception $e) {
-                    return $this -> response -> format("withdraw","application/json","get",$e -> getMessage(), null, null, 500);
+                    return $this -> response -> error("withdraw","application/json","get",$e -> getMessage(), null, null, 500);
                 }
          
             }
         } else {
-            return $this -> response -> format("withdraw","application/json","get",null,null, 'usuário não encontrado', 404);
+            return $this -> response -> error("withdraw","application/json","get",null,null, 'usuário não encontrado', 404);
         }
        
        
@@ -123,21 +134,16 @@ class WithdrawController extends Controller
      */
     public function destroy(Withdraw $withdraw,Request $request, Product $products)
     {
-        for($i = 0; $i < $request -> all(); $i++) {
+        for($i = 0; $i < count($request -> all()); $i++) {
             $withdraw -> where('product_id',$request -> all()[$i]["id"]) -> delete();
             $products -> where('id',$request -> all()[$i]["id"]) -> update([
                 "pending" => false
                ]);
         }
 
-            sleep(1);
-      
-            return $this -> response -> format("withdraw","application/json","delete",null,null, 'Remoção realizada com sucesso.', 200); 
-       // try {
-            // } catch(\Exception $e) {
-            //     return $this -> response -> error("withdraw","application/json","get",$e -> getMessage(), null, null, 500);
-            // } catch(\PDOException $e) {
-            //     return $this -> response -> error("withdraw","application/json","get",$e -> getMessage(), null, null, 500);
-            // }
+
+        return $this -> response -> format("withdraw","application/json","delete",null,null,"Produto removido com sucesso.",200);
+
+       
     }
 }

@@ -27,7 +27,8 @@ export class GiveBackComponent implements OnInit {
     alpha: string = "products";
     failed!: any;
     success!: any;
-
+    data: Date = new Date();
+  
     
 
     @ViewChild('lignProduct') lignProduct!: ElementRef
@@ -69,6 +70,7 @@ export class GiveBackComponent implements OnInit {
       // clear message 
 
       window.localStorage.removeItem('message');
+      this.success = null;
 
     }
 

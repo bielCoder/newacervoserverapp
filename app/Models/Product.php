@@ -19,4 +19,9 @@ class Product extends Model
     {
         return $this -> belongsToMany(User::class,'baggage');
     }
+
+    public function historics()
+    {
+        return $this -> hasMany(Historic::class,'historics');
+    }
 }
