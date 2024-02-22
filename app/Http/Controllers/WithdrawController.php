@@ -14,7 +14,7 @@ class WithdrawController extends Controller
 
 
     private $productsInUse;
- 
+   
 
     /**
      * Display a listing of the resource.
@@ -61,9 +61,9 @@ class WithdrawController extends Controller
                 $historic -> create([
                     "user_id" => $request -> withdraw["users"]["id"],
                     "product_id" => $request -> withdraw["products"][$i]["id"],
-                    "withdraw" => new Date('d-m-Y'),
+                    "withdraw" => now(),
                     "devolution" => null,
-                    "days" => null
+                    "days" => 0
                 ]);
          }
             return $this -> response -> format("withdraw","application/json","post",null,null,"Retirada efetuada com sucesso",202);
@@ -132,13 +132,22 @@ class WithdrawController extends Controller
      * @param  \App\Models\Withdraw  $withdraw
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Withdraw $withdraw,Request $request, Product $products)
+    public function destroy(Withdraw $withdraw,Request $request, Product $products, Historic $historic,$id)
     {
         for($i = 0; $i < count($request -> all()); $i++) {
             $withdraw -> where('product_id',$request -> all()[$i]["id"]) -> delete();
+            $dataProductToId = $historic -> where('product_id','=',$request -> all()[$i]["id"],'AND','user_id','=',$id) -> whereNull('devolution') -> get();
+          
+            $dateDiff = now() -> diff($dataProductToId[0] -> withdraw);
+              
+            $historic -> where('product_id',$request -> all()[$i]["id"]) -> update([
+                "devolution" => now(),
+                "days" => $dateDiff -> days,
+            ]);
+
             $products -> where('id',$request -> all()[$i]["id"]) -> update([
                 "pending" => false
-               ]);
+            ]);
         }
 
 

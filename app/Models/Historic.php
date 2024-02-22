@@ -9,6 +9,9 @@ class Historic extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        "user_id","product_id","withdraw","devolution","days"
+    ];
 
     public function users()
     {
