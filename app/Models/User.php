@@ -61,8 +61,5 @@ class User extends Authenticatable
         return $this -> belongsToMany(Product::class,'baggage');
     }
 
-    public function historics()
-    {
-        return $this -> hasMany(Historic::class,'historics');
-    }
+  
 }

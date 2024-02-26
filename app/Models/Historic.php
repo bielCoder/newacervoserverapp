@@ -10,16 +10,7 @@ class Historic extends Model
     use HasFactory;
 
     protected $fillable = [
-        "user_id","product_id","withdraw","devolution","days"
+        "name", "register",	"function",	"department", "email", "product", "code", "brand", "color",	"size", "sexo",	"observation", "breakdown", "low", "description", "pending", "amount", "withdraw", "devolution", "days" 
     ];
 
-    public function users()
-    {
-        return $this -> belongsToMany(User::class,'users');
-    }
-
-    public function products()
-    {
-        return $this -> belongsToMany(Product::class,'products');
-    }
 }

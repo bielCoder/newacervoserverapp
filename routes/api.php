@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HistoricController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WithdrawController;
@@ -29,6 +30,11 @@ Route::prefix('users') -> group(function () {
 });
 
 
+Route::prefix('historics') -> group(function(){
+    Route::controller(HistoricController::class) -> group(function(){
+        Route::get('/find-historics','findExports');
+    });
+});
 
 // routes group blocked
 
@@ -68,4 +74,10 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::post('store','store') -> name('Withdraw - Store');
        });
     });
+
+    // Route::prefix('historics') -> group(function(){
+    //     Route::controller(HistoricController::class) -> group(function(){
+    //         Route::get('/find-historics','findExports');
+    //     });
+    // });
 });

@@ -16,15 +16,27 @@ return new class extends Migration
     {
         Schema::create('historics', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('product_id');
+            $table->string('name',255)->nullable(false);
+            $table->string('register',255)->nullable(false);
+            $table->string('function',255)->nullable(false);
+            $table->string('department',255)->nullable(false);
+            $table->string('email',255)->nullable(false);
+            $table->string('product',255) -> nullable(false);
+            $table->string('code',45) -> nullable(false);
+            $table->string('brand',255) -> nullable(true);
+            $table->string('color',255) -> nullable(true);
+            $table->string('size',45) -> nullable(true);
+            $table->string('sexo',11) -> nullable(false);
+            $table->string('observation',255) -> nullable(true);
+            $table->boolean('breakdown') -> nullable(false);
+            $table->boolean('low') -> nullable(false);
+            $table->string('description',255) -> nullable(true);
+            $table->boolean('pending') -> nullable(false);
+            $table->integer('amount') -> nullable(false);
             $table->string('withdraw');
-            $table->string('devolution');
+            $table->string('devolution') -> nullable(true);
             $table->integer('days');
             $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 
