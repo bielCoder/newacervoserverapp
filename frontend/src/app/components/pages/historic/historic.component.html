@@ -1,0 +1,104 @@
+<app-menu-responsive></app-menu-responsive>
+
+<div class="container-main-users">
+    <div class="container-header-table">
+      <p class="title-page">Histórico</p>
+      <div class="container-search">
+        <app-search  (data)="onSearch($event)"></app-search>
+      </div>
+      <!-- <a class="register" (click)="navigateRegister()"><i class="bi bi-person-fill-add"></i>cadastrar</a> -->
+    </div> 
+    <!-- id	
+    name	
+    register	
+    function	
+    department	
+    email	
+    product	
+    code	
+    brand	
+    color	
+    size	
+    sexo	
+    observation	
+    breakdown	
+    low	
+    description	
+    pending	
+    amount	
+    withdraw	
+    devolution	
+    days	
+ -->
+    <div class="container-table-user">
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Registro</th>
+                <th>Função</th>
+                <th>Departamento</th>
+                <th>Email</th>
+                <th>Produto</th>
+                <th>Código</th>
+                <th>Marca</th>
+                <th>Cor</th>
+                <th>Tamanho</th>
+                <th>Gênero</th>
+                <th>Observação</th>
+                <th>Detalhamento</th>
+                <th>Baixo</th>
+                <th>Descrição</th>
+                <th>Pendente</th>
+                <th>Quantidade</th>
+                <th>Retirada</th>
+                <th>Devolução</th>
+                <th>Dias</th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+            </tbody>
+          </table>
+    </div>
+
+    <div class="container-paginator">
+      <app-paginator [paginator]="paginator" [alpha]="alpha" (paginatorEvent)="nextPage($event)" ></app-paginator>
+    </div>
+
+    <div class="container-footer">
+      <div class="container-lign-footer">
+        <p>Acervo&#64;{{ data | date: 'Y'}}</p>
+      </div>
+
+
+<div class="container-message-success" *ngIf="success !== null">
+  <span class="success" >
+     <p class="message-success"> {{ success }} </p>
+  <div class="progress-bar"></div>
+  </span>
+</div>
+
+
+</div>

@@ -158,28 +158,43 @@ class WithdrawController extends Controller
     {
         for($i = 0; $i < count($request -> all()); $i++) {
             $user = User::find($id);
-
+            $products -> where('code',$request -> all()[$i]["code"]) -> update([
+                "pending" => false
+            ]);
             $withdraw -> where('product_id',$request -> all()[$i]["id"]) -> delete();
             $dataProductToId = $historic -> where('code','=',$request -> all()[$i]["code"],'AND','register','=',$user -> register) -> whereNull('devolution') -> get();
           
+        
             $dateDiff = now() -> diff($dataProductToId[0] -> withdraw);
               
             $historic -> where('code',$request -> all()[$i]["code"]) -> update([
+                "name" => $user -> name,
+                "register" => $user -> register,
+                "function" => $user -> function,
+                "department" => $user -> department,
+                "email" => $user -> email,
+                "product" => $dataProductToId[0] -> product,
+                "code" => $dataProductToId[0] -> code,
+                "brand" => $dataProductToId[0] -> brand,
+                "color" => $dataProductToId[0] -> color,
+                "size" => $dataProductToId[0] -> size,
+                "sexo" => $dataProductToId[0] -> sexo,
+                "observation" => $dataProductToId[0] -> observation,
+                "breakdown" => $dataProductToId[0] -> breakdown,
+                "low" => $dataProductToId[0] -> low,
+                "description" => $dataProductToId[0] -> description,
+                "pending" => false,
+                "amount" => 0,
                 "devolution" => now(),
                 "days" => $dateDiff -> days,
             ]);
 
-            $products -> where('id',$request -> all()[$i]["id"]) -> update([
-                "pending" => false
-            ]);
-
       
         }
-
-        // verificar o que foi feito no outro sistema, vc caiu no mesmo loop, se remover o return ele salva todos, se não mantem com erro.
-
-        // return $this -> response -> format("withdraw","application/json","delete",null,null,"Produto removido com sucesso.",200);
-
-       
+        try {
+            return $this -> response -> format("withdraw","application/json","delete",null,null,"Produtos devolvidos com sucesso!",200);
+        } catch(\Exception $e) {
+            return $this -> response -> error("withdraw","application/json","delete",$e -> getMessage(), null, null, 500);
+        }
     }
 }

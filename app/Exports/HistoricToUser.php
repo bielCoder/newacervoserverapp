@@ -5,18 +5,21 @@ namespace App\Exports;
 use App\Models\{Historic,User,Product};
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
-use Maatwebsite\Excel\Concerns\FromCollection;
 
 
-class HistoricToUser implements FromCollection
+class HistoricToUser implements FromView
 {
+    private $user;
 
-    private $products;
-
-
-    public function collection()
+    public function __construct($user)
     {
-              $user = User::where('id',1) -> first();
-       return $user -> historics() -> where('user_id',$user -> id) -> get();
+        $this -> user = $user;
+    }
+
+    public function view(): View
+    {
+              $user = User::where('id',$this -> user) -> first();
+              $historics = Historic::where('register',$user -> register) -> get();
+              return view('exports.exportToUser',["historics"=>$historics]);
     }
 }

@@ -32,7 +32,10 @@ Route::prefix('users') -> group(function () {
 
 Route::prefix('historics') -> group(function(){
     Route::controller(HistoricController::class) -> group(function(){
-        Route::get('/find-historics','findExports');
+        Route::get('/','index');
+        Route::get('/{user}','show');
+        Route::get('/find-historics','allExports');
+        Route::get('/find-historics/{user}','findExports');
     });
 });
 

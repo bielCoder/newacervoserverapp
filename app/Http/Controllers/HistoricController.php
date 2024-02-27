@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Classes\Utilities\Response;
+use App\Exports\AllHistorics;
 use App\Exports\historicToUser;
 use App\Models\{Historic,User,Product};
 
@@ -57,21 +58,34 @@ class HistoricController extends Controller
      * @param  \App\Models\Historic  $historic
      * @return \Illuminate\Http\Response
      */
-    public function show(Historic $historic)
+    public function show(Historic $historic, Request $request, $user)
     {
-        //
+        try {
+       
+            if(!is_null($this -> historics -> paginate((int)$request -> per_page)))
+            {   
+                return $this -> response -> format("products","application\json","get",$this -> historics -> where("register",$user) -> paginate((int)$request -> per_page),null,null,200);
+            }
+                return $this -> response -> error("products","application\json","get","Not Found",404);
+        } catch(\PDOException $e)
+        {
+            return $this -> response -> error("products","application\json","get",$e -> getMessage(),$e -> getCode());
+        } catch(\Exception $e)
+        {
+            return $this -> response -> error("products","application\json","get",$e -> getMessage(),$e -> getCode());
+        }
     }
 
  
     public function allExports()
     {
-
+        return Excel::download(new AllHistorics,'historic.xlsx');
     }
 
 
-    public function findExports()
+    public function findExports($user)
     {
-        return Excel::download(new historicToUser,'historicToUser.xlsx');
+        return Excel::download(new historicToUser($user),'historicToUser.xlsx');
     }
 
   

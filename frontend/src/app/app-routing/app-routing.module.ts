@@ -14,6 +14,7 @@ import { map } from 'rxjs';
 import { AccessDeniedComponent } from '../components/utilities/httpStatusTemplate/access-denied/access-denied.component';
 import { WithdrawComponent } from '../components/pages/withdraw/withdraw.component';
 import { GiveBackComponent } from '../components/pages/give-back/give-back.component';
+import { HistoricComponent } from '../components/pages/historic/historic.component';
 
 
 
@@ -104,6 +105,11 @@ const routes: Routes = [
   {
     path: 'give-back/:id',
     component: GiveBackComponent,
+    canActivate: [MainGuard]
+  },
+  {
+    path: 'historic',
+    component: HistoricComponent,
     canActivate: [MainGuard]
   },
   {
