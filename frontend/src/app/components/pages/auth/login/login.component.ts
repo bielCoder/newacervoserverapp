@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   token!: string;
   name!:string;
   access!: any;
+  date: Date = new Date();
 
   // access message variables
   @Output() failed!: string;
