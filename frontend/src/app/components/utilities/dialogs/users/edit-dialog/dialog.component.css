@@ -73,14 +73,36 @@
   margin-top: -.8em;
 }
 
-.btn-outline-primary {
+.btn-outline-info {
   font-size: .89em;
   margin-top: 0.2em;
 }
 
+.btn-outline-primary {
+  font-size: .89em;
+  margin-top: 0.2em;
+  background-color: transparent;
+  color: #052c65;
+  border-color: #052c65;
+}
+
+.btn-outline-primary:hover {
+  background-color: #052c65;
+  color: #fff;
+}
+
+
 .btn-outline-warning {
   font-size: .89em;
   margin-top: 0.2em;
+  background-color: transparent;
+  color: #664d03;
+  border-color: #664d03;
+}
+
+.btn-outline-warning:hover {
+  background-color: #664d03;
+  color: #fff;
 }
 
 .btn-outline-dark {
@@ -218,4 +240,15 @@ margin-bottom: 0em;
 }
 .first-group-form {
 width: 45%;
+}
+
+.purple {
+  background-color: transparent;
+  border-color: #290661;
+  color: #290661;
+}
+
+.purple:hover {
+  background-color: #290661;
+  color: #fff;
 }

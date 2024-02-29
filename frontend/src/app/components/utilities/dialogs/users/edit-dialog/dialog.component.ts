@@ -97,5 +97,11 @@ export class DialogComponent implements OnInit {
     this.dialog.closeAll()
     this.router.navigate([`give-back/${id}`])
    }
+
+   redirectHistoricToUser(id: number)
+   {
+      this.dialog.closeAll();
+      this.router.navigate([`historic-to-user/${id}`]);
+   }
   
 }

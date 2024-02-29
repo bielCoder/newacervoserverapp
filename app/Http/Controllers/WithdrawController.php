@@ -165,6 +165,11 @@ class WithdrawController extends Controller
             $dataProductToId = $historic -> where('code','=',$request -> all()[$i]["code"],'AND','register','=',$user -> register) -> whereNull('devolution') -> get();
           
         
+            if(count($dataProductToId) > 1)
+            {
+                $dateDiff = now() -> diff($dataProductToId[$i] -> withdraw);
+            }
+
             $dateDiff = now() -> diff($dataProductToId[0] -> withdraw);
               
             $historic -> where('code',$request -> all()[$i]["code"]) -> update([
@@ -185,6 +190,7 @@ class WithdrawController extends Controller
                 "description" => $dataProductToId[0] -> description,
                 "pending" => false,
                 "amount" => 0,
+                "withdraw" => $dataProductToId[0] -> withdraw,
                 "devolution" => now(),
                 "days" => $dateDiff -> days,
             ]);

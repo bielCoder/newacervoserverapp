@@ -38,15 +38,15 @@ class HistoricController extends Controller
        
             if(!is_null($this -> historics -> paginate((int)$request -> per_page)))
             {   
-                return $this -> response -> format("products","application\json","get",$this -> historics -> paginate((int)$request -> per_page),null,null,200);
+                return $this -> response -> format("historics","application\json","get",$this -> historics -> paginate((int)$request -> per_page),null,null,200);
             }
-                return $this -> response -> error("products","application\json","get","Not Found",404);
+                return $this -> response -> error("historics","application\json","get","Not Found",404);
         } catch(\PDOException $e)
         {
-            return $this -> response -> error("products","application\json","get",$e -> getMessage(),$e -> getCode());
+            return $this -> response -> error("historics","application\json","get",$e -> getMessage(),$e -> getCode());
         } catch(\Exception $e)
         {
-            return $this -> response -> error("products","application\json","get",$e -> getMessage(),$e -> getCode());
+            return $this -> response -> error("historics","application\json","get",$e -> getMessage(),$e -> getCode());
         }
     }
 
@@ -64,15 +64,15 @@ class HistoricController extends Controller
        
             if(!is_null($this -> historics -> paginate((int)$request -> per_page)))
             {   
-                return $this -> response -> format("products","application\json","get",$this -> historics -> where("register",$user) -> paginate((int)$request -> per_page),null,null,200);
+                return $this -> response -> format("historics","application\json","get",$this -> historics -> where("register",$user) -> paginate((int)$request -> per_page),null,null,200);
             }
-                return $this -> response -> error("products","application\json","get","Not Found",404);
+                return $this -> response -> error("historics","application\json","get","Not Found",404);
         } catch(\PDOException $e)
         {
-            return $this -> response -> error("products","application\json","get",$e -> getMessage(),$e -> getCode());
+            return $this -> response -> error("historics","application\json","get",$e -> getMessage(),$e -> getCode());
         } catch(\Exception $e)
         {
-            return $this -> response -> error("products","application\json","get",$e -> getMessage(),$e -> getCode());
+            return $this -> response -> error("historics","application\json","get",$e -> getMessage(),$e -> getCode());
         }
     }
 
@@ -86,6 +86,24 @@ class HistoricController extends Controller
     public function findExports($user)
     {
         return Excel::download(new historicToUser($user),'historicToUser.xlsx');
+    }
+
+    public function search()
+    {
+        try {
+       
+            if(!is_null($this -> historics -> all()))
+            {   
+                return $this -> response -> format("historics","application\json","get",$this -> historics -> all(),null,null,200);
+            }
+                return $this -> response -> error("historics","application\json","get","Not Found",404);
+        } catch(\PDOException $e)
+        {
+            return $this -> response -> error("historics","application\json","get",$e -> getMessage(),$e -> getCode());
+        } catch(\Exception $e)
+        {
+            return $this -> response -> error("historics","application\json","get",$e -> getMessage(),$e -> getCode());
+        }
     }
 
   

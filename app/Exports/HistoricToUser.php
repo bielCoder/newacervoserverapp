@@ -18,7 +18,8 @@ class HistoricToUser implements FromView
 
     public function view(): View
     {
-              $user = User::where('id',$this -> user) -> first();
+              $user = User::where('register',$this -> user) -> first();
+        
               $historics = Historic::where('register',$user -> register) -> get();
               return view('exports.exportToUser',["historics"=>$historics]);
     }

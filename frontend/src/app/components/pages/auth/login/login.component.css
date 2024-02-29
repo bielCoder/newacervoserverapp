@@ -10,12 +10,15 @@
 
 .information-login-container {
     width: 90%;
+    height: 100%;
     background-image: url(../../../../../assets/img/background.jpg);
     background-color: #000;
-    background-position: center;
+    background-position: left;
+    background-size: cover;
+    background-repeat: no-repeat;
     background-blend-mode: lighten;
     z-index: 0;
-    opacity: 10%;
+    opacity: 25%;
     display: flex;
     justify-content: center;
 }

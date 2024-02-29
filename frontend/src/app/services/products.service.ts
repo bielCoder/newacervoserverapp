@@ -35,4 +35,12 @@ export class ProductsService {
   {
     return this.http.get<Products>(`${this.products}/${id}`);
   }
+
+  orderBy(order: string):Observable<Products>
+  {
+    const object = {
+      "order": order
+    }
+    return this.http.put<Products>(`http://10.3.0.140/public/api/products/orderby`,object);
+  }
 }

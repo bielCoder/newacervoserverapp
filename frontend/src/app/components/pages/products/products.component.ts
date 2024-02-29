@@ -13,14 +13,15 @@ import { CreateProductDialogComponent } from '../../utilities/dialogs/products/c
 export class ProductsComponent implements OnInit {
   
   object!:any;
-  products!:Products[]
-  paginator!: any
-  alpha: string = "products"
+  products!:any;
+  paginator!: any;
+  alpha: string = "products";
   search:any;
   success!: string | null;
-
+  orderByIcon: string = 'bi bi-arrow-down-up';
   data: Date = new Date();
-
+  trueOrFalse: boolean = false;
+  order: string =  'asc';
 
   constructor(private productService: ProductsService, public dialog: MatDialog){}
 
@@ -83,4 +84,85 @@ export class ProductsComponent implements OnInit {
       data: element
     })
   }
+
+  // Order BY
+
+  changeOrderBy()
+  {
+    this.trueOrFalse = !this.trueOrFalse;
+    if(!this.trueOrFalse)
+    {
+      this.order = 'asc';
+    } else {
+      this.order = 'desc'
+    }
+
+    this.productService.orderBy(this.order).subscribe(
+      (data: any) => {
+        this.products = data;
+        this.paginator = this.products.products.data.data
+        this.products = this.products.products.data.data
+      },(error) => {
+        console.log(error)
+      }
+    );
+  }
+
+
+  effectIconOrderBYOver()
+  {
+    // get elements by class
+   const twoArrows = document.getElementsByClassName('bi bi-arrow-down-up');
+
+   const upArrow = document.getElementsByClassName('bi bi-arrow-up')
+
+   const upDown = document.getElementsByClassName('bi bi-arrow-down')
+
+
+  //  set visibilities
+   for(let i=0; i < twoArrows.length; i++)
+   {
+    twoArrows[i].setAttribute('style','display:none');
+   }
+
+   for(let i=0; i < upArrow.length; i++)
+   {
+    upArrow[i].setAttribute('style','display:inline');
+   }
+
+   for(let i=0; i < upDown.length; i++)
+   {
+    upDown[i].setAttribute('style','display:inline');
+   }
+    
+  }
+
+  effectIconOrderBYOut()
+  {
+    // get elements by class
+   const twoArrows = document.getElementsByClassName('bi bi-arrow-down-up');
+
+   const upArrow = document.getElementsByClassName('bi bi-arrow-up')
+
+   const upDown = document.getElementsByClassName('bi bi-arrow-down')
+
+
+  //  set visibilities
+   for(let i=0; i < twoArrows.length; i++)
+   {
+    twoArrows[i].setAttribute('style','display:inline');
+   }
+
+   for(let i=0; i < upArrow.length; i++)
+   {
+    upArrow[i].setAttribute('style','display:none');
+   }
+
+   for(let i=0; i < upDown.length; i++)
+   {
+    upDown[i].setAttribute('style','display:none');
+   }
+    
+  }
+
 }

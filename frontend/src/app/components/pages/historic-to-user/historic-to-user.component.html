@@ -1,0 +1,79 @@
+
+<app-menu-responsive></app-menu-responsive>
+<div class="container-main-users">
+    <div class="container-header-table">
+      <p class="title-page withdraw">Histórico do Funcionário</p>
+</div>
+
+<div class="container-info-devolution">
+    <div class="container-data-user" >
+        <ul class="list-group" *ngFor="let user of users">
+            <li class="list-group-item disabled" aria-disabled="true">Funcionário</li>
+            <li class="list-group-item">Nome: {{ user.name }}</li>
+            <li class="list-group-item">Matrícula: {{ user.register }}</li>
+            <li class="list-group-item">E-mail: {{ user.email }}</li>
+            <li class="list-group-item">Departamento: {{ user.department }}</li>
+        </ul>
+    </div>
+</div>
+<div class="container-header-historic-table">
+    <p class="title-page cart">Produtos</p>
+   
+</div>
+<div class="container-search">
+    <app-search></app-search>
+    <a href="http://10.3.0.140/public/api/historics/find-historics/{{users[0].register}}" class="btn btn-outline-success"><i class="bi bi-file-earmark-spreadsheet-fill"></i> Excel</a>
+</div>
+<div class="container-position-equips scroll-table">
+  <table class="table table-hover">
+    <thead>
+            <tr>
+                <th>#</th>
+                <th>code</th>
+                <th>product</th>
+                <th>marca</th>
+                <th>cor</th>
+                <th>tamanho</th>
+                <th>sexo</th>
+                <th>observação</th>
+                <th>avaria</th>
+                <th>descrição</th>
+            </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of products">
+          <td>{{ product.id }}</td>
+          <td>{{ product.code }}</td>
+          <td>{{ product.product }}</td>
+          <td>{{ product.brand }}</td>
+          <td>{{ product.color }}</td>
+          <td>{{ product.size }}</td>
+          <td>{{ product.sexo }}</td>
+          <td>{{ product.observation }}</td>
+          <td *ngIf="product.breakdown; else notBreakdown">Sim</td>
+          <ng-template #notBreakdown>
+            <td>Não</td>
+          </ng-template>
+          <td>{{ product.description }}</td>
+        </tr>
+    </tbody>
+  </table>
+ 
+</div>
+
+    <div class="container-paginator">
+        <app-paginator [paginator]="paginator" [alpha]="alpha" (paginatorEvent)="nextPage($event)" ></app-paginator>
+    </div>
+
+<div class="container-footer">
+  <div class="container-lign-footer">
+    <p>Acervo&#64;{{ data | date: 'Y'}}</p>
+  </div>
+</div> 
+ 
+
+
+
+
+
+

@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
    
+    private $order = "asc";
+
 
     public function __construct(private Product $product, private Response $response){}
 
@@ -22,11 +24,16 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
+        if(!empty($request -> order))
+        {
+          $this -> order = $request -> order;
+        }
+
         try {
        
             if(!is_null($this -> product -> paginate((int)$request -> per_page)))
             {   
-                return $this -> response -> format("products","application\json","get",$this -> product -> paginate((int)$request -> per_page),null,null,200);
+                return $this -> response -> format("products","application\json","get",$this -> product -> orderBy("id",(string) $this -> order) -> paginate((int)$request -> per_page),null,null,200);
             }
                 return $this -> response -> error("products","application\json","get","Not Found",404);
         } catch(\PDOException $e)

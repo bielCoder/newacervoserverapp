@@ -15,6 +15,7 @@ import { AccessDeniedComponent } from '../components/utilities/httpStatusTemplat
 import { WithdrawComponent } from '../components/pages/withdraw/withdraw.component';
 import { GiveBackComponent } from '../components/pages/give-back/give-back.component';
 import { HistoricComponent } from '../components/pages/historic/historic.component';
+import { HistoricToUserComponent } from '../components/pages/historic-to-user/historic-to-user.component';
 
 
 
@@ -110,6 +111,11 @@ const routes: Routes = [
   {
     path: 'historic',
     component: HistoricComponent,
+    canActivate: [MainGuard]
+  },
+  {
+    path: 'historic-to-user/:id',
+    component: HistoricToUserComponent,
     canActivate: [MainGuard]
   },
   {

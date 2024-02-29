@@ -32,8 +32,6 @@ Route::prefix('users') -> group(function () {
 
 Route::prefix('historics') -> group(function(){
     Route::controller(HistoricController::class) -> group(function(){
-        Route::get('/','index');
-        Route::get('/{user}','show');
         Route::get('/find-historics','allExports');
         Route::get('/find-historics/{user}','findExports');
     });
@@ -64,6 +62,7 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::get('/search','search') -> name('Products - Search');
             Route::post('/create','store') -> name('Products - Store');
             Route::get('/','index') -> name('Products - Index');
+            Route::put('orderby','index') -> name('Products - OrderBy');
             Route::delete('/{id}','destroy') -> name('Products - Destroy');
             Route::put('/{id}','update') -> name('Products - Update');
             Route::get('/{id}','show') -> name('Products - Show');
@@ -78,9 +77,16 @@ Route::middleware('auth:sanctum')->group(function () {
        });
     });
 
-    // Route::prefix('historics') -> group(function(){
-    //     Route::controller(HistoricController::class) -> group(function(){
-    //         Route::get('/find-historics','findExports');
-    //     });
-    // });
+    Route::prefix('historics') -> group(function(){
+        Route::controller(HistoricController::class) -> group(function(){
+            Route::get('/search','search');
+            Route::get('/','index');
+            Route::get('/{user}','show');
+     
+            
+          
+           
+           
+        });
+    });
 });

@@ -13,17 +13,17 @@
     <div class="container-table-user">
         <table class="table table-hover">
             <thead>
-              <tr>
-                <th>#</th>
-                <th>produto</th>
-                <th>código</th>
-                <th>marca</th>
-                <th>cor</th>
-                <th>tamanho</th>
-                <th>sexo</th>
-                <th>observação</th>
-                <th>avariado</th>
-                <th>descrição</th>
+              <tr (click)="changeOrderBy()" (mouseover)="effectIconOrderBYOver()" (mouseout)="effectIconOrderBYOut()">
+                <th>#<i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-down"></i></th>
+                <th>produto<i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-up"></i></th>
+                <th>código<i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-down"></i></th>
+                <th>marca<i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-up"></i></th>
+                <th>cor<i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-down"></i></th>
+                <th>tamanho<i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-up"></i></th>
+                <th>sexo<i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-down"></i></th>
+                <th>observação<i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-up"></i></th>
+                <th>avariado<i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-down"></i></th>
+                <th>descrição<i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-up"></i></th>
                 <th>status</th>
               </tr>
             </thead>

@@ -9,8 +9,15 @@
 .title-page {
     margin: 0 auto;
     font-size: 1.2em;
-    margin-left: 0px;
+    margin-left: 9px;
+    margin-bottom: 0.5em;
 }
+
+.container-data-user {
+    width: 25vw;
+}
+
+
 
 .container-table-user {
     position: relative;
@@ -59,9 +66,7 @@
 }
 
 
-thead tr {
-    cursor: pointer;
-}
+
 
 tr th {
     text-transform: capitalize;
@@ -81,15 +86,6 @@ tr td {
 }
 
 
-
-tbody tr:hover {
-    cursor: pointer;
-}
-
-
-tbody tr {
-    vertical-align: middle;
-}
 
 /* header table / search and title */
 
@@ -131,7 +127,6 @@ a:hover {
     border-color: transparent;
 } */
 
-
 a i {
     font-size: 1.2em;
 }
@@ -144,7 +139,18 @@ a i {
 
 .container-search{
     position: relative;
-    margin: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-bottom: 10px;
+    width: 76vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 .my-css-class .mat-dialog-container{
@@ -163,11 +169,32 @@ a i {
     margin-top: 25px;
 }
 
+.list-group {
+    font-size: .75em;
+}
+
+.product-control {
+    font-size: .75em;
+    position: relative;
+}
+
+.label-employee{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    margin-top: 5px;
+}
+
+.label-product{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    margin-top: 5px;
+}
 
 
 
-
-.success {
+/* .success {
     position: relative;
     padding-top: 1em;
     padding-left: 0em;
@@ -226,7 +253,7 @@ a i {
     100% {
         width: 0%;
     }
-}
+} */
 
 
 .bi-arrow-down-up {
@@ -268,13 +295,124 @@ a i {
     margin-top: 10px;
     width: 76vw;
     display: flex;
-    justify-content: flex-end; 
+    justify-content: flex-end;
 }
 
 .container-lign-footer p {
     color: #696969;
     font-size: .75em;
     margin-right: 1em;
+}
+
+.first-form-group {
+    display: flex;
+    position: relative;
+    align-items: center;
+}
+
+
+.second-form-group {
+    display: flex;
+    position: relative;
+    align-items: center;
+}
+
+.bi-search .employee {
+    position: absolute;
+    text-align: center;
+    right: 5px  ;
+}
+
+
+
+.search-employee {
+    font-size: .75em;
+    margin-right: -8px;
+}
+
+.bi-search .product {
+    position: absolute;
+    text-align: center;
+    right: 5px  ;
+}
+
+.search-product {
+    font-size: .75em;
+    margin-right: -20px;
+    position: relative;
+}
+
+.search-width {
+    width: 13vw;
+    margin-bottom: 12px;
+}
+
+.main-container {
+    display: flex;
+    align-items: center;
+    width: 76vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.main-container-table-representation {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-bottom: 10px;
+    width: 76vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    flex-direction: column;
+}
+
+.cart {
+    width: 76vw;
+    border-bottom: 1px solid #c1c1c1;
+    padding-bottom: 0.5em;
+    margin: 0 auto;
+    position: relative;
+    margin-top: 25px;
+    padding-left: 9px;
+}
+
+.container-position-btn-success {
+    position: relative;
+    margin-top: 25px;
+    width: 76vw;
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 auto;
+    margin-bottom: 25px;
+}
+
+.container-position-equips {
+    height: 450px;
+    overflow-y: auto;
+    width: 57vw;
+    margin: 0 auto;
+    margin-top: 1em;
+}
+
+
+.table>tbody {
+    vertical-align: inherit;
+    vertical-align: middle;
+}
+
+.container-info-devolution {
+    display: flex;
+    width: 76vw;
+    justify-content: start;
+    margin: 0 auto;
+    align-items: flex-start;
 }
 
 .btn-outline-success {

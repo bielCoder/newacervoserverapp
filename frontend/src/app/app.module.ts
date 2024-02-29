@@ -42,6 +42,7 @@ import { WithdrawComponent } from './components/pages/withdraw/withdraw.componen
 import { CreateWithdrawComponent } from './components/utilities/dialogs/create-withdraw/create-withdraw.component';
 import { GiveBackComponent } from './components/pages/give-back/give-back.component';
 import { HistoricComponent } from './components/pages/historic/historic.component';
+import { HistoricToUserComponent } from './components/pages/historic-to-user/historic-to-user.component';
 
 
 
@@ -76,7 +77,8 @@ import { HistoricComponent } from './components/pages/historic/historic.componen
     CreateProductDialogComponent,
     WithdrawComponent,
     GiveBackComponent,
-    HistoricComponent
+    HistoricComponent,
+    HistoricToUserComponent
 
   ],
   imports: [

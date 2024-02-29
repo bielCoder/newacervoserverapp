@@ -380,6 +380,7 @@ a i {
     margin: 0 auto;
     position: relative;
     margin-top: 25px;
+    padding-left: 9px;
 }
 
 .container-position-btn-success {
