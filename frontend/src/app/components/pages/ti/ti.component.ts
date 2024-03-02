@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog'
 import { DialogComponent } from '../../utilities/dialogs/users/edit-dialog/dialog.component';
 import { CreateDialogComponent } from '../../utilities/dialogs/users/create-dialog/create-dialog.component';
-
+import * as CryptoJS from 'crypto-js';
 
 
 @Component({

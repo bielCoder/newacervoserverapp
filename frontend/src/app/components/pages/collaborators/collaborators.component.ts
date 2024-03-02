@@ -52,6 +52,8 @@ export class CollaboratorsComponent implements OnInit {
         
       }
     )
+
+      
   }
 // todos os usuários
   allUsers()

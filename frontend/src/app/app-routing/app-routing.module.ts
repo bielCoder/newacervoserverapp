@@ -10,12 +10,13 @@ import { OperatorsComponent } from '../components/pages/operators/operators.comp
 import { UsersService } from '../services/users.service';
 import { ProductsComponent } from '../components/pages/products/products.component';
 import { LoginService } from '../services/login.service';
-import { map } from 'rxjs';
+import { map, toArray } from 'rxjs';
 import { AccessDeniedComponent } from '../components/utilities/httpStatusTemplate/access-denied/access-denied.component';
 import { WithdrawComponent } from '../components/pages/withdraw/withdraw.component';
 import { GiveBackComponent } from '../components/pages/give-back/give-back.component';
 import { HistoricComponent } from '../components/pages/historic/historic.component';
 import { HistoricToUserComponent } from '../components/pages/historic-to-user/historic-to-user.component';
+
 
 
 
@@ -29,11 +30,13 @@ const routes: Routes = [
     canActivate: [MainGuard],
     canMatch: [() => {
       const permission = inject(LoginService)
-      if(window.sessionStorage.getItem('access') == "1")
+      const access = window.sessionStorage.getItem('access') || '';
+      if( atob(access) == '1')
       {
         permission.changeRootTrue();
         return permission.isRoot$;
       } else {
+     
       const router = inject(Router)
         permission.changeRootFalse()
         // window.sessionStorage.clear()
@@ -48,9 +51,11 @@ const routes: Routes = [
     canActivate: [MainGuard],
     canMatch: [() => {
       const permission = inject(LoginService)
+      const access = window.sessionStorage.getItem('access') || '';
+
       if(
-         window.sessionStorage.getItem('access') == "1" || 
-         window.sessionStorage.getItem('access') == "2" 
+        atob(access) == '1' || 
+        atob(access) == '2' 
          )
       {
         permission.changeAdminTrue();
@@ -70,10 +75,12 @@ const routes: Routes = [
     canActivate: [MainGuard],
     canMatch: [() => {
       const permission = inject(LoginService)
+      const access = window.sessionStorage.getItem('access') || '';
+
       if(
-        window.sessionStorage.getItem('access') == "1" || 
-        window.sessionStorage.getItem('access') == "2" ||
-        window.sessionStorage.getItem('access') == "3" 
+        atob(access) == '1' || 
+        atob(access) == '2' ||
+        atob(access) == '3' 
         )
       {
         permission.changeOperatorTrue();

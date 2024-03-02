@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Auth } from 'src/app/interfaces/auth';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
+import { access } from 'fs';
 
 
 
@@ -10,6 +11,8 @@ import { environment } from 'src/environments/environment.prod';
   providedIn: 'root'
 })
 export class LoginService {
+
+
 
   private loginUrl = `${environment.server}/users/login`;
   private logoutUrl = `${environment.server}/users/logout`;
@@ -31,7 +34,7 @@ export class LoginService {
 
   loginStore(userData: Auth): Observable<Auth>
   {
-     return this.http.post<Auth>(this.loginUrl,userData);
+     return this.http.post<Auth>(this.loginUrl,userData)
   }
 
   logout(token: string | null): Observable<Auth>

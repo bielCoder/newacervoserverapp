@@ -39,10 +39,10 @@
                 <div class="form-group access">
                     <span>acesso:</span>
                     <div class="container-group">
-                        <input type="radio" formControlName="access" id="root" class="root" autocomplete="off" value={{1}} *ngIf="data.access == '1'"><span  *ngIf="data.access == '1'" >root</span>
-                        <input type="radio" formControlName="access" id="admin" class="admin"  autocomplete="off" value={{2}} *ngIf="data.access == '1' || data.access == '2'" ><span *ngIf="data.access == '1' || data.access == '2'"><abbr title="administrador">adm</abbr></span>
-                        <input type="radio" formControlName="access" id="operator" class="operator"  autocomplete="off" value={{3}} *ngIf="data.access == '1' || data.access == '2' || data.access == '3'" ><span *ngIf="data.access == '1' || data.access == '2' || data.access == '3'"><abbr title="operador">oper</abbr></span>
-                        <input type="radio" formControlName="access" id="collaborator" class="collaborator"  autocomplete="off" value={{4}}   *ngIf="data.access == '1' || data.access == '2' || data.access == '4'"><span  *ngIf="data.access == '1' || data.access == '2' || data.access == '4'"><abbr title="colaborador">col</abbr></span>
+                        <input type="radio" formControlName="access" id="root" class="root" autocomplete="off" value={{1}} *ngIf="data.access == 1"><span  *ngIf="data.access == 1" >root</span>
+                        <input type="radio" formControlName="access" id="admin" class="admin"  autocomplete="off" value={{2}} *ngIf="data.access == 1 || data.access == 2" ><span *ngIf="data.access == 1 || data.access == 2"><abbr title="administrador">adm</abbr></span>
+                        <input type="radio" formControlName="access" id="operator" class="operator"  autocomplete="off" value={{3}} *ngIf="data.access == 1 || data.access == 2 || data.access == 3" ><span *ngIf="data.access == 1 || data.access == 2 || data.access == 3"><abbr title="operador">oper</abbr></span>
+                        <input type="radio" formControlName="access" id="collaborator" class="collaborator"  autocomplete="off" value={{4}}   *ngIf="data.access == 1 || data.access == 2 || data.access == 4"><span  *ngIf="data.access == 1 || data.access == 2 || data.access == 4"><abbr title="colaborador">col</abbr></span>
                     </div>
                 </div>
             </div>

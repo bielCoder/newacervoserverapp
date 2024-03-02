@@ -1,8 +1,9 @@
-import { Component, ElementRef, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, Output, ViewChild, inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../../../../services/login.service';
 import { Auth } from 'src/app/interfaces/auth';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -55,24 +56,28 @@ export class LoginComponent implements OnInit {
         this.token = this.userData.users.token;
         this.name = this.userData.users.data?.name;
         this.access = this.userData.users.data?.access;
-
+    
         window.sessionStorage.setItem("token",this.token);
         window.sessionStorage.setItem("name",this.name);
-        window.sessionStorage.setItem("access",this.access);
-
-        this.access = window.sessionStorage.getItem('access');
+        const convert = btoa(this.userData.users.data?.access)
+        window.sessionStorage.setItem("access",convert);
+    
         
-        
+            // encriptografar sessionStorage
+     
 
 
         switch(this.access)
         {
-          case '1' :  return this.router.navigate([`/home`]);
-          case '2' : return this.router.navigate([`/admin`]);
-          case '3' : return this.router.navigate([`/operators`]);
-          case '4' : return this.router.navigate([`/collaborators`]);
+        
+          case 1 :  return this.router.navigate([`/home`]);
+          case 2 : return this.router.navigate([`/admin`]);
+          case 3 : return this.router.navigate([`/operators`]);
+          case 4 : return this.router.navigate([`/collaborators`]);
           default: return;
+          
         }
+        
        
       },(error) =>
       {

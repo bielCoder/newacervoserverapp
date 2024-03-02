@@ -48,10 +48,9 @@ export class AdminComponent implements OnInit {
         this.search = this.search.users.data.filter((data: Users) => {
           return data.access === 2
         })
-      
-        
       }
     )
+
   }
 // todos os usuários
   allUsers()

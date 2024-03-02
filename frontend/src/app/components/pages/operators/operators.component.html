@@ -6,7 +6,7 @@
       <div class="container-search">
         <app-search  (data)="onSearch($event)"></app-search>
       </div>
-      <!-- <a class="register" (click)="navigateRegister()"><i class="bi bi-person-fill-add"></i>cadastrar</a> -->
+      <a class="register" (click)="navigateRegister()"><i class="bi bi-person-fill-add"></i>cadastrar</a>
     </div> 
    
     <div class="container-table-user">
@@ -31,7 +31,7 @@
                   <td>{{user.department}}</td>
                   <td>{{user.email}}</td>
                   <td *ngIf="user.access" id="{{user.access}}" class="showNone">
-                   Admin
+                   operador
                   </td>
                 </tr>
             </tbody>
