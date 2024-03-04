@@ -10,12 +10,13 @@ import { OperatorsComponent } from '../components/pages/operators/operators.comp
 import { UsersService } from '../services/users.service';
 import { ProductsComponent } from '../components/pages/products/products.component';
 import { LoginService } from '../services/login.service';
-import { map, toArray } from 'rxjs';
+import { map } from 'rxjs';
 import { AccessDeniedComponent } from '../components/utilities/httpStatusTemplate/access-denied/access-denied.component';
 import { WithdrawComponent } from '../components/pages/withdraw/withdraw.component';
 import { GiveBackComponent } from '../components/pages/give-back/give-back.component';
 import { HistoricComponent } from '../components/pages/historic/historic.component';
 import { HistoricToUserComponent } from '../components/pages/historic-to-user/historic-to-user.component';
+import * as CryptoJS from 'crypto-js';
 
 
 
@@ -30,40 +31,36 @@ const routes: Routes = [
     canActivate: [MainGuard],
     canMatch: [() => {
       const permission = inject(LoginService)
-      const access = window.sessionStorage.getItem('access') || '';
-      if( atob(access) == '1')
+      let session = window.sessionStorage.getItem('access') || '';
+      session = CryptoJS.AES.decrypt(session.toString(), 'access').toString(CryptoJS.enc.Utf8);
+      if(session == '1')
       {
         permission.changeRootTrue();
         return permission.isRoot$;
       } else {
-     
-      const router = inject(Router)
+        window.sessionStorage.clear()
+        const router = inject(Router)
         permission.changeRootFalse()
-        // window.sessionStorage.clear()
         return permission.isRoot$.pipe(map(isRoot => isRoot || router.navigate(['access-denied'])));
       }
       } 
   ]
-  },
-  {
+},{
     path: 'admin',
     component: AdminComponent,
     canActivate: [MainGuard],
     canMatch: [() => {
+      let session = window.sessionStorage.getItem('access') || '';
+      session = CryptoJS.AES.decrypt(session.toString(), 'access').toString(CryptoJS.enc.Utf8);
       const permission = inject(LoginService)
-      const access = window.sessionStorage.getItem('access') || '';
-
-      if(
-        atob(access) == '1' || 
-        atob(access) == '2' 
-         )
+      if( session == '1' || session == '2' )
       {
         permission.changeAdminTrue();
         return permission.isAdmin$;
       } else {
+        // window.sessionStorage.clear()
         const router = inject(Router)
         permission.changeAdminFalse()
-        // window.sessionStorage.clear()
         return permission.isAdmin$.pipe(map(isAdmin => isAdmin || router.navigate(['access-denied'])));
       }
       } 
@@ -74,13 +71,13 @@ const routes: Routes = [
     component: OperatorsComponent,
     canActivate: [MainGuard],
     canMatch: [() => {
+      let session = window.sessionStorage.getItem('access') || '';
+      session = CryptoJS.AES.decrypt(session.toString(), 'access').toString(CryptoJS.enc.Utf8);
       const permission = inject(LoginService)
-      const access = window.sessionStorage.getItem('access') || '';
-
       if(
-        atob(access) == '1' || 
-        atob(access) == '2' ||
-        atob(access) == '3' 
+        session == '1' || 
+        session == '2' ||
+        session == '3' 
         )
       {
         permission.changeOperatorTrue();
@@ -94,7 +91,6 @@ const routes: Routes = [
       } 
   ]
   },
-  
   {
     path: 'collaborators',
     component: CollaboratorsComponent,

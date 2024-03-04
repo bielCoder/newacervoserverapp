@@ -17,10 +17,9 @@ export class MenuResponsiveComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-      this.logged = window.sessionStorage.getItem('name') || '';
-      const eText = sessionStorage.getItem('access') || '';   
-      this.access = atob(eText)
-    
+      this.logged = window.sessionStorage.getItem('name');
+      this.access = sessionStorage.getItem('access') || '';
+      this.access = CryptoJS.AES.decrypt(this.access, 'access').toString(CryptoJS.enc.Utf8);
   }
 
   onReceiveShowHide()

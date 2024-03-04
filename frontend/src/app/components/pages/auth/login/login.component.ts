@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { LoginService } from '../../../../services/login.service';
 import { Auth } from 'src/app/interfaces/auth';
 import { Router } from '@angular/router';
-
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'app-login',
@@ -32,6 +32,8 @@ export class LoginComponent implements OnInit {
       register: new FormControl(null,[Validators.required]),
       password: new FormControl(null,[Validators.required])
     });
+
+    window.sessionStorage.clear();
   }
 
   onSubmit()
@@ -50,22 +52,17 @@ export class LoginComponent implements OnInit {
     } 
     // resposta de dados diretamente do banco
     return this.loginService.loginStore(user).subscribe(
-      (data) => {
+      async  (data) => {
         this.failed = '';
         this.userData = data;
         this.token = this.userData.users.token;
         this.name = this.userData.users.data?.name;
-        this.access = this.userData.users.data?.access;
-    
-        window.sessionStorage.setItem("token",this.token);
-        window.sessionStorage.setItem("name",this.name);
-        const convert = btoa(this.userData.users.data?.access)
-        window.sessionStorage.setItem("access",convert);
-    
-        
-            // encriptografar sessionStorage
-     
+        this.access = await this.userData.users.data?.access;
 
+        var encrypted = CryptoJS.AES.encrypt(this.access.toString(), 'access').toString();
+        window.sessionStorage.setItem("name",this.name);
+        window.sessionStorage.setItem("token",this.token);
+        window.sessionStorage.setItem("access",encrypted);
 
         switch(this.access)
         {
@@ -75,14 +72,13 @@ export class LoginComponent implements OnInit {
           case 3 : return this.router.navigate([`/operators`]);
           case 4 : return this.router.navigate([`/collaborators`]);
           default: return;
-          
         }
         
        
       },(error) =>
       {
        this.failed = error.users.message
-       
+       console.log(error)
       }
     );
   }

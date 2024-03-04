@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog'
 import { DialogComponent } from '../../utilities/dialogs/users/edit-dialog/dialog.component';
 import { CreateDialogComponent } from '../../utilities/dialogs/users/create-dialog/create-dialog.component';
-import * as CryptoJS from 'crypto-js';
+
 
 
 @Component({
@@ -49,6 +49,7 @@ export class TIComponent implements OnInit {
       }
     )
 
+  
   }
 // todos os usuários
   allUsers()
@@ -58,6 +59,7 @@ export class TIComponent implements OnInit {
         this.users = data;
         this.paginator = this.users.users.data[0]
         this.users = this.users.users.data[0].data
+        
       },(error) => {
         console.log(error)
       }
