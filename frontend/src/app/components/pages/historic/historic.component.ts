@@ -65,7 +65,6 @@ export class HistoricComponent implements OnInit {
   // paginação
   nextPage(event:any)
   {
-    console.log(event);
     this.historics = event.historics.data.data
   }
 
