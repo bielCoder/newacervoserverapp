@@ -22,6 +22,9 @@ export class ProductsComponent implements OnInit {
   data: Date = new Date();
   trueOrFalse: boolean = false;
   order: string =  'asc';
+  total!: number;
+  available!: number;
+  unavailable!: number;
 
   constructor(private productService: ProductsService, public dialog: MatDialog){}
 
@@ -36,6 +39,10 @@ export class ProductsComponent implements OnInit {
       (data) => {
         this.search = data;
         this.search = this.search.products.data
+        this.total = this.search.length;
+        this.available = this.search.filter((data: Products) => {return data.pending == false}).length
+        this.unavailable = this.search.filter((data: Products) => {return data.pending == true}).length
+      
       }
     )
   }

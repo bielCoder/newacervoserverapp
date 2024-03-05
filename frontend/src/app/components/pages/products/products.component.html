@@ -4,9 +4,24 @@
 <div class="container-main-users">
     <div class="container-header-table">
       <p class="title-page">Produtos</p>
+      <div class="container-counters">
+        <div class="cart-count-available">
+          <p class="counter">{{ available }}</p>
+          <span class="title-count"><abbr title="Quantidade de produtos disponíveis.">Disponíveis</abbr></span>
+        </div>
+        <div class="cart-count-pending">
+          <p class="counter">{{ unavailable }}</p>
+          <span class="title-count"><abbr title="Quantidade de produtos pendentes.">Pendentes</abbr></span>
+        </div>
+        <div class="cart-count-total">
+          <p class="counter">{{ total }}</p>
+          <span class="title-count"><abbr title="Quantidade de produtos totais.">Totais</abbr></span>
+        </div>
+      </div>
       <div class="container-search">
         <app-search  (data)="onSearch($event)"></app-search>
       </div>
+      
       <a class="register" (click)="createProduct()"><i class="bi bi-cart-plus-fill"></i>cadastrar</a>
     </div>
     

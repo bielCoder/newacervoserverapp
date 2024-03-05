@@ -60,3 +60,14 @@ li {
     z-index: 9999;
     margin-left: .5em;
 }
+
+.counter {
+    width: 50px;
+    height: auto;
+    background-color: #fff;
+    color: #2f2f2f;
+    margin-left: 1em;
+    padding: 5px;
+    font-weight: bold;
+    border-radius: 2px;
+}
