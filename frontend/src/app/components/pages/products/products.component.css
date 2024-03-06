@@ -79,6 +79,9 @@ tr td {
 .name {
     text-transform: capitalize;
 }
+tbody tr {
+    text-align: center;
+}
 
 tbody tr:hover {
     cursor: pointer;
@@ -292,6 +295,7 @@ a i {
     margin: 0 auto;
     gap: 2em;
     text-align: center;
+    z-index: 1;
 }
 
 .cart-count-available {

@@ -84,6 +84,10 @@ tr td {
     text-transform: capitalize;
 }
 
+tbody tr {
+    z-index: 8;
+}
+
 tbody tr:hover {
     cursor: pointer;
 }
@@ -396,4 +400,9 @@ a i {
 .table>tbody {
     vertical-align: inherit;
     vertical-align: middle;
+}
+
+
+.btn-outline-danger{
+    z-index: 9999;
 }

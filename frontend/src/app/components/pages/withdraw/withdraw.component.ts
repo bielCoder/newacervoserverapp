@@ -6,6 +6,7 @@ import { Products } from 'src/app/interfaces/products';
 import { Users } from 'src/app/interfaces/users';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateWithdrawComponent } from '../../utilities/dialogs/create-withdraw/create-withdraw.component';
+import { ProductDialogComponent } from '../../utilities/dialogs/products/edit-product-dialog/product-dialog.component';
 
 @Component({
   selector: 'app-withdraw',
@@ -24,14 +25,14 @@ export class WithdrawComponent implements OnInit {
     failed!: any;
     success!: any;
     data: Date = new Date();
-
+    productListSession:any = [];
     
 
     @ViewChild('lignProduct') lignProduct!: ElementRef
     @ViewChild('userSearchInputProduct') userSearchInputProduct!: ElementRef
 
     
-    constructor(private userService: UsersService, private productService: ProductsService, private dialogs: MatDialog)
+    constructor(private userService: UsersService, private productService: ProductsService, private dialogs: MatDialog,  public dialog: MatDialog)
     {
 
     }
@@ -46,7 +47,6 @@ export class WithdrawComponent implements OnInit {
           });
         }
       )
-
   
   
        // set search users
@@ -70,6 +70,15 @@ export class WithdrawComponent implements OnInit {
          // messageria
          this.success = window.localStorage.getItem('message')
          window.localStorage.removeItem('message');
+
+
+          const session = localStorage.getItem("products") || '';
+         this.productListSession = JSON.parse(session);
+         console.log(this.productListSession)
+
+
+
+        //  preciso configurar sistema para ao carregar edição de dados os dados sejam persistidos 
      
     }
 
@@ -101,7 +110,6 @@ export class WithdrawComponent implements OnInit {
       return value.code == data.value
     })
 
-    console.log(find);
 
     const findTwo = this.searchTwo.filter((value: any) => {
       this.failed = undefined;
@@ -133,10 +141,14 @@ export class WithdrawComponent implements OnInit {
       return
     }
     
+    this.productsList.push(find[0]);
     // empurra o objeto encontrado para o carrinho
-    this.productsList.push(find[0])
+    localStorage.setItem("products",JSON.stringify(this.productsList));
+    const getStorage = localStorage.getItem("products") || '';
+    this.productListSession.push(JSON.parse(getStorage))
+    console.log(this.productListSession)
     this.userSearchInputProduct.nativeElement.value = ''
-  
+    
   }
 
   
@@ -146,7 +158,7 @@ export class WithdrawComponent implements OnInit {
       products: data,
       users: users
     }}
-    console.log(withdraw);
+ 
     this.dialogs.open(CreateWithdrawComponent,{
       width: '50%',
       height:'auto',
@@ -161,6 +173,18 @@ export class WithdrawComponent implements OnInit {
   {
     this.productsList = this.productsList.filter((data: Products) => {
         return data.id !== id;
+    })
+  }
+
+
+  openDialog(element: Products)
+  {
+    this.dialog.open(ProductDialogComponent,{
+      width: '50%',
+      height:'auto',
+      position:{top: '5em'},
+      disableClose:true,
+      data: element
     })
   }
 }

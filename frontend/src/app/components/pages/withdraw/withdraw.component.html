@@ -59,7 +59,7 @@
               </tr>
       </thead>
       <tbody>
-          <tr *ngFor="let product of productsList">
+          <tr *ngFor="let product of productListSession[0]" (click)="openDialog(product)">
             <td>{{ product.id }}</td>
             <td>{{ product.product }}</td>
             <td>{{ product.code }}</td>
@@ -68,7 +68,10 @@
             <td>{{ product.size }}</td>
             <td>{{ product.sexo }}</td>
             <td>{{ product.observation }}</td>
-            <td>{{ product.breakdown }}</td>
+            <td *ngIf="product.breakdown; else notBreakdown">Sim</td>
+            <ng-template #notBreakdown>
+              <td>Não</td>
+            </ng-template>
             <td>{{ product.description }}</td>
             <td class="btn-danger"><button class="btn btn-outline-danger" (click)="removeProductList(product.id)" ><i class="bi bi-trash3-fill"></i></button></td>
           </tr>

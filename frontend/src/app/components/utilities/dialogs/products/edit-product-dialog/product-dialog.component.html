@@ -7,18 +7,18 @@
             <div class="container-content">
                 <div class="first-group-division">
                     <div class="form-group">
-                        <input type="text" formControlName="product" id="product" class="product form-control" placeholder=" " autocomplete="off" value="">
+                        <input type="text" formControlName="product" id="product" class="product form-control" placeholder=" " autocomplete="off" value="" [readonly]="isWithdraw$">
                         <label for="product">produto</label>
                     </div>
                     <p class="error" *ngIf="!dialogForm.controls['product'].valid && dialogForm.controls['product'].touched">* campo obrigatório</p>
 
                     <div class="form-group">
-                        <input type="text" formControlName="brand" id="brand" class="brand form-control" placeholder=" " autocomplete="off" value="">
+                        <input type="text" formControlName="brand" id="brand" class="brand form-control" placeholder=" " autocomplete="off" value="" [readonly]="isWithdraw$">
                         <label for="brand">marca</label>
                     </div>
 
                     <div class="form-group">
-                        <input type="text" formControlName="color" id="color" class="color form-control" placeholder=" " autocomplete="off" value="">
+                        <input type="text" formControlName="color" id="color" class="color form-control" placeholder=" " autocomplete="off" value="" [readonly]="isWithdraw$">
                         <label for="color">cor</label>
                     </div>
 
@@ -49,12 +49,12 @@
                     <p class="error" *ngIf="error !== undefined">{{ error }}</p>
 
                     <div class="form-group">
-                        <input type="text" formControlName="size" id="size" class="size form-control" placeholder=" " autocomplete="off" value="">
+                        <input type="text" formControlName="size" id="size" class="size form-control" placeholder=" " autocomplete="off" value="" [readonly]="isWithdraw$">
                         <label for="size">tamanho</label>
                     </div>
 
                     <div class="form-group">
-                        <input type="text" formControlName="sexo" id="sexo" class="sexo form-control" placeholder=" " autocomplete="off">
+                        <input type="text" formControlName="sexo" id="sexo" class="sexo form-control" placeholder=" " autocomplete="off" [readonly]="isWithdraw$">
                         <label for="sexo">sexo</label>
                     </div>
 
@@ -66,7 +66,6 @@
                 </div>
             </div>
         <div class="footer-container">
-           
             <button type="submit" class="btn btn-outline-dark" [disabled]="data.pending"><i class="bi bi-pencil-fill"></i> Editar Produto</button>
         </div>
     </form>

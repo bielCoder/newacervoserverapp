@@ -1,6 +1,8 @@
 import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Products } from 'src/app/interfaces/products';
 import { ProductsService } from 'src/app/services/products.service';
 
@@ -14,6 +16,8 @@ export class ProductDialogComponent implements OnInit {
 
   dialogForm!: FormGroup
 
+  private isWithdrawSubject = new BehaviorSubject<boolean>(false)
+  isWithdraw$: Observable<boolean> = this.isWithdrawSubject.asObservable();
 
   @ViewChild('radio') radioTrue!: ElementRef
   @ViewChild('radio') radioFalse!: ElementRef
@@ -27,7 +31,7 @@ export class ProductDialogComponent implements OnInit {
 
 
 
-  constructor( @Inject(MAT_DIALOG_DATA) public data: Products, private formBuilder: FormBuilder, private dialog: MatDialog, private productService: ProductsService){}
+  constructor( @Inject(MAT_DIALOG_DATA) public data: Products, private formBuilder: FormBuilder, private dialog: MatDialog, private productService: ProductsService, private route:ActivatedRoute){}
 
   ngOnInit(): void {
     this.dialogForm = this.formBuilder.group({
@@ -49,6 +53,12 @@ export class ProductDialogComponent implements OnInit {
     } else {
       this.showHideDescription = true;
     }
+    
+    if(this.route.children[0].snapshot.url[0].path == 'withdraw')
+    {
+      this.isWithdrawSubject.next(false)
+    }
+
   }
 
   closeModal()
@@ -112,8 +122,10 @@ export class ProductDialogComponent implements OnInit {
      
         this.message = this.object.products.message
         window.localStorage.setItem('message', this.message);
+       
         this.dialog.closeAll();
-        window.history.go();
+        localStorage.clear();
+        window.location.reload();
 
       },(error) => {
         this.error = error.message
