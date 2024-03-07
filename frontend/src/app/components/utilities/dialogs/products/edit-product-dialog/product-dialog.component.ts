@@ -2,7 +2,7 @@ import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { Products } from 'src/app/interfaces/products';
 import { ProductsService } from 'src/app/services/products.service';
 
@@ -117,14 +117,14 @@ export class ProductDialogComponent implements OnInit {
 
     this.productService.edit(this.dialogForm.value).subscribe(
 
-      (data) => {
+      (data: any) => {
         this.object = data;
-     
+    
         this.message = this.object.products.message
         window.localStorage.setItem('message', this.message);
-       
+        window.localStorage.setItem('observation',data.products.data.observation)
+
         this.dialog.closeAll();
-        localStorage.clear();
         window.location.reload();
 
       },(error) => {

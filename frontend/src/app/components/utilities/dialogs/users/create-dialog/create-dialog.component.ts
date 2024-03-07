@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 import { ResetDialogComponent } from '../reset-dialog/reset-dialog.component';
 import { LoginService } from 'src/app/services/login.service';
 import { access } from 'fs';
-
+import * as CryptoJS from 'crypto-js';
 
 
 @Component({
@@ -48,8 +48,10 @@ export class CreateDialogComponent implements OnInit {
     access: null
  });
 
-    //  get access session
-    this.access = window.sessionStorage.getItem('access');
+
+      let session = window.sessionStorage.getItem('access') || '';
+      this.access = CryptoJS.AES.decrypt(session.toString(), 'access').toString(CryptoJS.enc.Utf8);
+   
   }
 
   onSubmitCreate()

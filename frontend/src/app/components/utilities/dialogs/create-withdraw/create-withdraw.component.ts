@@ -57,6 +57,7 @@ export class CreateWithdrawComponent {
               this.success = this.success.withdraw.message
               window.localStorage.setItem('message', this.success);
               this.dialog.closeAll();
+              window.localStorage.clear();
               window.history.go();
             }
           )
@@ -81,8 +82,8 @@ export class CreateWithdrawComponent {
               this.success = data;
               this.success = this.success.withdraw.message
               window.localStorage.setItem('message', this.success);
-              // this.dialog.closeAll();
-              // window.history.go();
+              this.dialog.closeAll();
+              window.history.go();
             }
           )
         } else {

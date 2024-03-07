@@ -26,7 +26,7 @@ export class WithdrawComponent implements OnInit {
     success!: any;
     data: Date = new Date();
     productListSession:any = [];
-    
+    observation!:any;
 
     @ViewChild('lignProduct') lignProduct!: ElementRef
     @ViewChild('userSearchInputProduct') userSearchInputProduct!: ElementRef
@@ -36,6 +36,8 @@ export class WithdrawComponent implements OnInit {
     {
 
     }
+
+ 
 
     ngOnInit(): void {
       this.productService.all().subscribe(
@@ -71,14 +73,18 @@ export class WithdrawComponent implements OnInit {
          this.success = window.localStorage.getItem('message')
          window.localStorage.removeItem('message');
 
+        // Mantendo dados de produtos na tela
+        const sessionProducts =  localStorage.getItem("products") || '';
+        this.productListSession = JSON.parse(sessionProducts);
 
-          const session = localStorage.getItem("products") || '';
-         this.productListSession = JSON.parse(session);
-         console.log(this.productListSession)
+        // Voce parou aqui, precisa verificar a alteração da observação , pois está fazendo para todos e não somente para 1 produto.
+        this.productListSession[0].observation = localStorage.getItem("observation");
+
+        
+        const sessionUser = localStorage.getItem("user") || '';
+        this.users = JSON.parse(sessionUser);
 
 
-
-        //  preciso configurar sistema para ao carregar edição de dados os dados sejam persistidos 
      
     }
 
@@ -94,6 +100,7 @@ export class WithdrawComponent implements OnInit {
         (data) => {
           this.users = data;
           this.users = this.users.users.data
+          localStorage.setItem("user",JSON.stringify(this.users));
         }
       )
 
@@ -129,10 +136,12 @@ export class WithdrawComponent implements OnInit {
     }
 
    
+   
+
 
     // verificar se o produto já existe no carrinho
 
-    const exists = this.productsList.filter((value: Products) => {
+    const exists = this.productListSession.filter((value: Products) => {
           return value.code === data.value
     })
 
@@ -142,32 +151,18 @@ export class WithdrawComponent implements OnInit {
     }
     
     this.productsList.push(find[0]);
+    this.productListSession.push(find[0])
     // empurra o objeto encontrado para o carrinho
     localStorage.setItem("products",JSON.stringify(this.productsList));
-    const getStorage = localStorage.getItem("products") || '';
-    this.productListSession.push(JSON.parse(getStorage))
-    console.log(this.productListSession)
+
+   
+
     this.userSearchInputProduct.nativeElement.value = ''
     
   }
 
   
-  submitDialog(data: Products[], users: Users)
-  {
-    const withdraw ={ withdraw : {
-      products: data,
-      users: users
-    }}
  
-    this.dialogs.open(CreateWithdrawComponent,{
-      width: '50%',
-      height:'auto',
-      position:{top: '3em'},
-      disableClose:true,
-      data: withdraw
-    })
-
-  }
 
   removeProductList(id: number)
   {
@@ -186,5 +181,23 @@ export class WithdrawComponent implements OnInit {
       disableClose:true,
       data: element
     })
+  }
+
+  submitDialog(data: Products[], users: Users)
+  {
+    const withdraw ={ withdraw : {
+      products: data,
+      users: users
+    }}
+ 
+    this.dialogs.open(CreateWithdrawComponent,{
+      width: '50%',
+      height:'auto',
+      position:{top: '3em'},
+      disableClose:true,
+      data: withdraw
+    })
+
+
   }
 }

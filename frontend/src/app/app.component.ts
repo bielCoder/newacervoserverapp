@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from './services/login.service';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +8,17 @@ import { LoginService } from './services/login.service';
 })
 export class AppComponent implements OnInit {
 
+  constructor(private router: Router) { }
+
   ngOnInit(): void {
-   
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        const currentUrl = this.router.url;
+        if(currentUrl !== '/withdraw')
+        {
+          window.localStorage.clear();
+        }
+      }
+    });
   }
 }
