@@ -73,16 +73,13 @@ export class WithdrawComponent implements OnInit {
          this.success = window.localStorage.getItem('message')
          window.localStorage.removeItem('message');
 
-        // Mantendo dados de produtos na tela
-        const sessionProducts =  localStorage.getItem("products") || '';
-        this.productListSession = JSON.parse(sessionProducts);
-
-        // Voce parou aqui, precisa verificar a alteração da observação , pois está fazendo para todos e não somente para 1 produto.
-        this.productListSession[0].observation = localStorage.getItem("observation");
-
+        // Mantem usuário na página
+        const user = localStorage.getItem("user") || '';
+        this.users = JSON.parse(user)
         
-        const sessionUser = localStorage.getItem("user") || '';
-        this.users = JSON.parse(sessionUser);
+      //  Mantem produto na página
+        const product = localStorage.getItem("products") || '';
+        this.productListSession = JSON.parse(product); 
 
 
      
@@ -135,10 +132,6 @@ export class WithdrawComponent implements OnInit {
       return
     }
 
-   
-   
-
-
     // verificar se o produto já existe no carrinho
 
     const exists = this.productListSession.filter((value: Products) => {
@@ -152,11 +145,7 @@ export class WithdrawComponent implements OnInit {
     
     this.productsList.push(find[0]);
     this.productListSession.push(find[0])
-    // empurra o objeto encontrado para o carrinho
     localStorage.setItem("products",JSON.stringify(this.productsList));
-
-   
-
     this.userSearchInputProduct.nativeElement.value = ''
     
   }

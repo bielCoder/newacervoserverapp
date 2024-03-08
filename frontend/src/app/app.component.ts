@@ -16,7 +16,9 @@ export class AppComponent implements OnInit {
         const currentUrl = this.router.url;
         if(currentUrl !== '/withdraw')
         {
-          window.localStorage.clear();
+          window.localStorage.removeItem("user");
+          window.localStorage.removeItem("products");
+
         }
       }
     });

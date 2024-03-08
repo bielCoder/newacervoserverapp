@@ -1,3 +1,1 @@
-<!-- Começar o layout do carrinho para implementação -->
-
--------------------------------------------------------
+<!-- Preciso encriptografar dados do usuário e produtos que estão em localstorage, com a mesma biblioteca que vc usou para o nivel de acesso -->

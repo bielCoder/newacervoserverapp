@@ -1,7 +1,7 @@
 import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { BehaviorSubject, Observable, map } from 'rxjs';
 import { Products } from 'src/app/interfaces/products';
 import { ProductsService } from 'src/app/services/products.service';
@@ -31,7 +31,7 @@ export class ProductDialogComponent implements OnInit {
 
 
 
-  constructor( @Inject(MAT_DIALOG_DATA) public data: Products, private formBuilder: FormBuilder, private dialog: MatDialog, private productService: ProductsService, private route:ActivatedRoute){}
+  constructor( @Inject(MAT_DIALOG_DATA) public data: Products, private formBuilder: FormBuilder, private dialog: MatDialog, private productService: ProductsService, private route:ActivatedRoute, private router:Router){}
 
   ngOnInit(): void {
     this.dialogForm = this.formBuilder.group({
@@ -88,6 +88,7 @@ export class ProductDialogComponent implements OnInit {
 
   onSubmit(data: FormGroup)
   {
+  
     if(data.value.breakdown == 1)
     {
       data.value.breakdown = true;
@@ -119,13 +120,34 @@ export class ProductDialogComponent implements OnInit {
 
       (data: any) => {
         this.object = data;
-    
+  
         this.message = this.object.products.message
         window.localStorage.setItem('message', this.message);
-        window.localStorage.setItem('observation',data.products.data.observation)
+    
+       
+        const products = localStorage.getItem('products') || '';
+        const items = products ? JSON.parse(products) : [];
+        // this.dialog.closeAll();
+        // window.location.reload();
+        const usuarioIndex = items.findIndex((product: Products) =>  {return product.id === data.products.data.id});
+        
+        localStorage.setItem('products', JSON.stringify(items));
+      
+        if (usuarioIndex !== -1) {
+        
+          // Atualizar o nome do usuário
+          items[usuarioIndex].observation = data.products.data.observation;
+          items[usuarioIndex].breakdown = data.products.data.breakdown;
+          items[usuarioIndex].description = data.products.data.description;
 
-        this.dialog.closeAll();
-        window.location.reload();
+  
+          // Atualizar os usuários no localStorage
+          localStorage.setItem("products", JSON.stringify(items));
+        
+      } 
+
+      location.reload();
+
 
       },(error) => {
         this.error = error.message
