@@ -16,7 +16,7 @@
     <form>
       <div class="form-group search-group">
         <div class="first-form-group">
-          <input type="text" class="search-width search-employee form-control" placeholder="Matrícula do Funcionário" (keydown.enter)="employeeSearch(userSearchInput)" (blur)="employeeSearch(userSearchInput)" #userSearchInput>
+          <input type="text" class="search-width search-employee form-control" placeholder="Matrícula do Funcionário" (keydown.enter)="employeeSearch(userSearchInput)" (change)="onChangedUser()" (blur)="employeeSearch(userSearchInput)" #userSearchInput>
           <label for="" class="label-employee"><i class="bi bi-search employee"></i></label>
         </div>
         <div class="second-form-group">
@@ -46,8 +46,8 @@
       <thead>
               <tr>
                   <th>#</th>
-                  <th>product</th>
                   <th>code</th>
+                  <th>product</th>
                   <th>marca</th>
                   <th>cor</th>
                   <th>tamanho</th>
@@ -59,23 +59,23 @@
               </tr>
       </thead>
       <tbody>
-          <tr *ngFor="let product of productListSession" (click)="openDialog(product)">
-            <td>{{ product.id }}</td>
-            <td>{{ product.product }}</td>
-            <td>{{ product.code }}</td>
-            <td>{{ product.brand }}</td>
-            <td>{{ product.color }}</td>
-            <td>{{ product.size }}</td>
-            <td>{{ product.sexo }}</td>
+          <tr *ngFor="let product of productListSession" >
+            <td (click)="openDialog(product)">{{ product.id }}</td>
+            <td (click)="openDialog(product)">{{ product.code }}</td>
+            <td (click)="openDialog(product)">{{ product.product }}</td>
+            <td (click)="openDialog(product)">{{ product.brand }}</td>
+            <td (click)="openDialog(product)">{{ product.color }}</td>
+            <td (click)="openDialog(product)">{{ product.size }}</td>
+            <td (click)="openDialog(product)">{{ product.sexo }}</td>
             <td *ngIf="product.observation !== 'null';else notNull">{{ product.observation }}</td>
             <ng-template #notNull>
-              <td></td>
+              <td (click)="openDialog(product)"></td>
             </ng-template>
-            <td *ngIf="product.breakdown; else notBreakdown">Sim</td>
+            <td *ngIf="product.breakdown; else notBreakdown" (click)="openDialog(product)">Sim</td>
             <ng-template #notBreakdown>
-              <td>Não</td>
+              <td (click)="openDialog(product)">Não</td>
             </ng-template>
-            <td>{{ product.description }}</td>
+            <td (click)="openDialog(product)">{{ product.description }}</td>
             <td class="btn-danger"><button class="btn btn-outline-danger" (click)="removeProductList(product.id)" ><i class="bi bi-trash3-fill"></i></button></td>
           </tr>
       </tbody>

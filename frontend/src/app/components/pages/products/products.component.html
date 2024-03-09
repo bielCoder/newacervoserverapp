@@ -30,8 +30,8 @@
             <thead>
               <tr (click)="changeOrderBy()" (mouseover)="effectIconOrderBYOver()" (mouseout)="effectIconOrderBYOut()">
                 <th>#<i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-down"></i></th>
-                <th>produto<i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-up"></i></th>
                 <th>código<i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-down"></i></th>
+                <th>produto<i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-up"></i></th>
                 <th>marca<i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-up"></i></th>
                 <th>cor<i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-down"></i></th>
                 <th>tamanho<i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-up"></i></th>
@@ -45,8 +45,8 @@
             <tbody class="table-group-divider">
                 <tr *ngFor="let product of products" (click)="openDialog(product)" #list>
                   <td>{{ product.id }}</td>
-                  <td>{{ product.product }}</td>
                   <td>{{ product.code }}</td>
+                  <td>{{ product.product }}</td>
                   <td>{{ product.brand }}</td>
                   <td>{{ product.color }}</td>
                   <td>{{ product.size }}</td>

@@ -66,7 +66,7 @@ width: 100vh;
 input {
   margin-bottom: 2em;
   padding-left: .3em;
-  font-size: .75em;
+  font-size: 12px;
 }
 
 input ~ label {
@@ -158,11 +158,12 @@ margin-bottom: -6em;
 }
 
 .observation {
-font-size: .85em;
+font-size: 12px;
 display: flex;
 flex-direction: column;
 width: 100%;
 margin-top: -1.5em;
+padding-left: 0;
 }
 
 .observation label {
@@ -173,7 +174,7 @@ opacity: 100%;
 
 
 .description {
-  font-size: .85em;
+  font-size: 12px;
 display: flex;
 flex-direction: column;
 width: 100%;
@@ -190,7 +191,7 @@ top: -1em;
 }
 
 textarea {
-  font-size: .75em;
+  font-size: 12px;
 }
 
 .breakdown {
@@ -230,7 +231,7 @@ padding-left: .3em;
 } */
 
 .break-down {
-  margin-top: -4.2em;
+  margin-top: 0.9em;
 }
 
 .generator {
@@ -259,7 +260,7 @@ display: none;
 
 
 .show-description {
-  margin-top: -7.2em;
+  margin-top: -2.2em;
 }
 
 .avaria {
@@ -269,4 +270,8 @@ font-size: .75em;
 .has-avaria {
 position: relative;
 top: 0em;
+}
+
+.code {
+  margin-top: 1.5em;
 }

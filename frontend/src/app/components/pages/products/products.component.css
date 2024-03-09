@@ -24,7 +24,9 @@
     padding-right: 1em;
 }
 
-
+.title-count {
+    font-size: .89em;
+}
 
 
 .table {
@@ -313,6 +315,7 @@ a i {
     z-index: 9999;
     gap: .5em;
     padding: 1em;
+    text-align: center;
 }
 
 .cart-count-pending {
@@ -353,6 +356,6 @@ a i {
 .counter {
     margin: 0;
     font-weight: bold;
-    font-size: 1.2em;
+    font-size: 1em;
 }
 

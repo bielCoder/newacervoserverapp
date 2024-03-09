@@ -155,7 +155,7 @@ export class WithdrawComponent implements OnInit {
 
   removeProductList(id: number)
   {
-    this.productsList = this.productsList.filter((data: Products) => {
+    this.productListSession = this.productListSession.filter((data: Products) => {
         return data.id !== id;
     })
   }
@@ -186,7 +186,10 @@ export class WithdrawComponent implements OnInit {
       disableClose:true,
       data: withdraw
     })
+  }
 
-
+  onChangedUser()
+  {
+    this.productListSession = [];
   }
 }

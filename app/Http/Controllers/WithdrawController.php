@@ -6,6 +6,7 @@ use App\Classes\Utilities\Response;
 use App\Models\Withdraw;
 use App\Http\Controllers\Controller;
 use App\Models\{Historic, Product, User};
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
 
@@ -167,11 +168,15 @@ class WithdrawController extends Controller
         
             if(count($dataProductToId) > 1)
             {
-                $dateDiff = now() -> diff($dataProductToId[$i] -> withdraw);
+                $nowDate = new DateTime('now');
+                $dataBank = new DateTime($dataProductToId[$i] -> withdraw);
+                $days = $nowDate -> diff($dataBank);
             }
 
-            $dateDiff = now() -> diff($dataProductToId[0] -> withdraw);
-              
+            $nowDate = new DateTime('now');
+            $dataBank = new DateTime($dataProductToId[0] -> withdraw);
+            $days = $nowDate -> diff($dataBank);
+       
             $historic -> where('code',$request -> all()[$i]["code"]) -> update([
                 "name" => $user -> name,
                 "register" => $user -> register,
@@ -192,7 +197,7 @@ class WithdrawController extends Controller
                 "amount" => 0,
                 "withdraw" => $dataProductToId[0] -> withdraw,
                 "devolution" => now(),
-                "days" => $dateDiff -> days,
+                "days" => $days -> days
             ]);
 
       

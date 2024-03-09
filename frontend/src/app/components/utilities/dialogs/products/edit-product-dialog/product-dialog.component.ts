@@ -28,10 +28,10 @@ export class ProductDialogComponent implements OnInit {
   object: any;
   message!: string;
   error!: string;
+  router!:any;
 
 
-
-  constructor( @Inject(MAT_DIALOG_DATA) public data: Products, private formBuilder: FormBuilder, private dialog: MatDialog, private productService: ProductsService, private route:ActivatedRoute, private router:Router){}
+  constructor( @Inject(MAT_DIALOG_DATA) public data: Products, private formBuilder: FormBuilder, private dialog: MatDialog, private productService: ProductsService, private route:ActivatedRoute){}
 
   ngOnInit(): void {
     this.dialogForm = this.formBuilder.group({
@@ -59,6 +59,9 @@ export class ProductDialogComponent implements OnInit {
       this.isWithdrawSubject.next(false)
     }
 
+    const url = location.href;
+    this.router = url.replace("http://localhost:4200/","")
+    console.log(this.router)
   }
 
   closeModal()

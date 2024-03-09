@@ -403,6 +403,8 @@ a i {
 }
 
 
-.btn-outline-danger{
-    z-index: 9999;
+
+
+.btn-danger {
+    z-index: 9;
 }

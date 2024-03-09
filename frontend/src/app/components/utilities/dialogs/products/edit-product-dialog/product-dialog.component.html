@@ -6,21 +6,23 @@
         </div>
             <div class="container-content">
                 <div class="first-group-division">
+                    <div class="form-group code">
+                        <input type="text"  formControlName="code" readonly [value]="data.code" class="form-control">
+                        <label for="codigo" >Código</label>
+                    </div>
+
                     <div class="form-group">
-                        <input type="text" formControlName="product" id="product" class="product form-control" placeholder=" " autocomplete="off" value="" [readonly]="isWithdraw$">
+                        <input type="text" formControlName="product" id="product" class="product form-control" placeholder=" " autocomplete="off" value="" [readonly]="isWithdraw$ && router === 'withdraw'">
                         <label for="product">produto</label>
                     </div>
                     <p class="error" *ngIf="!dialogForm.controls['product'].valid && dialogForm.controls['product'].touched">* campo obrigatório</p>
 
                     <div class="form-group">
-                        <input type="text" formControlName="brand" id="brand" class="brand form-control" placeholder=" " autocomplete="off" value="" [readonly]="isWithdraw$">
+                        <input type="text" formControlName="brand" id="brand" class="brand form-control" placeholder=" " autocomplete="off" value="" [readonly]="isWithdraw$ && router === 'withdraw'">
                         <label for="brand">marca</label>
                     </div>
 
-                    <div class="form-group">
-                        <input type="text" formControlName="color" id="color" class="color form-control" placeholder=" " autocomplete="off" value="" [readonly]="isWithdraw$">
-                        <label for="color">cor</label>
-                    </div>
+                  
 
                     <!-- <div class="form-group amount">
                         <input type="number" formControlName="amount" id="amount" class="amount form-control" placeholder=" " autocomplete="off" value="">
@@ -49,20 +51,28 @@
                     <p class="error" *ngIf="error !== undefined">{{ error }}</p>
 
                     <div class="form-group">
-                        <input type="text" formControlName="size" id="size" class="size form-control" placeholder=" " autocomplete="off" value="" [readonly]="isWithdraw$">
+                        <input type="text" formControlName="size" id="size" class="size form-control" placeholder=" " autocomplete="off" value="" [readonly]="isWithdraw$ && router === 'withdraw'">
                         <label for="size">tamanho</label>
                     </div>
 
                     <div class="form-group">
-                        <input type="text" formControlName="sexo" id="sexo" class="sexo form-control" placeholder=" " autocomplete="off" [readonly]="isWithdraw$">
+                        <input type="text" formControlName="sexo" id="sexo" class="sexo form-control" placeholder=" " autocomplete="off" [readonly]="isWithdraw$ && router === 'withdraw'">
                         <label for="sexo">sexo</label>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" formControlName="color" id="color" class="color form-control" placeholder=" " autocomplete="off" value="" [readonly]="isWithdraw$ && router === 'withdraw'">
+                        <label for="color">cor</label>
                     </div>
 
                     <div class="form-group observation" [class.has-avaria]="showHideDescription">
                         <label for="observation" >Observação:</label>
                         <textarea cols="21" rows="1" type="text" formControlName="observation" id="observation" class="form-control" placeholder=" " autocomplete="off" ></textarea>
                     </div>
+
+                 
                   
+                   
                 </div>
             </div>
         <div class="footer-container">

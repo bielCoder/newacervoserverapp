@@ -34,7 +34,7 @@
 
 
 .table {
-    margin-top: -10px;
+    margin-top: -37px;
 }
 
 .bi-arrow-down-up  {
@@ -103,7 +103,8 @@ tr td {
     margin-left: auto;
     margin-right: auto;
     margin-top: 25px;
-    margin-bottom: 25px;
+    margin-bottom: 49px;
+    z-index: -1;
 }
 
 a {
@@ -383,6 +384,10 @@ a i {
     padding-left: 9px;
 }
 
+.cart-in-use {
+    position: absolute;
+    margin-top: -25px;
+}
 .container-position-btn-success {
     position: relative;
     margin-top: 25px;
@@ -401,6 +406,9 @@ a i {
     margin-top: 1em;
 }
 
+.table {
+    margin-top: 0px;
+}
 
 .table>tbody {
     vertical-align: inherit;
@@ -413,4 +421,14 @@ a i {
     justify-content: space-around;
     margin: 0 auto;
     align-items: flex-start;
+}
+
+.container-products-in-use {
+    height: 40vh;
+    overflow-y: scroll;
+}
+
+
+.products-in-use {
+    margin-top: -8px;
 }
