@@ -47,14 +47,14 @@
                     </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let product of productsInUse">
-                  <td>{{ product.id }}</td>
-                  <td>{{ product.product }}</td>
-                  <td>{{ product.code }}</td>
-                  <td>{{ product.brand }}</td>
-                  <td>{{ product.color }}</td>
-                  <td>{{ product.size }}</td>
-                  <td>{{ product.sexo }}</td>
+                <tr *ngFor="let product of productsInUse" class="cart">
+                  <td (click)="openDialog(product)">{{ product.id }}</td>
+                  <td (click)="openDialog(product)">{{ product.product }}</td>
+                  <td (click)="openDialog(product)">{{ product.code }}</td>
+                  <td (click)="openDialog(product)">{{ product.brand }}</td>
+                  <td (click)="openDialog(product)">{{ product.color }}</td>
+                  <td (click)="openDialog(product)">{{ product.size }}</td>
+                  <td (click)="openDialog(product)">{{ product.sexo }}</td>
                   <td><abbr title="Devolver Produto"><button class="btn btn-outline-danger" (click)="onCartRemove(product.id)"><i class="bi bi-arrow-bar-down"></i></button></abbr></td>
                 </tr>   
             </tbody>

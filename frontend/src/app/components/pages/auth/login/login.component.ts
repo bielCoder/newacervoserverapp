@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
         switch(this.access)
         {
         
-          case 1 :  return this.router.navigate([`/home`]);
+          case 1 : return this.router.navigate([`/home`]);
           case 2 : return this.router.navigate([`/admin`]);
           case 3 : return this.router.navigate([`/operators`]);
           case 4 : return this.router.navigate([`/collaborators`]);

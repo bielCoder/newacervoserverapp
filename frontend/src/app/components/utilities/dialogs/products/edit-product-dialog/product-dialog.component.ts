@@ -19,6 +19,9 @@ export class ProductDialogComponent implements OnInit {
   private isWithdrawSubject = new BehaviorSubject<boolean>(false)
   isWithdraw$: Observable<boolean> = this.isWithdrawSubject.asObservable();
 
+  private isGiveBackSubject = new BehaviorSubject<boolean>(false)
+  isGiveBack$: Observable<boolean> = this.isGiveBackSubject.asObservable();
+
   @ViewChild('radio') radioTrue!: ElementRef
   @ViewChild('radio') radioFalse!: ElementRef
 
@@ -59,9 +62,11 @@ export class ProductDialogComponent implements OnInit {
       this.isWithdrawSubject.next(false)
     }
 
+   
+
     const url = location.href;
     this.router = url.replace("http://localhost:4200/","")
-    console.log(this.router)
+   
   }
 
   closeModal()

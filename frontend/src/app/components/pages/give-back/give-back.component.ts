@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CreateWithdrawComponent } from '../../utilities/dialogs/create-withdraw/create-withdraw.component';
 import { ActivatedRoute } from '@angular/router';
 import { WithdrawService } from 'src/app/services/withdraw.service';
+import { ProductDialogComponent } from '../../utilities/dialogs/products/edit-product-dialog/product-dialog.component';
 
 
 @Component({
@@ -199,6 +200,17 @@ export class GiveBackComponent implements OnInit {
 
     this.productsList.push(findProduct[0])
 
+  }
+
+  openDialog(element: Products)
+  {
+    this.dialogs.open(ProductDialogComponent,{
+      width: '50%',
+      height:'auto',
+      position:{top: '5em'},
+      disableClose:true,
+      data: element
+    })
   }
 
 

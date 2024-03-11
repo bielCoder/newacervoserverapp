@@ -75,11 +75,18 @@ export class WithdrawComponent implements OnInit {
 
         // Mantem usuário na página
         const user = localStorage.getItem("user") || '';
-        this.users = JSON.parse(user)
-        
+        if(user)
+        {
+          this.users = JSON.parse(user)
+        }
+       
       //  Mantem produto na página
         const product = localStorage.getItem("products") || '';
-        this.productListSession = JSON.parse(product); 
+        
+        if(product)
+        {
+          this.productListSession = JSON.parse(product); 
+        }
 
 
      

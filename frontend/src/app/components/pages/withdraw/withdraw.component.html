@@ -67,7 +67,7 @@
             <td (click)="openDialog(product)">{{ product.color }}</td>
             <td (click)="openDialog(product)">{{ product.size }}</td>
             <td (click)="openDialog(product)">{{ product.sexo }}</td>
-            <td *ngIf="product.observation !== 'null';else notNull">{{ product.observation }}</td>
+            <td *ngIf="product.observation !== 'null';else notNull" (click)="openDialog(product)">{{ product.observation }}</td>
             <ng-template #notNull>
               <td (click)="openDialog(product)"></td>
             </ng-template>

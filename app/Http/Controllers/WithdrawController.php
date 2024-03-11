@@ -163,49 +163,41 @@ class WithdrawController extends Controller
                 "pending" => false
             ]);
             $withdraw -> where('product_id',$request -> all()[$i]["id"]) -> delete();
-            $dataProductToId = $historic -> where('code','=',$request -> all()[$i]["code"],'AND','register','=',$user -> register) -> whereNull('devolution') -> get();
-          
-        
-            if(count($dataProductToId) > 1)
-            {
-                $nowDate = new DateTime('now');
-                $dataBank = new DateTime($dataProductToId[$i] -> withdraw);
-                $days = $nowDate -> diff($dataBank);
-            }
+                    $dataProductToId = $historic -> where('code','=',$request -> all()[$i]["code"],'AND','register','=',$user -> register) -> whereNull('devolution') -> get();
 
-            $nowDate = new DateTime('now');
-            $dataBank = new DateTime($dataProductToId[0] -> withdraw);
-            $days = $nowDate -> diff($dataBank);
-       
-            $historic -> where('code',$request -> all()[$i]["code"]) -> update([
-                "name" => $user -> name,
-                "register" => $user -> register,
-                "function" => $user -> function,
-                "department" => $user -> department,
-                "email" => $user -> email,
-                "product" => $dataProductToId[0] -> product,
-                "code" => $dataProductToId[0] -> code,
-                "brand" => $dataProductToId[0] -> brand,
-                "color" => $dataProductToId[0] -> color,
-                "size" => $dataProductToId[0] -> size,
-                "sexo" => $dataProductToId[0] -> sexo,
-                "observation" => $dataProductToId[0] -> observation,
-                "breakdown" => $dataProductToId[0] -> breakdown,
-                "low" => $dataProductToId[0] -> low,
-                "description" => $dataProductToId[0] -> description,
-                "pending" => false,
-                "amount" => 0,
-                "withdraw" => $dataProductToId[0] -> withdraw,
-                "devolution" => now(),
-                "days" => $days -> days
-            ]);
+                    $nowDate = new DateTime('now');
+                    $dataBank = new DateTime($dataProductToId[0] -> withdraw);
+                    $days = $nowDate -> diff($dataBank);
 
+                    $historic -> where('code','=',$request -> all()[$i]["code"],'AND','register','=',$user -> register) -> whereNull('devolution') -> update([
+                        "name" => $user -> name,
+                            "register" => $user -> register,
+                            "function" => $user -> function,
+                            "department" => $user -> department,
+                            "email" => $user -> email,
+                            "product" => $dataProductToId[0] -> product,
+                            "code" => $dataProductToId[0] -> code,
+                            "brand" =>$dataProductToId[0] -> brand,
+                            "color" => $dataProductToId[0] -> color,
+                            "size" => $dataProductToId[0] -> size,
+                            "sexo" => $dataProductToId[0] -> sexo,
+                            "observation" => $dataProductToId[0]-> observation,
+                            "breakdown" => $dataProductToId[0] -> breakdown,
+                            "low" =>$dataProductToId[0] -> low,
+                            "description" => $dataProductToId[0] -> description,
+                            "pending" => false,
+                            "amount" => 0,
+                            "withdraw" => $dataProductToId[0] -> withdraw,
+                            "devolution" => now(),
+                            "days" => $days -> days
+                    ]);
+        }
+                try {
+                return $this -> response -> format("withdraw","application/json","delete",null,null,"Produtos devolvidos com sucesso!",200);
+                } catch(\Exception $e) {
+                return $this -> response -> error("withdraw","application/json","delete",$e -> getMessage(), null, null, 500);
+                }
+        }
       
-        }
-        try {
-            return $this -> response -> format("withdraw","application/json","delete",null,null,"Produtos devolvidos com sucesso!",200);
-        } catch(\Exception $e) {
-            return $this -> response -> error("withdraw","application/json","delete",$e -> getMessage(), null, null, 500);
-        }
     }
-}
+
