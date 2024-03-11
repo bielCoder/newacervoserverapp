@@ -65,7 +65,7 @@ export class ProductDialogComponent implements OnInit {
    
 
     const url = location.href;
-    this.router = url.replace("http://localhost:4200/","")
+    this.router = url.replace("http://10.3.0.140/","")
    
   }
 
