@@ -19,8 +19,10 @@ export class ProductDialogComponent implements OnInit {
   private isWithdrawSubject = new BehaviorSubject<boolean>(false)
   isWithdraw$: Observable<boolean> = this.isWithdrawSubject.asObservable();
 
+
   private isGiveBackSubject = new BehaviorSubject<boolean>(false)
   isGiveBack$: Observable<boolean> = this.isGiveBackSubject.asObservable();
+
 
   @ViewChild('radio') radioTrue!: ElementRef
   @ViewChild('radio') radioFalse!: ElementRef
@@ -50,16 +52,22 @@ export class ProductDialogComponent implements OnInit {
       breakdown: this.data.breakdown,
       description: new FormControl(this.data.description)
     })
+
+    // show description
     if(!this.data.breakdown)
     {
       this.showHideDescription = false;
     } else {
       this.showHideDescription = true;
     }
-    
-    if(this.route.children[0].snapshot.url[0].path == 'withdraw')
+
+    // Verify if the route is a withdrawal
+    switch(this.route.children[0].snapshot.url[0].path)
     {
-      this.isWithdrawSubject.next(false)
+      case 'withdraw' : this.isWithdrawSubject.next(true)
+      break;
+      case 'give-back': this.isGiveBackSubject.next(true)
+      break;
     }
 
    

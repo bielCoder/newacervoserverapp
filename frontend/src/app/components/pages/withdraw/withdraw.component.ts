@@ -30,6 +30,8 @@ export class WithdrawComponent implements OnInit {
 
     @ViewChild('lignProduct') lignProduct!: ElementRef
     @ViewChild('userSearchInputProduct') userSearchInputProduct!: ElementRef
+    @ViewChild('userSearchInput') userSearchInput!: ElementRef
+
 
     
     constructor(private userService: UsersService, private productService: ProductsService, private dialogs: MatDialog,  public dialog: MatDialog)
@@ -69,22 +71,27 @@ export class WithdrawComponent implements OnInit {
         }
       )
 
-         // messageria
+         // message
          this.success = window.localStorage.getItem('message')
          window.localStorage.removeItem('message');
 
-        // Mantem usuário na página
+        
+        // keeps user on page
         const user = localStorage.getItem("user") || '';
         if(user)
         {
           this.users = JSON.parse(user)
+          document.getElementById("user")?.setAttribute("value","gdsousa")
         }
        
-      //  Mantem produto na página
+        
+
+      // Keep product on page
         const product = localStorage.getItem("products") || '';
         
         if(product)
         {
+          // Ao atualizar a página com F5, o carrinho mantem apenas o ultimo produto, verificar isso.
           this.productListSession = JSON.parse(product); 
         }
 
@@ -128,16 +135,21 @@ export class WithdrawComponent implements OnInit {
     })
 
 
-    if(findTwo.length !== 0)
+    if(findTwo.length > 0)
     {
-      this.failed = '* Produto está em uso'
+      this.failed = 'Produto está em uso'
+      return
     } 
 
-    // verifica se o array está vazio
-    if(find.length === 0)
+  // //produto não encontrado  
+    if(find.length < 1)
     {
+      this.failed = 'Produto não encontrado'
       return
     }
+
+  console.log(find)
+
 
     // verificar se o produto já existe no carrinho
 
@@ -147,12 +159,15 @@ export class WithdrawComponent implements OnInit {
 
     if(exists.length !== 0)
     {
+      this.failed = 'Produto já foi adicionado no carrinho'
       return
+    } else {
+      this.productsList.push(find[0]);
+      this.productListSession.push(find[0])
+      localStorage.setItem("products",JSON.stringify(this.productsList));
     }
     
-    this.productsList.push(find[0]);
-    this.productListSession.push(find[0])
-    localStorage.setItem("products",JSON.stringify(this.productsList));
+   
     this.userSearchInputProduct.nativeElement.value = ''
     
   }

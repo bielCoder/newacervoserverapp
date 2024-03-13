@@ -28,6 +28,11 @@
     padding-right: 1em;
 }
 
+.container-message-error {
+    position: relative;
+    top: 0px;
+    left: 114px;
+}
 
 
 .table {

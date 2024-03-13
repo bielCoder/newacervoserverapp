@@ -16,7 +16,7 @@
     <form>
       <div class="form-group search-group">
         <div class="first-form-group">
-          <input type="text" class="search-width search-employee form-control" placeholder="Matrícula do Funcionário" (keydown.enter)="employeeSearch(userSearchInput)" (change)="onChangedUser()" (blur)="employeeSearch(userSearchInput)" #userSearchInput>
+          <input type="text" class="search-width search-employee form-control" placeholder="Matrícula do Funcionário" id="user" value="" (keydown.enter)="employeeSearch(userSearchInput)" (change)="onChangedUser()" (blur)="employeeSearch(userSearchInput)" #userSearchInput>
           <label for="" class="label-employee"><i class="bi bi-search employee"></i></label>
         </div>
         <div class="second-form-group">
@@ -24,7 +24,9 @@
           <label for="" class="label-product"><i class="bi bi-search product"></i></label>
         </div>
       </div>
-        <p class="error" *ngIf="failed !== undefined">{{ failed }}</p>
+      <div class="container-message-error">
+        <app-message-error [failed]="failed"></app-message-error>
+      </div>
     </form>
   </div>
   
