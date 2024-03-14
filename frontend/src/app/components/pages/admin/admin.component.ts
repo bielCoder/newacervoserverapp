@@ -28,7 +28,7 @@ export class AdminComponent implements OnInit {
   data: Date = new Date();
   orderByIcon: string = 'bi bi-arrow-down-up';
   
-  constructor(private tiService: UsersService, private router: Router, public dialog: MatDialog) { 
+  constructor(private adminService: UsersService, private router: Router, public dialog: MatDialog) { 
     
   }
 
@@ -42,7 +42,7 @@ export class AdminComponent implements OnInit {
     },5000)
 
     // set search users
-     this.tiService.search().subscribe(
+     this.adminService.search().subscribe(
       (data) => {
         this.search = data;
         this.search = this.search.users.data.filter((data: Users) => {
@@ -55,7 +55,7 @@ export class AdminComponent implements OnInit {
 // todos os usuários
   allUsers()
   {
-    this.tiService.all().subscribe(
+    this.adminService.all().subscribe(
       (data: Users[]) => {
         this.users = data;
         this.paginator = this.users.users.data[1]
@@ -125,7 +125,7 @@ export class AdminComponent implements OnInit {
       this.order = 'desc'
     }
 
-    this.tiService.orderBy(this.order).subscribe(
+    this.adminService.orderBy(this.order).subscribe(
       (data: any) => {
         this.users = data;
         this.paginator = this.users.users.data[1]

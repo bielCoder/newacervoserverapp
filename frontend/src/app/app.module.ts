@@ -43,6 +43,7 @@ import { CreateWithdrawComponent } from './components/utilities/dialogs/create-w
 import { GiveBackComponent } from './components/pages/give-back/give-back.component';
 import { HistoricComponent } from './components/pages/historic/historic.component';
 import { HistoricToUserComponent } from './components/pages/historic-to-user/historic-to-user.component';
+import { PendingComponent } from './components/pages/pending/pending.component';
 
 
 
@@ -78,8 +79,8 @@ import { HistoricToUserComponent } from './components/pages/historic-to-user/his
     WithdrawComponent,
     GiveBackComponent,
     HistoricComponent,
-    HistoricToUserComponent
-
+    HistoricToUserComponent,
+    PendingComponent
   ],
   imports: [
   AppRoutingModule,

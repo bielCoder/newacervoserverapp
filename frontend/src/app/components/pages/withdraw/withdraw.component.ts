@@ -21,7 +21,7 @@ export class WithdrawComponent implements OnInit {
     searchTwo:any;
     paginator!: any;
     productsList:any = [];
-    alpha: string = "products";
+    alpha: string = "withdraw";
     failed!: any;
     success!: any;
     data: Date = new Date();
@@ -91,7 +91,6 @@ export class WithdrawComponent implements OnInit {
         
         if(product)
         {
-          // Ao atualizar a página com F5, o carrinho mantem apenas o ultimo produto, verificar isso.
           this.productListSession = JSON.parse(product); 
         }
 
@@ -148,7 +147,6 @@ export class WithdrawComponent implements OnInit {
       return
     }
 
-  console.log(find)
 
 
     // verificar se o produto já existe no carrinho
@@ -177,9 +175,14 @@ export class WithdrawComponent implements OnInit {
 
   removeProductList(id: number)
   {
-    this.productListSession = this.productListSession.filter((data: Products) => {
+
+    const findProduct = localStorage.getItem("products") || '';
+
+    this.productListSession = JSON.parse(findProduct).filter((data: Products) => {
         return data.id !== id;
     })
+
+    localStorage.setItem("products",JSON.stringify(this.productListSession));
   }
 
 

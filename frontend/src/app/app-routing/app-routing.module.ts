@@ -17,6 +17,7 @@ import { GiveBackComponent } from '../components/pages/give-back/give-back.compo
 import { HistoricComponent } from '../components/pages/historic/historic.component';
 import { HistoricToUserComponent } from '../components/pages/historic-to-user/historic-to-user.component';
 import * as CryptoJS from 'crypto-js';
+import { PendingComponent } from '../components/pages/pending/pending.component';
 
 
 
@@ -99,6 +100,11 @@ const routes: Routes = [
   {
     path: 'products',
     component: ProductsComponent,
+    canActivate: [MainGuard]
+  },
+  {
+    path: 'pendings',
+    component: PendingComponent,
     canActivate: [MainGuard]
   },
   {

@@ -30,7 +30,7 @@ export class OperatorsComponent implements OnInit {
 
 
   
-  constructor(private tiService: UsersService, private router: Router, public dialog: MatDialog) { 
+  constructor(private operatorService: UsersService, private router: Router, public dialog: MatDialog) { 
     
   }
 
@@ -44,7 +44,7 @@ export class OperatorsComponent implements OnInit {
     },5000)
 
     // set search users
-     this.tiService.search().subscribe(
+     this.operatorService.search().subscribe(
       (data) => {
         this.search = data;
         this.search = this.search.users.data.filter((data: Users) => {
@@ -60,7 +60,7 @@ export class OperatorsComponent implements OnInit {
 // todos os usuários
   allUsers()
   {
-    this.tiService.all().subscribe(
+    this.operatorService.all().subscribe(
       (data: Users[]) => {
         this.users = data;
         this.paginator = this.users.users.data[2]
@@ -127,7 +127,7 @@ export class OperatorsComponent implements OnInit {
         this.order = 'desc'
       }
   
-      this.tiService.orderBy(this.order).subscribe(
+      this.operatorService.orderBy(this.order).subscribe(
         (data: any) => {
           this.users = data;
           this.paginator = this.users.users.data[2]

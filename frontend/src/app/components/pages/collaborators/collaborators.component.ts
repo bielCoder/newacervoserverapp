@@ -18,7 +18,7 @@ export class CollaboratorsComponent implements OnInit {
 
   users!: any;
   @Output() paginator!:any;
-  @Output() alpha!:any;
+  @Output() alpha: string = 'users'
   success!: any;
   search!:any;
 
@@ -28,7 +28,7 @@ export class CollaboratorsComponent implements OnInit {
   orderByIcon: string = 'bi bi-arrow-down-up';
 
   
-  constructor(private tiService: UsersService, private router: Router, public dialog: MatDialog) { 
+  constructor(private collaboratorService: UsersService, private router: Router, public dialog: MatDialog) { 
     
   }
 
@@ -42,7 +42,7 @@ export class CollaboratorsComponent implements OnInit {
     },5000)
 
     // set search users
-     this.tiService.search().subscribe(
+     this.collaboratorService.search().subscribe(
       (data) => {
         this.search = data;
         this.search = this.search.users.data.filter((data: Users) => {
@@ -58,7 +58,7 @@ export class CollaboratorsComponent implements OnInit {
 // todos os usuários
   allUsers()
   {
-    this.tiService.all().subscribe(
+    this.collaboratorService.all().subscribe(
       (data: Users[]) => {
         this.users = data;
         this.paginator = this.users.users.data[3]
@@ -125,7 +125,7 @@ export class CollaboratorsComponent implements OnInit {
        this.order = 'desc'
      }
  
-     this.tiService.orderBy(this.order).subscribe(
+     this.collaboratorService.orderBy(this.order).subscribe(
        (data: any) => {
          this.users = data;
          this.paginator = this.users.users.data[3]

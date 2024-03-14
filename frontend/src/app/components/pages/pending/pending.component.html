@@ -1,0 +1,68 @@
+<app-menu-responsive></app-menu-responsive>
+
+<div class="container-main-users">
+    <div class="container-header-table">
+      <p class="title-page">Produtos Pendentes</p>
+      <div class="container-search">
+        <app-search  (data)="onSearch($event)"></app-search>
+      </div>
+      <!-- <a class="register" (click)="navigateRegister()"><i class="bi bi-person-fill-add"></i>cadastrar</a> -->
+    </div> 
+   
+    <div class="container-table-user">
+        <table class="table table-hover">
+            <thead>
+                <tr (click)="changeOrderBy()" (mouseover)="effectIconOrderBYOver()" (mouseout)="effectIconOrderBYOut()">
+                    <th>#<i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-up"></i></th>
+                    <th>código<i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-down"></i></th>
+                    <th>produto<i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-up"></i></th>
+                    <th>marca<i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-up"></i></th>
+                    <th>cor<i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-down"></i></th>
+                    <th>tamanho<i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-up"></i></th>
+                    <th>sexo<i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-down"></i></th>
+                    <th>observação<i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-up"></i></th>
+                    <th>avariado<i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-down"></i></th>
+                    <th>descrição<i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-up"></i></th>
+                    <th>status</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                <tr *ngFor="let product of products">
+                    <td>{{ product.id }}</td>
+                    <td>{{ product.code }}</td>
+                    <td>{{ product.product }}</td>
+                    <td>{{ product.brand }}</td>
+                    <td>{{ product.color }}</td>
+                    <td>{{ product.size }}</td>
+                    <td>{{ product.sexo }}</td>
+                    <td>{{ product.observation }}</td>
+                    <td *ngIf="product.breakdown; else notBreakdown">Sim</td>
+                    <ng-template #notBreakdown>
+                        <td>Não</td>
+                    </ng-template>
+                    <td>{{ product.description }}</td>
+                    <td>{{ product.status }}</td>
+                </tr>
+            </tbody>
+          </table>
+    </div>
+
+    <div class="container-paginator">
+      <app-paginator [paginator]="paginator" [alpha]="alpha" (paginatorEvent)="nextPage($event)"></app-paginator>
+    </div>
+
+    <div class="container-footer">
+      <div class="container-lign-footer">
+        <p>Acervo&#64;{{ data | date: 'Y'}}</p>
+      </div>
+
+<!-- 
+<div class="container-message-success" *ngIf="success !== null">
+  <span class="success" >
+     <p class="message-success"> {{ success }} </p>
+  <div class="progress-bar"></div>
+  </span>
+</div> -->
+
+
+</div>

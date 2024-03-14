@@ -170,4 +170,27 @@ class ProductController extends Controller
          }
        
     }
+
+    public function pendingProducts(Request $request)
+    {
+        if(!empty($request -> order))
+        {
+          $this -> order = $request -> order;
+        }
+
+        try {
+       
+            if(!is_null($this -> product -> paginate((int)$request -> per_page)))
+            {   
+                return $this -> response -> format("products","application\json","get",$this -> product -> where('pending',true) -> orderBy("id",(string) $this -> order) -> paginate((int)$request -> per_page),null,null,200);
+            }
+                return $this -> response -> error("products","application\json","get","Not Found",404);
+        } catch(\PDOException $e)
+        {
+            return $this -> response -> error("products","application\json","get",$e -> getMessage(),$e -> getCode());
+        } catch(\Exception $e)
+        {
+            return $this -> response -> error("products","application\json","get",$e -> getMessage(),$e -> getCode());
+        }
+    }
 }

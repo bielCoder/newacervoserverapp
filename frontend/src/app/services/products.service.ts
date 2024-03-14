@@ -41,6 +41,11 @@ export class ProductsService {
     const object = {
       "order": order
     }
-    return this.http.put<Products>(`http://10.3.0.140/public/api/products/orderby`,object);
+    return this.http.put<Products>(`${this.products}/orderby`,object);
+  }
+
+  pendingProducts(): Observable<Products[]>
+  {
+    return this.http.get<Products[]>(`${this.products}/pendings`);
   }
 }
