@@ -23,11 +23,11 @@
                     <th>observação<i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-up"></i></th>
                     <th>avariado<i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-down"></i></th>
                     <th>descrição<i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-up"></i></th>
-                    <th>status</th>
+                    <th><abbr title="Quantidade de dias em uso.">dias</abbr></th>
                 </tr>
             </thead>
             <tbody class="table-group-divider">
-                <tr *ngFor="let product of products">
+                <tr *ngFor="let product of products" (click)="onDialogOpen()">
                     <td>{{ product.id }}</td>
                     <td>{{ product.code }}</td>
                     <td>{{ product.product }}</td>
@@ -41,7 +41,7 @@
                         <td>Não</td>
                     </ng-template>
                     <td>{{ product.description }}</td>
-                    <td>{{ product.status }}</td>
+                    <td>{{ dataConfig(product.days) }}</td>
                 </tr>
             </tbody>
           </table>

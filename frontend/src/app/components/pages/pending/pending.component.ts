@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog'
 import { DialogComponent } from '../../utilities/dialogs/users/edit-dialog/dialog.component';
 import { ProductsService } from 'src/app/services/products.service';
+import { Products } from 'src/app/interfaces/products';
+import { Historics } from 'src/app/interfaces/historics';
 
 
 @Component({
@@ -20,7 +22,7 @@ export class PendingComponent implements OnInit {
 
 
   @Output() paginator!:any;
-  @Output() alpha:string = 'products';
+  @Output() alpha:string = 'products/pendings';
 
   search!:any;
   trueOrFalse: boolean = false;
@@ -42,7 +44,9 @@ export class PendingComponent implements OnInit {
       this.productService.search().subscribe(
         (data) => {
           this.search = data;
-          this.search = this.search.products.data
+          this.search = this.search.products.data.filter((data: Products) => {
+            return data.pending == true;
+          })
         }
       )
 
@@ -63,21 +67,61 @@ export class PendingComponent implements OnInit {
   }
 // campo busca
   onSearch(event:any)
-  {     
-    console.log(event)
+  {    
+
+    this.products = this.search.filter((data: Products) => {
+        return data.product.toLowerCase().includes(event) || data.product.toUpperCase().includes(event) || 
+        data.code.toLowerCase().includes(event) || data.code.toUpperCase().includes(event) ||
+        data.brand.toLowerCase().includes(event) || data.brand.toUpperCase().includes(event)
+    })
   }
 // paginação
   nextPage(event:any)
   {
-    
+    this.products = event.products.data.data
   }
 
   // Order BY
 
    changeOrderBy()
    {
-    
+    this.trueOrFalse = !this.trueOrFalse;
+    if(!this.trueOrFalse)
+    {
+      this.order = 'asc';
+    } else {
+      this.order = 'desc'
+    }
+    this.productService.orderByPending(this.order).subscribe(
+      (data: any) => {
+        this.products = data;
+        this.paginator = this.products.products.data
+        this.products = this.products.products.data.data
+      },(error) => {
+        console.log(error)
+      })
    }
+
+  //  Count days in uso
+
+  dataConfig(days: Date)
+  {
+            // Datas de exemplo
+        const dataInicial = new Date();
+        const dataFinal = new Date(days);
+
+        // Calcula a diferença em milissegundos
+        const diffInMs = dataFinal.valueOf() - dataInicial.valueOf();
+
+        // Converte a diferença em dias
+        const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
+        let datePositive: number = Math.abs(diffInDays)
+        datePositive = Math.trunc(datePositive);
+
+
+        return datePositive + ` ${datePositive > 1 || datePositive == 0 ? 'dias' : 'dia'}`;   
+      
+  }
 
    effectIconOrderBYOver()
    {
@@ -133,5 +177,10 @@ export class PendingComponent implements OnInit {
      upDown[i].setAttribute('style','display:none');
     }
      
+   }
+
+   onDialogOpen()
+   {
+      // Preciso realizar abertura de modal.
    }
 }

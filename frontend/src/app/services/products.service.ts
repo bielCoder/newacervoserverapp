@@ -44,8 +44,17 @@ export class ProductsService {
     return this.http.put<Products>(`${this.products}/orderby`,object);
   }
 
+  orderByPending(order: string):Observable<Products>
+  {
+    const object = {
+      "order": order
+    }
+    return this.http.put<Products>(`${this.products}/orderby/pending`,object);
+  }
+
   pendingProducts(): Observable<Products[]>
   {
     return this.http.get<Products[]>(`${this.products}/pendings`);
   }
+
 }

@@ -64,6 +64,7 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::post('/create','store') -> name('Products - Store');
             Route::get('/','index') -> name('Products - Index');
             Route::put('orderby','index') -> name('Products - OrderBy');
+            Route::put('orderby/pending','pendingProducts') -> name('Products - OrderByPending');
             Route::delete('/{id}','destroy') -> name('Products - Destroy');
             Route::put('/{id}','update') -> name('Products - Update');
             Route::get('/{id}','show') -> name('Products - Show');

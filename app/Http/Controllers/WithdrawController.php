@@ -55,7 +55,8 @@ class WithdrawController extends Controller
                 ]);
 
                 $products -> where('id',$request -> withdraw["products"][$i]["id"]) -> update([
-                    "pending" => true
+                    "pending" => true,
+                    "days" => now()
                 ]);
 
                 
