@@ -193,4 +193,25 @@ class ProductController extends Controller
             return $this -> response -> error("products","application\json","get",$e -> getMessage(),$e -> getCode());
         }
     }
+
+
+    public function whoIsUseProduct($id)
+    {
+        $product = $this -> product -> find($id);
+        try {
+        $userFind = $product -> users() -> first();
+          
+            if(!is_null($userFind))
+            {
+                return $this -> response -> format("users","application\json","get",$userFind,null,null,200);
+            }
+                return $this -> response -> error("users","application\json","get","Not Found",404);
+        } catch(\PDOException $e)
+        {
+            return $this -> response -> error("users","application\json","get",$e -> getMessage(),$e -> getCode());
+        }catch(\Exception $e)
+        {
+            return $this -> response -> error("users","application\json","get",$e -> getMessage(),$e -> getCode());
+        }
+    }
 }

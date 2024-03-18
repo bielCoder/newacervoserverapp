@@ -25,7 +25,6 @@ export class WithdrawService {
 
   delete(data: any)
   {
-
     const options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',

@@ -1,4 +1,5 @@
 export interface Users {
+    users(users: any): unknown;
     id?:number;
     name: string;
     register: string;

@@ -110,7 +110,6 @@ export class CollaboratorsComponent implements OnInit {
         access: `${ element.children[6].getAttribute('ng-reflect-ng-switch')}`
         }
     })
-    console.log(element)
   }
 
    // Order BY

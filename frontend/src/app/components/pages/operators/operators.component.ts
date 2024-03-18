@@ -112,7 +112,6 @@ export class OperatorsComponent implements OnInit {
         access: `${ element.children[6].getAttribute('id')}`
         }
     })
-    console.log(element)
   }
 
     // Order BY

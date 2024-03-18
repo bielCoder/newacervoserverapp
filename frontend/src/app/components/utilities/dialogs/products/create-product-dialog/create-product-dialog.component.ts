@@ -74,7 +74,6 @@ export class CreateProductDialogComponent implements OnInit {
       (value) => {
         this.error = undefined;
         this.success = value;
-        console.log(this.success)
         this.success = this.success.products.message
         window.localStorage.setItem('message', this.success);
         this.dialog.closeAll();
@@ -83,7 +82,6 @@ export class CreateProductDialogComponent implements OnInit {
       },(data) => {
         this.success = undefined;
        this.error = data.message;
-       console.log(this.error)
       }
     )
   }

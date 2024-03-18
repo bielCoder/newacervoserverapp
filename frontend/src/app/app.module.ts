@@ -44,6 +44,7 @@ import { GiveBackComponent } from './components/pages/give-back/give-back.compon
 import { HistoricComponent } from './components/pages/historic/historic.component';
 import { HistoricToUserComponent } from './components/pages/historic-to-user/historic-to-user.component';
 import { PendingComponent } from './components/pages/pending/pending.component';
+import { PendingsDialogComponent } from './components/utilities/dialogs/pendings/pendings.component';
 
 
 
@@ -80,7 +81,8 @@ import { PendingComponent } from './components/pages/pending/pending.component';
     GiveBackComponent,
     HistoricComponent,
     HistoricToUserComponent,
-    PendingComponent
+    PendingComponent,
+    PendingsDialogComponent
   ],
   imports: [
   AppRoutingModule,

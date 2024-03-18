@@ -1,0 +1,27 @@
+<div class="main-container">
+   
+        <div class="header-container">
+            <p class="title">Produto está em uso por:</p>
+            <p class="close-modal" (click)="closeModal()"><i class="bi bi-x-circle"></i></p>
+        </div>
+            <div class="container-content">
+                <div class="info-group">
+                    <span class="name-info">Nome do Funcionário</span>
+                    <p class="name">{{ user.name }}</p>
+                </div>
+
+                <div class="info-group">
+                    <span class="name-info">E-mail</span>
+                    <p class="email">{{ user.email }}</p>
+                </div>
+
+                <div class="info-group">
+                    <span class="name-info"><abbr title="Departamento">Depart</abbr></span>
+                    <p class="email">{{ user.department }}</p>
+                </div>
+            </div>     
+        <div class="footer-container">
+            <button (click)="openModalDevolution()" class="btn btn-outline-info"><i class="bi bi-arrow-bar-down"></i> Devolver Produto</button>
+        </div>
+</div>
+

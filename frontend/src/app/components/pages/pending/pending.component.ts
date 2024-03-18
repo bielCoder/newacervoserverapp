@@ -7,6 +7,8 @@ import { DialogComponent } from '../../utilities/dialogs/users/edit-dialog/dialo
 import { ProductsService } from 'src/app/services/products.service';
 import { Products } from 'src/app/interfaces/products';
 import { Historics } from 'src/app/interfaces/historics';
+import { PendingsDialogComponent } from '../../utilities/dialogs/pendings/pendings.component';
+
 
 
 @Component({
@@ -17,6 +19,7 @@ import { Historics } from 'src/app/interfaces/historics';
 export class PendingComponent implements OnInit {
 
   products!:any;
+  success!: string | null;
 
   // variables receive data
 
@@ -29,6 +32,7 @@ export class PendingComponent implements OnInit {
   order: string =  'asc'
   data: Date = new Date();
   orderByIcon: string = 'bi bi-arrow-down-up';
+
 
   
   constructor(public dialog: MatDialog, private productService: ProductsService ) { 
@@ -50,6 +54,11 @@ export class PendingComponent implements OnInit {
         }
       )
 
+      // messageria
+      this.success = window.localStorage.getItem('message')
+      window.localStorage.removeItem('message');
+
+
       
   }
 // todos os usuários
@@ -59,9 +68,7 @@ export class PendingComponent implements OnInit {
       (data) => {
         this.products = data;
          this.paginator = this.products.products.data
-        this.products = this.products.products.data.data
-        
-       
+         this.products = this.products.products.data.data
       }
     )
   }
@@ -123,6 +130,21 @@ export class PendingComponent implements OnInit {
       
   }
 
+
+  openDialog(element: Products)
+  {
+    this.productService.whoIsPending(element).subscribe((data: any) => {
+      this.dialog.open(PendingsDialogComponent,{
+        width: '500px',
+        height:'auto',
+        position:{top: '100px'},
+        disableClose:true,
+        data:{withdraw: {users: data.users.data, products: [element]}}})
+    })
+   
+  }
+ 
+
    effectIconOrderBYOver()
    {
      // get elements by class
@@ -179,8 +201,5 @@ export class PendingComponent implements OnInit {
      
    }
 
-   onDialogOpen()
-   {
-      // Preciso realizar abertura de modal.
-   }
+ 
 }

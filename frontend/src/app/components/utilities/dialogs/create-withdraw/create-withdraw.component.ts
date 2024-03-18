@@ -77,7 +77,6 @@ export class CreateWithdrawComponent {
         {
           this.withdrawService.delete(this.data).subscribe(
             (data) => {
-              console.log(data)
               this.error = undefined;
               this.success = data;
               this.success = this.success.withdraw.message

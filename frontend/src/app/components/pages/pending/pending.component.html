@@ -27,7 +27,7 @@
                 </tr>
             </thead>
             <tbody class="table-group-divider">
-                <tr *ngFor="let product of products" (click)="onDialogOpen()">
+                <tr *ngFor="let product of products" (click)="openDialog(product)">
                     <td>{{ product.id }}</td>
                     <td>{{ product.code }}</td>
                     <td>{{ product.product }}</td>
@@ -56,13 +56,13 @@
         <p>Acervo&#64;{{ data | date: 'Y'}}</p>
       </div>
 
-<!-- 
+
 <div class="container-message-success" *ngIf="success !== null">
   <span class="success" >
      <p class="message-success"> {{ success }} </p>
   <div class="progress-bar"></div>
   </span>
-</div> -->
+</div>
 
 
 </div>

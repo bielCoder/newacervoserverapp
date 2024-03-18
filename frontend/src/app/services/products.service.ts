@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from './../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Products } from '../interfaces/products';
+import { Users } from '../interfaces/users';
 
 @Injectable({
   providedIn: 'root'
@@ -55,6 +56,11 @@ export class ProductsService {
   pendingProducts(): Observable<Products[]>
   {
     return this.http.get<Products[]>(`${this.products}/pendings`);
+  }
+
+  whoIsPending(element: Products): Observable<Users>{
+ 
+    return this.http.get<Users>(`${this.products}/whoispending/${element.id}`);
   }
 
 }

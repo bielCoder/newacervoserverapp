@@ -68,6 +68,8 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::delete('/{id}','destroy') -> name('Products - Destroy');
             Route::put('/{id}','update') -> name('Products - Update');
             Route::get('/{id}','show') -> name('Products - Show');
+            Route::get('/whoispending/{id}','whoIsUseProduct') -> name('Products - WhoIsUseProduct');
+
         });
     });
 
@@ -83,12 +85,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::controller(HistoricController::class) -> group(function(){
             Route::get('/search','search');
             Route::get('/','index');
-            Route::get('/{user}','show');
-     
-            
-          
-           
-           
+            Route::get('/{user}','show');   
         });
     });
 });
