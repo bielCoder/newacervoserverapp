@@ -43,12 +43,14 @@
                 <th><i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-down"></i></th>
                 <th>sexo</th>
                 <th><i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-up"></i></th>
+                <th><abbr title="Quantidade disponíveis em estoque">Quantidade</abbr></th>
+                <th><i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-down"></i></th>
                 <th>observação</th>
-                <th><i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-down"></i></th>
-                <th>avariado</th>
                 <th><i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-up"></i></th>
-                <th>descrição</th>
+                <th>avariado</th>
                 <th><i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-down"></i></th>
+                <th>descrição</th>
+                <th><i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-up"></i></th>
                 <th>status</th>
               </tr>
             </thead>
@@ -67,6 +69,8 @@
                   <td>{{ product.size }}</td>
                   <td></td>
                   <td>{{ product.sexo }}</td>
+                  <td></td>
+                  <td>{{ product.amount }}</td>
                   <td></td>
                   <td>{{ product.observation }}</td>
                   <td></td>

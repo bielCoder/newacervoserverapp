@@ -223,6 +223,37 @@ a i {
     z-index: 9999;
 }
 
+.more {
+    color: #41b556;
+    border: 1px solid #52b541;
+    background-color: transparent;
+    padding: 3px;
+    border-radius: 5px;
+    font-size: 1.2em;
+    margin-left: 5px;
+}
+
+.less {
+    color: #b54141;
+    border: 1px solid #b54141;
+    background-color: transparent;
+    padding: 3px;
+    border-radius: 5px;
+    font-size: 1.2em;
+    margin-right: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.more:hover {
+    background-color: #52b541;
+    color: #fff;
+}
+
+.less:hover {
+    background-color: #b54141;
+    color: #fff;
+}
 
 
 @keyframes showTime {

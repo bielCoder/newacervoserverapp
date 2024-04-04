@@ -27,6 +27,7 @@ export class WithdrawComponent implements OnInit {
     data: Date = new Date();
     productListSession:any = [];
     observation!:any;
+    counter: number = 0;
 
     @ViewChild('lignProduct') lignProduct!: ElementRef
     @ViewChild('userSearchInputProduct') userSearchInputProduct!: ElementRef
@@ -216,5 +217,25 @@ export class WithdrawComponent implements OnInit {
   onChangedUser()
   {
     this.productListSession = [];
+  }
+
+  counterMore(id: number)
+  {
+    this.counter++
+    const findProduct = localStorage.getItem("products") || '';
+    let product = JSON.parse(findProduct).filter((data: Products) => {
+        return data.id == id
+    })
+    product[0].amount = this.counter
+    localStorage.setItem("products",JSON.stringify(product));
+  }
+
+  counterLess()
+  {
+    if(this.counter === 0)
+    {
+      return;
+    }
+    this.counter--
   }
 }

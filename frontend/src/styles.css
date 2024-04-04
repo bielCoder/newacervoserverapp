@@ -45,7 +45,8 @@ table thead, tbody{
 }
 
   .container-table-user::-webkit-scrollbar {
-    width: 10px;               /* width of the entire scrollbar */
+    width: 10px;          /* width of the entire scrollbar */
+    height: 10px;
   }
   
   .container-table-user::-webkit-scrollbar-track {
@@ -61,7 +62,7 @@ table thead, tbody{
 
 
   .scroll-table::-webkit-scrollbar {
-    width: 10px;               /* width of the entire scrollbar */
+    width: 10px;              /* width of the entire scrollbar */
   }
 
   .scroll-table::-webkit-scrollbar-track {

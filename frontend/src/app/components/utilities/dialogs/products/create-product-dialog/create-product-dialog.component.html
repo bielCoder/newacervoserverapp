@@ -22,10 +22,7 @@
                         <label for="color">cor</label>
                     </div>
 
-                    <!-- <div class="form-group amount">
-                        <input type="number" formControlName="amount" id="amount" class="amount form-control" placeholder=" " autocomplete="off" value="">
-                        <label for="amount">quantidade</label>
-                    </div> -->
+              
 
                     <div class="form-group breakdown">
                         <span for="breakdown-false" class="avaria">Produto possui avaria:</span>
@@ -40,8 +37,9 @@
                         <textarea cols="21" rows="1" type="text" formControlName="description" id="description" class="description form-control" placeholder=" " autocomplete="off" ></textarea>
                     </div>
                
-                    <div class="form-group amount">
-                        <input type="number" formControlName="amount"  id="amount" class="form-control" placeholder="Quantidade">
+                    <div class="form-group amount" [class.has-avaria-amount]="showHideDescription">
+                        <input type="number" formControlName="amount" id="amount" class="form-control" placeholder="Quantidade">
+                        <label for="amount">Quantidade</label>
                     </div>
                   
                 </div>

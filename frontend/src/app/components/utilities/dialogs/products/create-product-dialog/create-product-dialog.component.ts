@@ -38,10 +38,9 @@ export class CreateProductDialogComponent implements OnInit {
       observation: new FormControl(null),
       breakdown: 0,
       description: new FormControl(null),
-      pending:0
+      pending:0,
+      amount: new FormControl(1)
     })
-
-  
   }
 
   closeModal()
@@ -67,7 +66,6 @@ export class CreateProductDialogComponent implements OnInit {
 
   onSubmit(data: FormGroup)
   {
-  
     this.productService.store(data.value).subscribe(
       (value) => {
         this.error = undefined;

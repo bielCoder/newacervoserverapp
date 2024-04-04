@@ -38,7 +38,7 @@
   padding-top: 2em;
   padding-bottom: 2em;
   position: relative;
-
+  margin-top: 3em;
 }
 
 .btn-outline-success {
@@ -228,8 +228,8 @@ span {
 
 } */
 
-.break-down{
-  margin-top: -.5em;
+.break-down {
+  margin-top: -5.1em;
 }
 
 .generator {
@@ -244,21 +244,19 @@ span {
 
 
 .amount {
-  border: none;
-  cursor: default;
-  display: none;
+  margin-top: 1em;
+}
 
+.has-avaria-amount {
+  margin-top: 1.9em;
 }
 
 
 
-.amount label {
-  display: none;
-}
 
 
 .show-description {
-  margin-top: -3.5em;
+  margin-top: -8.8em;
 }
 
 .avaria {

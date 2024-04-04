@@ -29,7 +29,6 @@ return new class extends Migration
             $table->string('sexo',11) -> nullable(false);
             $table->string('observation',255) -> nullable(true);
             $table->boolean('breakdown') -> nullable(false);
-            $table->boolean('low') -> nullable(false);
             $table->string('description',255) -> nullable(true);
             $table->boolean('pending') -> nullable(false);
             $table->integer('amount') -> nullable(false);

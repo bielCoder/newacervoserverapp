@@ -12,7 +12,7 @@ class Product extends Model
     protected $fillable = [
        "product","code","brand","color",
         "size","sexo","observation",
-        "breakdown","low","description","pending","days"
+        "breakdown","description","pending","amount","days"
     ];
 
     public function users()

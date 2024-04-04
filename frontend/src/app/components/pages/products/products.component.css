@@ -72,6 +72,7 @@ tr th {
 
 tr td {
     font-size: .75rem;
+    vertical-align: middle;
 }
 
 .span {

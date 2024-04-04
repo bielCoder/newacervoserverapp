@@ -25,6 +25,7 @@ return new class extends Migration
             $table->boolean('breakdown') -> nullable(false);
             // $table->boolean('low') -> nullable(false);
             $table->string('description',255) -> nullable(true);
+            $table->integer('amount') -> nullable(false);
             $table->boolean('pending') -> nullable(false);
             $table->timestamps();
         });

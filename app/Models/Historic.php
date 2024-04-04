@@ -10,7 +10,7 @@ class Historic extends Model
     use HasFactory;
 
     protected $fillable = [
-        "name", "register",	"function",	"department", "email", "product", "code", "brand", "color",	"size", "sexo",	"observation", "breakdown", "low", "description", "pending", "amount", "withdraw", "devolution", "days" 
+        "name", "register",	"function",	"department", "email", "product", "code", "brand", "color",	"size", "sexo",	"observation", "breakdown",  "description", "pending", "amount", "withdraw", "devolution", "days" 
     ];
 
 }
