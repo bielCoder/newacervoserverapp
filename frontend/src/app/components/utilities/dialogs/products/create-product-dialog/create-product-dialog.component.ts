@@ -35,8 +35,6 @@ export class CreateProductDialogComponent implements OnInit {
       size: new FormControl(null),
       sexo: new FormControl(null,[Validators.required]),
       color: new FormControl(null),
-      low: 0,
-      amount:0,
       observation: new FormControl(null),
       breakdown: 0,
       description: new FormControl(null),

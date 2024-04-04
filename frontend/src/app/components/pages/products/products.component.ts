@@ -62,7 +62,7 @@ export class ProductsComponent implements OnInit {
   onSearch(event:any)
   {     
      this.products = this.search.filter((data: Products) => {
-      return data.product.toLowerCase().includes(event) && data.pending == false;
+      return data.product.toLowerCase().includes(event) || data.product.toLowerCase().includes(event)  &&  data.pending == false;
      })
   }
 

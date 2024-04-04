@@ -33,20 +33,20 @@
     margin-top: -10px;
 }
 
-.bi-arrow-down-up  {
+/* .bi-arrow-down-up  {
     position: relative;
     left: 15px;
-}
+} */
 
 .bi-arrow-down {
-    position: relative;
-    left: 15px;
+    /* position: relative;
+    left: 15px; */
     display: none;
 }
 
 .bi-arrow-up {
-    position: relative;
-    left: 15px;
+    /* position: relative;
+    left: 15px; */
     display: none;
 }
 

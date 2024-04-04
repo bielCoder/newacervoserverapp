@@ -15,18 +15,17 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('product',255) -> nullable(false);
             $table->string('code',45) -> nullable(false);
+            $table->string('product',255) -> nullable(false);
             $table->string('brand',255) -> nullable(true);
             $table->string('color',255) -> nullable(true);
             $table->string('size',45) -> nullable(true);
             $table->string('sexo',11) -> nullable(false);
             $table->string('observation',255) -> nullable(true);
             $table->boolean('breakdown') -> nullable(false);
-            $table->boolean('low') -> nullable(false);
+            // $table->boolean('low') -> nullable(false);
             $table->string('description',255) -> nullable(true);
             $table->boolean('pending') -> nullable(false);
-            $table->integer('amount') -> nullable(false);
             $table->timestamps();
         });
     }

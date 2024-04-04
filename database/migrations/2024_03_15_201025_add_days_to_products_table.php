@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table -> timestamp('days') -> nullable(true)-> after("amount");
+            $table -> timestamp('days') -> nullable(true)-> after("pending");
         });
     }
 
@@ -26,7 +26,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table -> timestamp('days') -> nullable(true)-> after("amount");
+            $table -> timestamp('days') -> nullable(true)-> after("pending");
         });
     }
 };
