@@ -27,7 +27,7 @@ export class WithdrawComponent implements OnInit {
     data: Date = new Date();
     productListSession:any = [];
     observation!:any;
-    counter: number = 0;
+    counter: number = 1;
 
     @ViewChild('lignProduct') lignProduct!: ElementRef
     @ViewChild('userSearchInputProduct') userSearchInputProduct!: ElementRef
@@ -118,6 +118,32 @@ export class WithdrawComponent implements OnInit {
      
     }
 
+    counterMore(id: number)
+    {
+      this.counter++
+      const findProduct = localStorage.getItem("products") || '';
+      let product = JSON.parse(findProduct).filter((data: Products) => {
+          return data.id == id
+      })
+      product[0].amount = this.counter
+      localStorage.setItem("products",JSON.stringify(product));
+    }
+  
+    counterLess(id: number)
+    {
+      if(this.counter === 1)
+      {
+        return;
+      }
+      this.counter--
+  
+      const findProduct = localStorage.getItem("products") || '';
+      let product = JSON.parse(findProduct).filter((data: Products) => {
+          return data.id == id
+      })
+      product[0].amount = this.counter
+      localStorage.setItem("products",JSON.stringify(product));
+    }
 
   getProductSend(data: HTMLInputElement)
   {
@@ -164,6 +190,16 @@ export class WithdrawComponent implements OnInit {
       this.productsList.push(find[0]);
       this.productListSession.push(find[0])
       localStorage.setItem("products",JSON.stringify(this.productsList));
+
+      const product = localStorage.getItem('products') || '';
+      const findProductSet = JSON.parse(product).filter((value: any) => {
+          return value
+      })
+      const findProductFormated = findProductSet.map((value: Products) => {
+          return findProductFormated
+      })
+
+      console.log(findProductFormated)
     }
     
    
@@ -198,13 +234,19 @@ export class WithdrawComponent implements OnInit {
     })
   }
 
+ 
+
   submitDialog(data: Products[], users: Users)
   {
+    const products = localStorage.getItem('products') || '';
+
     const withdraw ={ withdraw : {
-      products: data,
+      products: JSON.parse(products),
       users: users
     }}
  
+
+
     this.dialogs.open(CreateWithdrawComponent,{
       width: '50%',
       height:'auto',
@@ -219,23 +261,5 @@ export class WithdrawComponent implements OnInit {
     this.productListSession = [];
   }
 
-  counterMore(id: number)
-  {
-    this.counter++
-    const findProduct = localStorage.getItem("products") || '';
-    let product = JSON.parse(findProduct).filter((data: Products) => {
-        return data.id == id
-    })
-    product[0].amount = this.counter
-    localStorage.setItem("products",JSON.stringify(product));
-  }
 
-  counterLess()
-  {
-    if(this.counter === 0)
-    {
-      return;
-    }
-    this.counter--
-  }
 }

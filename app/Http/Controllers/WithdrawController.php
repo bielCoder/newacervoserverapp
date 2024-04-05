@@ -49,44 +49,54 @@ class WithdrawController extends Controller
     public function store(Request $request, Withdraw $baggage, Product $products,Historic $historic, User $users)
     {
          for($i = 0; $i < count($request -> withdraw["products"]); $i++) {
+             
                 $baggage -> create([
-                "user_id" =>  $request -> withdraw["users"]["id"],
-                "product_id" => $request -> withdraw["products"][$i]["id"]         
+                    "user_id" =>  $request -> withdraw["users"]["id"],
+                    "product_id" => $request -> withdraw["products"][$i]["id"]         
                 ]);
 
-                $products -> where('id',$request -> withdraw["products"][$i]["id"]) -> update([
-                    "pending" => true,
-                    "days" => now()
-                ]);
+                $productToRegisterHistoric = $products -> where('id',$request -> withdraw["products"][$i]["id"]) -> get();
+
+                // $amountCounter = $productToRegisterHistoric[0] -> amount - $request -> withdraw["products"][$i]["amount"];
+
+                return response() -> json($productToRegisterHistoric[0] -> amount - $request -> withdraw["products"][$i]["amount"]);
+
+                // $products -> where('id',$request -> withdraw["products"][$i]["id"]) -> update([
+                //     "pending" => true,
+                //     "days" => now(),
+                //     "amount" => $amountCounter
+                // ]);
 
                 
-                $productToRegisterHistoric = $products -> where('id',$request -> withdraw["products"][$i]["id"]) -> get();
-                $userToRegisterHistoric = $users -> where('id',$request -> withdraw["users"]["id"]) -> first();  
+           
+                // $userToRegisterHistoric = $users -> where('id',$request -> withdraw["users"]["id"]) -> first();  
                            
 
-                $historic -> create([
-                    "name" => $userToRegisterHistoric -> name,
-                    "register" => $userToRegisterHistoric -> register,
-                    "function" => $userToRegisterHistoric -> function,
-                    "department" => $userToRegisterHistoric -> department,
-                    "email" => $userToRegisterHistoric -> email,
-                    "product" => $productToRegisterHistoric[0] -> product,
-                    "code" => $productToRegisterHistoric[0] -> code,
-                    "brand" => $productToRegisterHistoric[0] -> brand,
-                    "color" => $productToRegisterHistoric[0] -> color,
-                    "size" => $productToRegisterHistoric[0] -> size,
-                    "sexo" => $productToRegisterHistoric[0] -> sexo,
-                    "observation" => $productToRegisterHistoric[0] -> observation,
-                    "breakdown" => $productToRegisterHistoric[0] -> breakdown,
-                    "description" => $productToRegisterHistoric[0] -> description,
-                    "pending" => $productToRegisterHistoric[0] -> pending,
-                    "amount" => $productToRegisterHistoric[0] -> amount,
-                    "withdraw" => now(),
-                    "devolution" => null,
-                    "days" => 0
-                ]);
+                // $historic -> create([
+                //     "name" => $userToRegisterHistoric -> name,
+                //     "register" => $userToRegisterHistoric -> register,
+                //     "function" => $userToRegisterHistoric -> function,
+                //     "department" => $userToRegisterHistoric -> department,
+                //     "email" => $userToRegisterHistoric -> email,
+                //     "product" => $productToRegisterHistoric[0] -> product,
+                //     "code" => $productToRegisterHistoric[0] -> code,
+                //     "brand" => $productToRegisterHistoric[0] -> brand,
+                //     "color" => $productToRegisterHistoric[0] -> color,
+                //     "size" => $productToRegisterHistoric[0] -> size,
+                //     "sexo" => $productToRegisterHistoric[0] -> sexo,
+                //     "observation" => $productToRegisterHistoric[0] -> observation,
+                //     "breakdown" => $productToRegisterHistoric[0] -> breakdown,
+                //     "description" => $productToRegisterHistoric[0] -> description,
+                //     "pending" => $productToRegisterHistoric[0] -> pending,
+                //     "amount" => $productToRegisterHistoric[0] -> amount,
+                //     "withdraw" => now(),
+                //     "devolution" => null,
+                //     "days" => 0
+                // ]);
              
             }
+
+         
           
 
             return $this -> response -> format("withdraw","application/json","post",null,null,"Retirada efetuada com sucesso",202);
@@ -163,33 +173,33 @@ class WithdrawController extends Controller
                 "pending" => false
             ]);
             $withdraw -> where('product_id',$request -> all()[$i]["id"]) -> delete();
-                    $dataProductToId = $historic -> where('code','=',$request -> all()[$i]["code"],'AND','register','=',$user -> register) -> whereNull('devolution') -> get();
+                    // $dataProductToId = $historic -> where('code','=',$request -> all()[$i]["code"],'AND','register','=',$user -> register) -> whereNull('devolution') -> get();
 
-                    $nowDate = new DateTime('now');
-                    $dataBank = new DateTime($dataProductToId[0] -> withdraw);
-                    $days = $nowDate -> diff($dataBank);
+                    // $nowDate = new DateTime('now');
+                    // $dataBank = new DateTime($dataProductToId[0] -> withdraw);
+                    // $days = $nowDate -> diff($dataBank);
 
-                    $historic -> where('code','=',$request -> all()[$i]["code"],'AND','register','=',$user -> register) -> whereNull('devolution') -> update([
-                        "name" => $user -> name,
-                            "register" => $user -> register,
-                            "function" => $user -> function,
-                            "department" => $user -> department,
-                            "email" => $user -> email,
-                            "product" => $dataProductToId[0] -> product,
-                            "code" => $dataProductToId[0] -> code,
-                            "brand" =>$dataProductToId[0] -> brand,
-                            "color" => $dataProductToId[0] -> color,
-                            "size" => $dataProductToId[0] -> size,
-                            "sexo" => $dataProductToId[0] -> sexo,
-                            "observation" => $dataProductToId[0]-> observation,
-                            "breakdown" => $dataProductToId[0] -> breakdown,
-                            "description" => $dataProductToId[0] -> description,
-                            "pending" => false,
-                            "amount" => 0,
-                            "withdraw" => $dataProductToId[0] -> withdraw,
-                            "devolution" => now(),
-                            "days" => $days -> days
-                    ]);
+                    // $historic -> where('code','=',$request -> all()[$i]["code"],'AND','register','=',$user -> register) -> whereNull('devolution') -> update([
+                    //     "name" => $user -> name,
+                    //         "register" => $user -> register,
+                    //         "function" => $user -> function,
+                    //         "department" => $user -> department,
+                    //         "email" => $user -> email,
+                    //         "product" => $dataProductToId[0] -> product,
+                    //         "code" => $dataProductToId[0] -> code,
+                    //         "brand" =>$dataProductToId[0] -> brand,
+                    //         "color" => $dataProductToId[0] -> color,
+                    //         "size" => $dataProductToId[0] -> size,
+                    //         "sexo" => $dataProductToId[0] -> sexo,
+                    //         "observation" => $dataProductToId[0]-> observation,
+                    //         "breakdown" => $dataProductToId[0] -> breakdown,
+                    //         "description" => $dataProductToId[0] -> description,
+                    //         "pending" => false,
+                    //         "amount" => 0,
+                    //         "withdraw" => $dataProductToId[0] -> withdraw,
+                    //         "devolution" => now(),
+                    //         "days" => $days -> days
+                    // ]);
         }
                 try {
                 return $this -> response -> format("withdraw","application/json","delete",null,null,"Produtos devolvidos com sucesso!",200);
