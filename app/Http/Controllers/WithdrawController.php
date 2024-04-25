@@ -57,48 +57,47 @@ class WithdrawController extends Controller
 
                 $productToRegisterHistoric = $products -> where('id',$request -> withdraw["products"][$i]["id"]) -> get();
 
-                // $amountCounter = $productToRegisterHistoric[0] -> amount - $request -> withdraw["products"][$i]["amount"];
+                $amountCounter = $productToRegisterHistoric[0] -> amount - $request -> withdraw["products"][$i]["amount"];
 
-                return response() -> json($productToRegisterHistoric[0] -> amount - $request -> withdraw["products"][$i]["amount"]);
+            
 
-                // $products -> where('id',$request -> withdraw["products"][$i]["id"]) -> update([
-                //     "pending" => true,
-                //     "days" => now(),
-                //     "amount" => $amountCounter
-                // ]);
+                $products -> where('id',$request -> withdraw["products"][$i]["id"]) -> update([
+                    "pending" => true,
+                    "days" => now(),
+                    "amount" => $amountCounter
+                ]);
 
                 
            
-                // $userToRegisterHistoric = $users -> where('id',$request -> withdraw["users"]["id"]) -> first();  
+                $userToRegisterHistoric = $users -> where('id',$request -> withdraw["users"]["id"]) -> first();  
                            
 
-                // $historic -> create([
-                //     "name" => $userToRegisterHistoric -> name,
-                //     "register" => $userToRegisterHistoric -> register,
-                //     "function" => $userToRegisterHistoric -> function,
-                //     "department" => $userToRegisterHistoric -> department,
-                //     "email" => $userToRegisterHistoric -> email,
-                //     "product" => $productToRegisterHistoric[0] -> product,
-                //     "code" => $productToRegisterHistoric[0] -> code,
-                //     "brand" => $productToRegisterHistoric[0] -> brand,
-                //     "color" => $productToRegisterHistoric[0] -> color,
-                //     "size" => $productToRegisterHistoric[0] -> size,
-                //     "sexo" => $productToRegisterHistoric[0] -> sexo,
-                //     "observation" => $productToRegisterHistoric[0] -> observation,
-                //     "breakdown" => $productToRegisterHistoric[0] -> breakdown,
-                //     "description" => $productToRegisterHistoric[0] -> description,
-                //     "pending" => $productToRegisterHistoric[0] -> pending,
-                //     "amount" => $productToRegisterHistoric[0] -> amount,
-                //     "withdraw" => now(),
-                //     "devolution" => null,
-                //     "days" => 0
-                // ]);
+                $historic -> create([
+                    "name" => $userToRegisterHistoric -> name,
+                    "register" => $userToRegisterHistoric -> register,
+                    "function" => $userToRegisterHistoric -> function,
+                    "department" => $userToRegisterHistoric -> department,
+                    "email" => $userToRegisterHistoric -> email,
+                    "product" => $productToRegisterHistoric[0] -> product,
+                    "code" => $productToRegisterHistoric[0] -> code,
+                    "brand" => $productToRegisterHistoric[0] -> brand,
+                    "color" => $productToRegisterHistoric[0] -> color,
+                    "size" => $productToRegisterHistoric[0] -> size,
+                    "sexo" => $productToRegisterHistoric[0] -> sexo,
+                    "observation" => $productToRegisterHistoric[0] -> observation,
+                    "breakdown" => $productToRegisterHistoric[0] -> breakdown,
+                    "description" => $productToRegisterHistoric[0] -> description,
+                    "pending" => $productToRegisterHistoric[0] -> pending,
+                    "amount" => $productToRegisterHistoric[0] -> amount,
+                    "withdraw" => now(),
+                    "devolution" => null,
+                    "days" => 0
+                ]);
              
             }
 
          
           
-
             return $this -> response -> format("withdraw","application/json","post",null,null,"Retirada efetuada com sucesso",202);
     
     }

@@ -32,6 +32,7 @@ export class WithdrawComponent implements OnInit {
     @ViewChild('lignProduct') lignProduct!: ElementRef
     @ViewChild('userSearchInputProduct') userSearchInputProduct!: ElementRef
     @ViewChild('userSearchInput') userSearchInput!: ElementRef
+    @ViewChild('amount') amount!: ElementRef
 
 
     
@@ -82,7 +83,6 @@ export class WithdrawComponent implements OnInit {
         if(user)
         {
           this.users = JSON.parse(user)
-          document.getElementById("user")?.setAttribute("value","gdsousa")
         }
        
         
@@ -96,7 +96,7 @@ export class WithdrawComponent implements OnInit {
         }
 
 
-     
+       
     }
 
 
@@ -120,29 +120,68 @@ export class WithdrawComponent implements OnInit {
 
     counterMore(id: number)
     {
-      this.counter++
-      const findProduct = localStorage.getItem("products") || '';
-      let product = JSON.parse(findProduct).filter((data: Products) => {
-          return data.id == id
-      })
-      product[0].amount = this.counter
-      localStorage.setItem("products",JSON.stringify(product));
+          // Recupere os dados do localStorage
+      const productsString = localStorage.getItem("products") || '';
+      const products: any[] = JSON.parse(productsString);
+
+      // Função para filtrar um objeto pelo ID
+      function filterProductById(id: number): any | undefined {
+        // Encontre o objeto com base no ID
+        return products.find(product => product.id === id);
+      }
+
+      // Exemplo: Filtrar o objeto com ID 1
+      const productId = id;
+      const product = filterProductById(productId);
+
+      // Verifique se o objeto foi encontrado
+      if (product) {
+
+        // Altere o valor da chave "amount"
+        product.amount =  product.amount + 1// Novo valor para a chave "amount"
+        
+        let find = document.getElementById(`${id}`)
+        
+        if(find)
+        { 
+          find.textContent = product.amount
+        }
+        // Salve o objeto filtrado de volta no localStorage com a chave "products"
+        localStorage.setItem("products", JSON.stringify(products));
+      }
     }
   
     counterLess(id: number)
     {
-      if(this.counter === 1)
-      {
-        return;
+            // Recupere os dados do localStorage
+      const productsString = localStorage.getItem("products") || '';
+      const products: any[] = JSON.parse(productsString);
+
+      // Função para filtrar um objeto pelo ID
+      function filterProductById(id: number): any | undefined {
+        // Encontre o objeto com base no ID
+        return products.find(product => product.id === id);
       }
-      this.counter--
-  
-      const findProduct = localStorage.getItem("products") || '';
-      let product = JSON.parse(findProduct).filter((data: Products) => {
-          return data.id == id
-      })
-      product[0].amount = this.counter
-      localStorage.setItem("products",JSON.stringify(product));
+
+      // Exemplo: Filtrar o objeto com ID 1
+      const productId = id;
+      const product = filterProductById(productId);
+
+      // Verifique se o objeto foi encontrado
+      if (product) {
+
+        // Altere o valor da chave "amount"
+        product.amount =  product.amount - 1// Novo valor para a chave "amount"
+        
+        let find = document.getElementById(`${id}`)
+        
+        if(find)
+        { 
+          find.textContent = product.amount
+        }
+        // Salve o objeto filtrado de volta no localStorage com a chave "products"
+        localStorage.setItem("products", JSON.stringify(products));
+      }
     }
 
   getProductSend(data: HTMLInputElement)
@@ -187,6 +226,7 @@ export class WithdrawComponent implements OnInit {
       this.failed = 'Produto já foi adicionado no carrinho'
       return
     } else {
+      find[0].amount = 1;
       this.productsList.push(find[0]);
       this.productListSession.push(find[0])
       localStorage.setItem("products",JSON.stringify(this.productsList));
@@ -195,11 +235,7 @@ export class WithdrawComponent implements OnInit {
       const findProductSet = JSON.parse(product).filter((value: any) => {
           return value
       })
-      const findProductFormated = findProductSet.map((value: Products) => {
-          return findProductFormated
-      })
-
-      console.log(findProductFormated)
+   
     }
     
    

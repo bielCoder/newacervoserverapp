@@ -42,7 +42,6 @@ export class CreateWithdrawComponent {
 
   onSubmit()
   {
-    
    if(this.route.url === '/withdraw')
    {
       this.loginService.loginStore(this.formulario.value).subscribe(
