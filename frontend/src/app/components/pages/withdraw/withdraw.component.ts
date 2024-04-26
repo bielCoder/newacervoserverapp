@@ -120,10 +120,11 @@ export class WithdrawComponent implements OnInit {
 
     counterMore(id: number)
     {
-
-          // limite de adição de produtos.
-          
-          let findProduct =  this.search.filter((data:Products) => {
+      
+      
+      // limite de adição de produtos.
+      
+      let findProduct =  this.search.filter((data:Products) => {
               return data.id === id;
           })
        
@@ -134,14 +135,15 @@ export class WithdrawComponent implements OnInit {
 
           // Função para filtrar um objeto pelo ID
             function filterProductById(id: number): any | undefined {
-            // Encontre o objeto com base no ID
+              // Encontre o objeto com base no ID
             return products.find(product => product.id === id);
           }
-
           // Exemplo: Filtrar o objeto com ID 1
           const productId = id;
           const product = filterProductById(productId);
-
+          
+          
+          
           // Verifique se o objeto foi encontrado
           if (product) {
           
@@ -149,11 +151,15 @@ export class WithdrawComponent implements OnInit {
           // Altere o valor da chave "amount"
           product.amount =  product.amount + 1// Novo valor para a chave "amount"
 
-            
-         if(product.amount > findProduct[0].amount)
-         {
-            return;
-         }
+          while(product.amount > findProduct[0].amount)
+          {
+             console.log('entrei')
+          console.log(product.amount)
+          console.log(findProduct[0].amount)
+          return;
+          }
+         
+
         
           
           let find = document.getElementById(`${id}`)
@@ -262,12 +268,6 @@ export class WithdrawComponent implements OnInit {
       this.productsList.push(find[0]);
       this.productListSession.push(find[0])
       localStorage.setItem("products",JSON.stringify(this.productsList));
-
-      const product = localStorage.getItem('products') || '';
-      const findProductSet = JSON.parse(product).filter((value: any) => {
-          return value
-      })
-   
     }
     
    
