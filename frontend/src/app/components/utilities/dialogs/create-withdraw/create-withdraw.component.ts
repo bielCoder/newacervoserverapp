@@ -56,7 +56,8 @@ export class CreateWithdrawComponent {
               this.success = this.success.withdraw.message
               window.localStorage.setItem('message', this.success);
               this.dialog.closeAll();
-              window.localStorage.clear();
+              localStorage.removeItem("products");
+              localStorage.removeItem("user");
               window.history.go();
             }
           )

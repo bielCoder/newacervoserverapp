@@ -59,7 +59,6 @@ export class ProductsService {
   }
 
   whoIsPending(element: Products): Observable<Users>{
- 
     return this.http.get<Users>(`${this.products}/whoispending/${element.id}`);
   }
 

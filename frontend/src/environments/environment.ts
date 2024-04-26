@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  server: 'http://10.3.0.140/public/api'
+  server: 'https://acervo.recordbrasilia.com.br/public/api'
 };
 
 /*

@@ -120,45 +120,69 @@ export class WithdrawComponent implements OnInit {
 
     counterMore(id: number)
     {
+
+          // limite de adição de produtos.
+          
+          let findProduct =  this.search.filter((data:Products) => {
+              return data.id === id;
+          })
+       
+
           // Recupere os dados do localStorage
-      const productsString = localStorage.getItem("products") || '';
-      const products: any[] = JSON.parse(productsString);
+          const productsString = localStorage.getItem("products") || '';
+          const products: any[] = JSON.parse(productsString);
 
-      // Função para filtrar um objeto pelo ID
-      function filterProductById(id: number): any | undefined {
-        // Encontre o objeto com base no ID
-        return products.find(product => product.id === id);
-      }
+          // Função para filtrar um objeto pelo ID
+            function filterProductById(id: number): any | undefined {
+            // Encontre o objeto com base no ID
+            return products.find(product => product.id === id);
+          }
 
-      // Exemplo: Filtrar o objeto com ID 1
-      const productId = id;
-      const product = filterProductById(productId);
+          // Exemplo: Filtrar o objeto com ID 1
+          const productId = id;
+          const product = filterProductById(productId);
 
-      // Verifique se o objeto foi encontrado
-      if (product) {
+          // Verifique se o objeto foi encontrado
+          if (product) {
+          
 
-        // Altere o valor da chave "amount"
-        product.amount =  product.amount + 1// Novo valor para a chave "amount"
+          // Altere o valor da chave "amount"
+          product.amount =  product.amount + 1// Novo valor para a chave "amount"
+
+            
+         if(product.amount > findProduct[0].amount)
+         {
+            return;
+         }
         
-        let find = document.getElementById(`${id}`)
-        
-        if(find)
-        { 
-          find.textContent = product.amount
+          
+          let find = document.getElementById(`${id}`)
+          
+          if(find)
+          { 
+            find.textContent = product.amount
+          }
+          // Salve o objeto filtrado de volta no localStorage com a chave "products"
+          localStorage.setItem("products", JSON.stringify(products));
         }
-        // Salve o objeto filtrado de volta no localStorage com a chave "products"
-        localStorage.setItem("products", JSON.stringify(products));
-      }
     }
   
     counterLess(id: number)
     {
-            // Recupere os dados do localStorage
+      
+        // limite de adição de produtos.
+          
+        let findProduct =  this.search.filter((data:Products) => {
+          return data.id === id;
+      })
+   
+
+      // Recupere os dados do localStorage
       const productsString = localStorage.getItem("products") || '';
       const products: any[] = JSON.parse(productsString);
 
       // Função para filtrar um objeto pelo ID
-      function filterProductById(id: number): any | undefined {
+        function filterProductById(id: number): any | undefined {
         // Encontre o objeto com base no ID
         return products.find(product => product.id === id);
       }
@@ -169,18 +193,26 @@ export class WithdrawComponent implements OnInit {
 
       // Verifique se o objeto foi encontrado
       if (product) {
-
-        // Altere o valor da chave "amount"
-        product.amount =  product.amount - 1// Novo valor para a chave "amount"
-        
-        let find = document.getElementById(`${id}`)
-        
-        if(find)
-        { 
-          find.textContent = product.amount
+        if(product.amount <= 1)
+        {
+          return;
         }
-        // Salve o objeto filtrado de volta no localStorage com a chave "products"
-        localStorage.setItem("products", JSON.stringify(products));
+
+      // Altere o valor da chave "amount"
+      product.amount =  product.amount - 1// Novo valor para a chave "amount"
+
+        
+     
+    
+      
+      let find = document.getElementById(`${id}`)
+      
+      if(find)
+      { 
+        find.textContent = product.amount
+      }
+      // Salve o objeto filtrado de volta no localStorage com a chave "products"
+      localStorage.setItem("products", JSON.stringify(products));
       }
     }
 
