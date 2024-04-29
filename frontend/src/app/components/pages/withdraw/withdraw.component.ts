@@ -27,7 +27,7 @@ export class WithdrawComponent implements OnInit {
     data: Date = new Date();
     productListSession:any = [];
     observation!:any;
-    counter: number = 1;
+    counter!:any;
 
     @ViewChild('lignProduct') lignProduct!: ElementRef
     @ViewChild('userSearchInputProduct') userSearchInputProduct!: ElementRef
@@ -60,6 +60,9 @@ export class WithdrawComponent implements OnInit {
         (data) => {
           this.search = data;
 
+
+    
+
           this.searchTwo = this.search.products.data.filter((data: Products) => {
             return data.pending == true
           })
@@ -70,6 +73,7 @@ export class WithdrawComponent implements OnInit {
 
 
           this.products = this.search;
+
         }
       )
 
@@ -109,6 +113,7 @@ export class WithdrawComponent implements OnInit {
 
       this.userService.find(id.value).subscribe(
         (data) => {
+
           this.users = data;
           this.users = this.users.users.data
           localStorage.setItem("user",JSON.stringify(this.users));
@@ -118,70 +123,103 @@ export class WithdrawComponent implements OnInit {
      
     }
 
-    counterMore(id: number)
-    {
-      
-      
-      // limite de adição de produtos.
-      
-      let findProduct =  this.search.filter((data:Products) => {
-              return data.id === id;
-          })
-       
 
-          // Recupere os dados do localStorage
-          const productsString = localStorage.getItem("products") || '';
-          const products: any[] = JSON.parse(productsString);
 
-          // Função para filtrar um objeto pelo ID
-            function filterProductById(id: number): any | undefined {
-              // Encontre o objeto com base no ID
-            return products.find(product => product.id === id);
-          }
-          // Exemplo: Filtrar o objeto com ID 1
-          const productId = id;
-          const product = filterProductById(productId);
-          
-          
-          
-          // Verifique se o objeto foi encontrado
-          if (product) {
-          
+    getProductSend(data: HTMLInputElement) {
+      const find = this.search.filter((value: any) => {
+        this.failed = undefined;
+        return value.code == data.value;
+      });
+    
+      const findTwo = this.searchTwo.filter((value: any) => {
+        this.failed = undefined;
+        return value.code == data.value;
+      });
+    
+      if (findTwo.length > 0) {
+        this.failed = 'Produto está em uso';
+        return;
+      }
+    
+      // Produto não encontrado
+      if (find.length < 1) {
+        this.failed = 'Produto não encontrado';
+        return;
+      }
+    
+      // Verificar se o produto já existe no carrinho
+      const exists = this.productListSession.filter((value: Products) => {
+        return value.code === data.value;
+      });
+    
+      if (exists.length !== 0) {
+        this.failed = 'Produto já foi adicionado no carrinho';
+        return;
+      } else {
+        const newProduct = { ...find[0], amount: 1 }; // Inicializa amount com 1
+        this.productsList.push(newProduct);
+        this.productListSession.push(newProduct);
+        localStorage.setItem('products', JSON.stringify(this.productsList));
+      }
+    
+      this.userSearchInputProduct.nativeElement.value = '';
+    }
 
-          // Altere o valor da chave "amount"
-          product.amount =  product.amount + 1// Novo valor para a chave "amount"
+ 
 
-          while(product.amount > findProduct[0].amount)
-          {
-             console.log('entrei')
-          console.log(product.amount)
-          console.log(findProduct[0].amount)
-          return;
-          }
-         
+  async counterMore(id: number) {
 
+  
+  const productFind = this.search.find((product: Products) => product.id === id)
+  console.log(productFind)
+    // Recupere os dados do localStorage
+    const productsString = localStorage.getItem("products") || '';
+    const products: any[] = JSON.parse(productsString);
+    
+    // Função para filtrar um objeto pelo ID
+    function filterProductById(id: number): any | undefined {
+        // Encontre o objeto com base no ID
+        return products.find(product => product.id === id);
+    }
+    
+    // Exemplo: Filtrar o objeto com ID 1
+    const productId = id;
+    const product = filterProductById(productId);
+    
+    // Verifique se o objeto foi encontrado
+    if (product) {     
+        // Defina o limite de incremento
+        const incrementLimit = productFind.amount; // Defina o limite desejado
         
-          
-          let find = document.getElementById(`${id}`)
-          
-          if(find)
-          { 
-            find.textContent = product.amount
-          }
-          // Salve o objeto filtrado de volta no localStorage com a chave "products"
-          localStorage.setItem("products", JSON.stringify(products));
+        // Verifique se a quantidade é um número válido
+        if (!isNaN(product.amount) && typeof product.amount === 'number') {
+            // Verifique se o incremento excede o limite
+            if (product.amount < incrementLimit) {
+                // Incrementa a quantidade apenas se não exceder o limite
+                product.amount += 1; // Novo valor para a chave "amount"
+                
+                let find = document.getElementById(`${id}`);
+                
+                if (find) { 
+                    find.textContent = product.amount;
+                }
+                
+                // Salve o objeto filtrado de volta no localStorage com a chave "products"
+                localStorage.setItem("products", JSON.stringify(products));
+            } else {
+                console.log("Limite de incremento atingido para o produto.");
+            }
+        } else {
+            // Se a quantidade não for válida, defina-a como 0 antes de incrementar
+            product.amount = 0;
+            this.counterMore(id); // Chame a função novamente para tentar incrementar
         }
     }
+}
   
     counterLess(id: number)
     {
-      
-        // limite de adição de produtos.
-          
-        let findProduct =  this.search.filter((data:Products) => {
-          return data.id === id;
-      })
-   
+  
 
       // Recupere os dados do localStorage
       const productsString = localStorage.getItem("products") || '';
@@ -222,59 +260,7 @@ export class WithdrawComponent implements OnInit {
       }
     }
 
-  getProductSend(data: HTMLInputElement)
-  {
-
-   
-    const find = this.search.filter((value: any) => {
-      this.failed = undefined;
-      return value.code == data.value
-    })
-
-
-    const findTwo = this.searchTwo.filter((value: any) => {
-      this.failed = undefined;
-      return value.code == data.value
-    })
-
-
-    if(findTwo.length > 0)
-    {
-      this.failed = 'Produto está em uso'
-      return
-    } 
-
-  // //produto não encontrado  
-    if(find.length < 1)
-    {
-      this.failed = 'Produto não encontrado'
-      return
-    }
-
-
-
-    // verificar se o produto já existe no carrinho
-
-    const exists = this.productListSession.filter((value: Products) => {
-          return value.code === data.value
-    })
-
-    if(exists.length !== 0)
-    {
-      this.failed = 'Produto já foi adicionado no carrinho'
-      return
-    } else {
-      find[0].amount = 1;
-      this.productsList.push(find[0]);
-      this.productListSession.push(find[0])
-      localStorage.setItem("products",JSON.stringify(this.productsList));
-    }
-    
-   
-    this.userSearchInputProduct.nativeElement.value = ''
-    
-  }
-
+  
   
  
 
