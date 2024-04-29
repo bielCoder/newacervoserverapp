@@ -57,14 +57,15 @@ class WithdrawController extends Controller
 
                 $productToRegisterHistoric = $products -> where('id',$request -> withdraw["products"][$i]["id"]) -> get();
 
-                $amountCounter = $productToRegisterHistoric[0] -> amount - $request -> withdraw["products"][$i]["amount"];
+                $amountCounter = $productToRegisterHistoric[0] -> available - $request -> withdraw["products"][$i]["amount"];
 
             
 
                 $products -> where('id',$request -> withdraw["products"][$i]["id"]) -> update([
                     "pending" => true,
                     "days" => now(),
-                    "amount" => $amountCounter
+                    "available" => $amountCounter,
+                    "unavailable" => $productToRegisterHistoric[0] -> unavailable + $request -> withdraw["products"][$i]["amount"]
                 ]);
 
                 

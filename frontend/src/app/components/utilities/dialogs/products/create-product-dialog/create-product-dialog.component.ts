@@ -39,7 +39,9 @@ export class CreateProductDialogComponent implements OnInit {
       breakdown: 0,
       description: new FormControl(null),
       pending:0,
-      amount: new FormControl(1)
+      amount: new FormControl(1),
+      available: 0,
+      unavailable: 0
     })
   }
 

@@ -12,4 +12,6 @@ export interface Products {
     description: string;
     pending: boolean;
     amount: number;
+    available: number;
+    unavailable: number;
 }

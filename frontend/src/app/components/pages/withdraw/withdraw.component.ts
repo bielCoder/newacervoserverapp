@@ -64,11 +64,11 @@ export class WithdrawComponent implements OnInit {
     
 
           this.searchTwo = this.search.products.data.filter((data: Products) => {
-            return data.pending == true
+            return data.available === 0;
           })
 
           this.search = this.search.products.data.filter((data: Products) => {
-            return data.pending == false
+            return data.available !== 0
           })
 
 
@@ -127,10 +127,11 @@ export class WithdrawComponent implements OnInit {
 
     getProductSend(data: HTMLInputElement) {
       const find = this.search.filter((value: any) => {
-        this.failed = undefined;
-        return value.code == data.value;
+          return value;
       });
     
+      console.log(find);
+
       const findTwo = this.searchTwo.filter((value: any) => {
         this.failed = undefined;
         return value.code == data.value;
@@ -140,12 +141,12 @@ export class WithdrawComponent implements OnInit {
         this.failed = 'Produto está em uso';
         return;
       }
-    
+      
       // Produto não encontrado
-      if (find.length < 1) {
-        this.failed = 'Produto não encontrado';
-        return;
-      }
+      // if (find.length < 1) {
+      //   this.failed = 'Produto não encontrado';
+      //   return;
+      // }
     
       // Verificar se o produto já existe no carrinho
       const exists = this.productListSession.filter((value: Products) => {
@@ -189,7 +190,7 @@ export class WithdrawComponent implements OnInit {
     // Verifique se o objeto foi encontrado
     if (product) {     
         // Defina o limite de incremento
-        const incrementLimit = productFind.amount; // Defina o limite desejado
+        const incrementLimit = productFind.available; // Defina o limite desejado
         
         // Verifique se a quantidade é um número válido
         if (!isNaN(product.amount) && typeof product.amount === 'number') {
@@ -207,7 +208,7 @@ export class WithdrawComponent implements OnInit {
                 // Salve o objeto filtrado de volta no localStorage com a chave "products"
                 localStorage.setItem("products", JSON.stringify(products));
             } else {
-                console.log("Limite de incremento atingido para o produto.");
+                console.log("Quantidade Excedida.");
             }
         } else {
             // Se a quantidade não for válida, defina-a como 0 antes de incrementar

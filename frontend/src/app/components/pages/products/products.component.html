@@ -70,7 +70,7 @@
                   <td></td>
                   <td>{{ product.sexo }}</td>
                   <td></td>
-                  <td>{{ product.amount }}</td>
+                  <td>{{ product.available }}</td>
                   <td></td>
                   <td>{{ product.observation }}</td>
                   <td></td>
@@ -81,10 +81,10 @@
                   <td></td>
                   <td>{{ product.description }}</td>
                   <td></td>
-                  <td class="available" *ngIf="!product.pending; else pending">Dísponivel</td>
+                  <td class="available" *ngIf="!product.pending; else pending">Disponíveis.</td>
                   <td></td>
                   <ng-template #pending>
-                    <td class="unavailable">Em uso</td>
+                    <td class="unavailable">Há produtos em uso.</td>
                   </ng-template>
                 </tr>
             </tbody>
