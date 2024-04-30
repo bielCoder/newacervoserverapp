@@ -38,11 +38,23 @@ export class ProductsComponent implements OnInit {
      this.productService.search().subscribe(
       (data) => {
         this.search = data;
+       
         this.search = this.search.products.data
-        this.total = this.search.length;
-        this.available = this.search.filter((data: Products) => {return data.pending == false}).length
-        this.unavailable = this.search.filter((data: Products) => {return data.pending == true}).length
-      
+        const totalAmount = this.search.reduce((total: any, data: Products) => {
+          return total + parseInt(`${data.amount}`, 10); // ou parseFloat(data.amount) se for um número decimal
+        }, 0);
+
+      const availableAmount = this.search.reduce((total: any, data: Products) => {
+        return total + parseInt(`${data.available}`, 10); // ou parseFloat(data.amount) se for um número decimal
+       }, 0);
+
+       const unavailableAmount = this.search.reduce((total: any, data: Products) => {
+        return total + parseInt(`${data.unavailable}`, 10); // ou parseFloat(data.amount) se for um número decimal
+       }, 0);
+      // Total de Itens em estoque
+        this.total = totalAmount
+        this.available = availableAmount
+        this.unavailable = unavailableAmount
       }
     )
   }

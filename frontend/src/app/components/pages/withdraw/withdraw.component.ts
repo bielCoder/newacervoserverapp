@@ -127,10 +127,10 @@ export class WithdrawComponent implements OnInit {
 
     getProductSend(data: HTMLInputElement) {
       const find = this.search.filter((value: any) => {
-          return value;
+          return value.code == data.value;
       });
     
-      console.log(find);
+      
 
       const findTwo = this.searchTwo.filter((value: any) => {
         this.failed = undefined;
@@ -138,7 +138,7 @@ export class WithdrawComponent implements OnInit {
       });
     
       if (findTwo.length > 0) {
-        this.failed = 'Produto está em uso';
+        this.failed = 'Indísponivel em Estoque.';
         return;
       }
       
@@ -158,6 +158,7 @@ export class WithdrawComponent implements OnInit {
         return;
       } else {
         const newProduct = { ...find[0], amount: 1 }; // Inicializa amount com 1
+     
         this.productsList.push(newProduct);
         this.productListSession.push(newProduct);
         localStorage.setItem('products', JSON.stringify(this.productsList));
@@ -172,7 +173,7 @@ export class WithdrawComponent implements OnInit {
 
   
   const productFind = this.search.find((product: Products) => product.id === id)
-  console.log(productFind)
+ 
     // Recupere os dados do localStorage
     const productsString = localStorage.getItem("products") || '';
     const products: any[] = JSON.parse(productsString);
