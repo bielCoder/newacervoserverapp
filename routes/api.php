@@ -75,9 +75,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::prefix('withdraw') -> group(function(){
        Route::controller(WithdrawController::class) -> group(function(){
+             Route::post('store','store') -> name('Withdraw - Store');
             Route::get('/{id}','show') -> name('Withdraw - Show');
             Route::delete('/{id}','destroy') -> name('Withdraw - Destroy');
-            Route::post('store','store') -> name('Withdraw - Store');
+            
        });
     });
 

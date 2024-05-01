@@ -140,6 +140,40 @@ export class GiveBackComponent implements OnInit {
   
   }
 
+  counterMore(id:number)
+  {
+
+      const objectAmount =this.productsInUse[0].amount.filter((data: any) => {
+        return data.product_id === id;
+      })
+
+      const find = this.productsList.filter((data: Products) => {
+        return data.id === id;
+      })
+      if(find[0].amount >= objectAmount[0].amount)
+      {
+        return
+      }
+      find[0].amount = find[0].amount + 1;
+
+  }
+
+
+  counterLess(id: number)
+  {
+    const find = this.productsList.filter((data: Products) => {
+      return data.id === id;
+    })
+
+    if(find[0].amount <= 1)
+    {
+      return
+    }
+
+    find[0].amount = find[0].amount - 1;
+
+  }
+
   
   submitDialog(data: Products[], users: Users)
   {
@@ -147,7 +181,7 @@ export class GiveBackComponent implements OnInit {
       products: data,
       users: users
     }}
-
+ 
     this.dialogs.open(CreateWithdrawComponent,{
       width: '45vw',
       height:'auto',
@@ -162,45 +196,44 @@ export class GiveBackComponent implements OnInit {
 
   removeProductList(id: number)
   {
-    this.productsList = this.productsList.filter((data: Products) => {
-        return data.id !== id;
-    })
-
-    const productReturn = this.allProducts.filter((data: Products) => {
+    const productsListAdd = this.productsList.filter((data: Products) => {
       return data.id === id
     })
-
-    this.productsInUse.sort((a:number,b:number) => {
-      return a > b;
-     });
     
-    this.productsInUse.push(productReturn[0]);
+    this.productsInUse[0].product.push(productsListAdd[0])
+    this.productsInUse[0].product.sort((a: any, b: any) => a.id - b.id);
+
+    this.productsList = this.productsList.filter((data: Products) => {
+        return data.id !== id
+      })
+   
   }
+  
+ 
 
   onCartRemove(id: number)
   {
-  
-    this.productsInUse = this.productsInUse.filter((data: Products) => {
-      return data.id !== id
+    const objectAmount =this.productsInUse[0].amount.filter((data: any) => {
+      return data.product_id === id;
     })
-
-   const findProduct = this.allProducts.filter((data: Products) => {
-     return data.id == id
-    });
    
-    
-    const exists = this.productsList.filter((data: Products) => {
-      return data.id == id;
-    })
+    // this.productsList.push(find[0]);
+    // Encontrar o índice do item a ser removido
+    const index = this.productsInUse[0].product.findIndex((item: any) => item.id === id);
 
-    if(exists.length !== 0)
-    {
-      return
+     // Verificar se o item foi encontrado
+     if (index !== -1) {
+      // Remover o item do array
+      const removedItem = this.productsInUse[0].product.splice(index, 1)[0];
+      removedItem.amount = objectAmount[0].amount
+  
+      // Adicionar o item removido de volta à lista de produtos
+      this.productsList.push(removedItem);
+      this.productsList.sort((a: any, b: any) => a.id - b.id);
+   
     }
-
-    this.productsList.push(findProduct[0])
-
   }
+
 
   openDialog(element: Products)
   {
@@ -212,6 +245,8 @@ export class GiveBackComponent implements OnInit {
       data: element
     })
   }
+
+
 
 
 

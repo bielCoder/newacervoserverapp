@@ -43,14 +43,15 @@
                 <th><i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-down"></i></th>
                 <th>sexo</th>
                 <th><i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-up"></i></th>
-                <th><abbr title="Quantidade de items disponíveis ">Disp.</abbr></th>
-                <th><i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-down"></i></th>
+              
                 <th>observação</th>
                 <th><i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-up"></i></th>
                 <th>avariado</th>
                 <th><i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-down"></i></th>
                 <th>descrição</th>
                 <th><i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-up"></i></th>
+                <th><abbr title="Quantidade de items disponíveis ">Disp.</abbr></th>
+                <th><i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-down"></i></th>
                 <th>status</th>
               </tr>
             </thead>
@@ -70,8 +71,6 @@
                   <td></td>
                   <td>{{ product.sexo }}</td>
                   <td></td>
-                  <td>{{ product.available }}</td>
-                  <td></td>
                   <td>{{ product.observation }}</td>
                   <td></td>
                   <td *ngIf="product.breakdown; else breakdown">Sim</td>
@@ -80,6 +79,8 @@
                   </ng-template>
                   <td></td>
                   <td>{{ product.description }}</td>
+                  <td></td>
+                  <td>{{ product.available }}</td>
                   <td></td>
                   <td class="available" *ngIf="!product.pending; else pending">Disponíveis.</td>
                   <td></td>

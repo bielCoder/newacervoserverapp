@@ -33,33 +33,29 @@
     margin-top: -10px;
 }
 
-.bi-arrow-down-up  {
+/* .bi-arrow-down-up  {
     position: relative;
-    left: 15px;
-}
+    left: 0px;
+} */
 
 .bi-arrow-down {
-    position: relative;
-    left: 15px;
     display: none;
 }
 
 .bi-arrow-up {
-    position: relative;
-    left: 15px;
     display: none;
 }
 
-.to-right {
+
+/* .to-right {
         position: relative;
         left: 70px;
-}
+} */
 
 .to-right-too {
     position: relative;
     left: 60px;
 }
-
 
 thead tr {
     cursor: pointer;

@@ -143,10 +143,10 @@ export class WithdrawComponent implements OnInit {
       }
       
       // Produto não encontrado
-      // if (find.length < 1) {
-      //   this.failed = 'Produto não encontrado';
-      //   return;
-      // }
+      if (find.length < 1) {
+        this.failed = 'Produto não encontrado';
+        return;
+      }
     
       // Verificar se o produto já existe no carrinho
       const exists = this.productListSession.filter((value: Products) => {

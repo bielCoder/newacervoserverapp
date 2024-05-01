@@ -14,6 +14,6 @@ class Withdraw extends Model
     protected $table = 'baggage';
 
     protected $fillable = [
-        "user_id","product_id"
+        "user_id","product_id","amount"
     ];
 }

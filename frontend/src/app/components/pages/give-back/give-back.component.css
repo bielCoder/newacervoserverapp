@@ -436,3 +436,38 @@ tbody tr.cart:hover {
 .products-in-use {
     margin-top: -8px;
 }
+
+
+.more {
+    color: #41b556;
+    border: 1px solid #52b541;
+    background-color: transparent;
+    padding: 3px;
+    border-radius: 5px;
+    font-size: 1.2em;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.less {
+    color: #b54141;
+    border: 1px solid #b54141;
+    background-color: transparent;
+    padding: 3px;
+    border-radius: 5px;
+    font-size: 1.2em;
+    margin-right: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    cursor: pointer;
+}
+
+.more:hover {
+    background-color: #52b541;
+    color: #fff;
+}
+
+.less:hover {
+    background-color: #b54141;
+    color: #fff;
+}
