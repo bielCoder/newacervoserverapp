@@ -56,16 +56,13 @@
                     <td></td>
                     <td>{{ product.observation }}</td>
                     <td></td>
-          
                     <td *ngIf="product.breakdown; else notBreakdown">Sim</td>
                     <td></td>
                     <ng-template #notBreakdown>
                         <td>Não</td>
-                        
                     </ng-template>
                   <td></td>
                     <td></td>
-
                     <td>{{ product.description }}</td>
                     <td></td>
                     <td>{{ dataConfig(product.days) }}</td>

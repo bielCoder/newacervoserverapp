@@ -13,6 +13,8 @@ use Laravel\Sanctum\PersonalAccessToken;
 
 
 
+
+
 class AuthController extends Controller
 {
     /**
@@ -20,6 +22,10 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+   
+   
     public function __construct(private User $user, private Response $response){}
 
     /**
@@ -27,6 +33,8 @@ class AuthController extends Controller
      *  this function make the register of user
      * 
      */
+
+    
 
     public function register(UserRegister $request)
     {

@@ -9,7 +9,6 @@ use App\Http\Requests\UserUpdate;
 use Illuminate\Http\Request;
 use Laravel\Sanctum\PersonalAccessToken;
 
-
 class UserController extends Controller
 {
     private $order = "asc";
@@ -24,21 +23,22 @@ class UserController extends Controller
      * 
      */
 
-
     public function index(Request $request)
     {
        if(!empty($request -> order))
        {
          $this -> order = $request -> order;
        }
+    
         try {
+            $perPage = $request -> per_page ?? 20; // Define o valor padrão como 15 caso não seja fornecido um valor
            return $this -> response -> format(
                 "users","application\json","get",
                 [
-                $this -> user -> where('access',1) -> orderBy("id",(string) $this -> order) -> paginate((int)$request -> per_page),
-                $this -> user -> where('access',2) -> orderBy("id",(string) $this -> order) -> paginate((int)$request -> per_page),
-                $this -> user -> where('access',3) -> orderBy("id",(string) $this -> order) -> paginate((int)$request -> per_page),
-                $this -> user -> where('access',4) -> orderBy("id",(string) $this -> order) -> paginate((int)$request -> per_page)
+                $this -> user -> where('access',1) -> orderBy("id",(string) $this -> order) -> paginate((int)$perPage),
+                $this -> user -> where('access',2) -> orderBy("id",(string) $this -> order) -> paginate((int)$perPage),
+                $this -> user -> where('access',3) -> orderBy("id",(string) $this -> order) -> paginate((int)$perPage),
+                $this -> user -> where('access',4) -> orderBy("id",(string) $this -> order) -> paginate((int)$perPage)
                 ],
                 null,null,200
             );
@@ -86,6 +86,9 @@ class UserController extends Controller
         
     }
 
+
+    
+
     /**
      * Update the specified resource in storage.
      *
@@ -93,6 +96,9 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
+
+
+ 
     public function update(UserUpdate $request,$id)
     {
       

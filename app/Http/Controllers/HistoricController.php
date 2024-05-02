@@ -35,10 +35,11 @@ class HistoricController extends Controller
     public function index(Request $request)
     {
         try {
+            $perPage = $request -> per_page ?? 20; // Define o valor padrão como 15 caso não seja fornecido um valor
        
-            if(!is_null($this -> historics -> paginate((int)$request -> per_page)))
+            if(!is_null($this -> historics -> paginate((int)$perPage)))
             {   
-                return $this -> response -> format("historics","application\json","get",$this -> historics -> paginate((int)$request -> per_page),null,null,200);
+                return $this -> response -> format("historics","application\json","get",$this -> historics -> paginate((int)$perPage),null,null,200);
             }
                 return $this -> response -> error("historics","application\json","get","Not Found",404);
         } catch(\PDOException $e)

@@ -30,10 +30,11 @@ class ProductController extends Controller
         }
 
         try {
+            $perPage = $request -> per_page ?? 20; // Define o valor padrão como 15 caso não seja fornecido um valor
        
             if(!is_null($this -> product -> paginate((int)$request -> per_page)))
             {   
-                return $this -> response -> format("products","application\json","get",$this -> product -> orderBy("id",(string) $this -> order) -> paginate((int)$request -> per_page),null,null,200);
+                return $this -> response -> format("products","application\json","get",$this -> product -> orderBy("id",(string) $this -> order) -> paginate((int)$perPage),null,null,200);
             }
                 return $this -> response -> error("products","application\json","get","Not Found",404);
         } catch(\PDOException $e)
@@ -179,10 +180,10 @@ class ProductController extends Controller
         }
 
         try {
-       
-            if(!is_null($this -> product -> paginate((int)$request -> per_page)))
+            $perPage = $request -> per_page ?? 20; // Define o valor padrão como 15 caso não seja fornecido um valor
+            if(!is_null($this -> product -> paginate((int)$perPage)))
             {   
-                return $this -> response -> format("products","application\json","get",$this -> product -> where('pending',true) -> orderBy("id",(string) $this -> order) -> paginate((int)$request -> per_page),null,null,200);
+                return $this -> response -> format("products","application\json","get",$this -> product -> where('pending',true) -> orderBy("id",(string) $this -> order) -> paginate((int)$perPage),null,null,200);
             }
                 return $this -> response -> error("products","application\json","get","Not Found",404);
         } catch(\PDOException $e)

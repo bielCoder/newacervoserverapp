@@ -21,14 +21,14 @@ export class PaginatorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   
+
   }
 
   handlePagination(page: PageEvent)
   {
     page.pageIndex += this.paginator.current_page;
     page.previousPageIndex = page.pageIndex - 1;
-   
+    
     this.paginatorService.handlePage(page.pageIndex,page.pageSize,this.alpha).subscribe(
       (data) => {
         return this.paginatorEvent.emit(data);

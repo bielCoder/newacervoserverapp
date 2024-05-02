@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\{Historic, Product, User};
 use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
 
 class WithdrawController extends Controller
@@ -82,6 +83,7 @@ class WithdrawController extends Controller
                 $historic -> create([
                     "name" => $userToRegisterHistoric -> name,
                     "register" => $userToRegisterHistoric -> register,
+                    "active" => Auth::user() -> register,
                     "function" => $userToRegisterHistoric -> function,
                     "department" => $userToRegisterHistoric -> department,
                     "email" => $userToRegisterHistoric -> email,
@@ -201,8 +203,9 @@ class WithdrawController extends Controller
                     $days = $nowDate -> diff($dataBank);
               
                     $historic -> where('code','=',$request -> all()[$i]["code"],'AND','register','=',$user -> register) -> whereNull('devolution') -> update([
-                        "name" => $user -> name,
+                            "name" => $user -> name,
                             "register" => $user -> register,
+                            "active" => Auth::user() -> register,
                             "function" => $user -> function,
                             "department" => $user -> department,
                             "email" => $user -> email,
