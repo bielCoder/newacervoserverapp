@@ -18,7 +18,6 @@ export class AppComponent implements OnInit {
         {
           window.localStorage.removeItem("user");
           window.localStorage.removeItem("products");
-
         }
       }
     });

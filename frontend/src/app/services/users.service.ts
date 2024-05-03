@@ -22,10 +22,16 @@ export class UsersService {
     return this.http.get<Users[]>(this.users);
   }
 
+  find(id: string):Observable<Users>
+  {
+    return this.http.get<Users>(`${this.users}/${id}`)
+  }
+
   store(data: Users[]): Observable<Users[]>
   {
     return this.http.post<Users[]>(this.storeUsers,data)
   }
+
 
   edit(data:Users):Observable<Users>
   {
@@ -42,10 +48,7 @@ export class UsersService {
     return this.http.put<Users>(`${this.users}/reset/${data.id}`,data);
   }
 
-  find(id: string):Observable<Users>
-  {
-    return this.http.get<Users>(`${this.users}/${id}`)
-  }
+
 
   orderBy(order: string):Observable<Users>
   {

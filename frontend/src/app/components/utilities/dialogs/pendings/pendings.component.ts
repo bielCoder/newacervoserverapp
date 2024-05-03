@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { Users } from 'src/app/interfaces/users';
 import { CreateWithdrawComponent } from '../create-withdraw/create-withdraw.component';
+import { NavigationEnd, Router } from '@angular/router';
 
 
 @Component({
@@ -12,14 +13,17 @@ import { CreateWithdrawComponent } from '../create-withdraw/create-withdraw.comp
 export class PendingsDialogComponent implements OnInit {
 
     user!: Users 
-
-    constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialog: MatDialog, )
+    currentPage!: string;
+    constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialog: MatDialog, private router: Router)
     {
 
     }
     
     ngOnInit(): void {
       this.user = this.data.withdraw.users
+
+      const currentUrl = this.router.url;
+      this.currentPage = currentUrl;
     }
 
 

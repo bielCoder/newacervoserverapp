@@ -170,6 +170,7 @@ a i {
     margin-top: 25px;
 }
 
+
 .list-group {
     font-size: .75em;
 }
@@ -213,6 +214,7 @@ a i {
     animation: showTime 5s forwards;
     z-index: 9999;
 }
+
 
 
 

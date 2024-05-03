@@ -135,7 +135,7 @@ export class PendingComponent implements OnInit {
   {
     this.productService.whoIsPending(element).subscribe((data: any) => {
       this.dialog.open(PendingsDialogComponent,{
-        width: '500px',
+        width: '35vw',
         height:'auto',
         position:{top: '100px'},
         disableClose:true,

@@ -1,7 +1,8 @@
 export interface Historics {
     id?: number;
     name: string;	
-    register: string;	
+    register: string;
+    active: string;
     function: string;	
     department: string;	
     email: string;	

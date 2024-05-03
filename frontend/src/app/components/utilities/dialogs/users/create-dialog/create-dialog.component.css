@@ -169,15 +169,15 @@ cursor: pointer;
 padding: 0.18em;
 }
 
-.error{
-font-size: .75em;
-background-color: #eed5d5;
-color: #b54641;
-border-color: #b54641;
-padding: 0.5em;
-width: 13.3vw;
-margin-top: -1.5em;
-margin-bottom: 1.5em;
+.error {
+  font-size: .75em;
+  background-color: #eed5d5;
+  color: #b54641;
+  border-color: #b54641;
+  padding: 0.5em;
+  width: 100%;
+  margin-top: -1.5em;
+  margin-bottom: 1.5em;
 }
 
 .error-condition {
@@ -201,15 +201,18 @@ display: none;
 }
 
 
-.generic-error {
-position: absolute;
-bottom: 0em;
-} 
+.erro-undefined {
+  position: absolute;
+  bottom: 0em;
+  margin-bottom: -42px;
+  margin-left: -27px;
+}
 
-.erro-undefined  {
-position: absolute;
-bottom: 0em;
-margin-bottom: 0em;
+.erro-undefined {
+  position: absolute;
+  bottom: 0em;
+  margin-bottom: -42px;
+  margin-left: -27px;
 }
 
 .second-group-form {

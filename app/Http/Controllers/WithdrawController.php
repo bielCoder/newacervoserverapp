@@ -83,7 +83,7 @@ class WithdrawController extends Controller
                 $historic -> create([
                     "name" => $userToRegisterHistoric -> name,
                     "register" => $userToRegisterHistoric -> register,
-                    "active" => Auth::user() -> register,
+                    "active" => Auth::user() -> id,
                     "function" => $userToRegisterHistoric -> function,
                     "department" => $userToRegisterHistoric -> department,
                     "email" => $userToRegisterHistoric -> email,
@@ -205,7 +205,7 @@ class WithdrawController extends Controller
                     $historic -> where('code','=',$request -> all()[$i]["code"],'AND','register','=',$user -> register) -> whereNull('devolution') -> update([
                             "name" => $user -> name,
                             "register" => $user -> register,
-                            "active" => Auth::user() -> register,
+                            "active" => Auth::user() -> id,
                             "function" => $user -> function,
                             "department" => $user -> department,
                             "email" => $user -> email,
