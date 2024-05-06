@@ -40,9 +40,13 @@ export class CreateProductDialogComponent implements OnInit {
       description: new FormControl(null),
       pending:0,
       amount: new FormControl(1),
-      available: 0,
+      available: new FormControl(1),
       unavailable: 0
     })
+    
+    this.dialogForm.get('amount')?.valueChanges.subscribe(value => {
+      this.dialogForm.get('available')?.setValue(value); // Atualiza o valor de available para o valor de amount
+    });
   }
 
   closeModal()

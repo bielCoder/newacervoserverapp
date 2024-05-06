@@ -38,7 +38,7 @@
               </tr>
             </thead>
             <tbody class="table-group-divider">
-                <tr *ngFor="let historic of historics" (click)="onWhoIsLogged(historic.active)">
+                <tr *ngFor="let historic of historics" (click)="onWhoIsLogged(historic.active_register)">
                   <td>{{ historic.id }}</td>
                   <td>{{ historic.register }}</td>
                   <td>{{ historic.name }}</td>

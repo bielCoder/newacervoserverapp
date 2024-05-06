@@ -13,7 +13,7 @@
                 <p class="error" *ngIf="error !== undefined && error === '* insira o seu nome completo'">{{ error }}</p>
             </div>
             <div class="form-group">
-                <input type="text" formControlName="register" id="register" class="register form-control" placeholder=" " autocomplete="off" [class.is-invalid]="!dialogForm.controls['register'].valid && dialogForm.controls['register'].touched">
+                <input type="text" formControlName="register" id="register" class="register form-control" placeholder=" " autocomplete="off" readonly [class.is-invalid]="!dialogForm.controls['register'].valid && dialogForm.controls['register'].touched">
                 <label for="register">matrícula</label>
             </div>
             <p class="error" *ngIf="!dialogForm.controls['register'].valid && dialogForm.controls['register'].touched">* campo obrigatório</p>

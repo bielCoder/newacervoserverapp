@@ -26,7 +26,7 @@ class ProductUpdate extends FormRequest
         return [
             'product' => ['required','string'],
             // 'code' => ['required','unique:products,code','lowercase'],
-            'size' => ['max:3'],
+            // 'size' => ['max:3'],
             'sexo' => ['required','string'],
             // 'observation' => 'string',
             'breakdown' => ['required','boolean'],

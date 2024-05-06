@@ -21,7 +21,6 @@ export class PendingsDialogComponent implements OnInit {
     
     ngOnInit(): void {
       this.user = this.data.withdraw.users
-
       const currentUrl = this.router.url;
       this.currentPage = currentUrl;
     }

@@ -1,32 +1,54 @@
 
     <table>
     <thead>
+    <thead>
+            <tr>
+                <th>Entregue por</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>Quem está retirando</th>
+            </tr>
+            <tr>
+                <th>Matrícula</th>
+                <th>Nome</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>Nome</th>
+                <th>Matrícula</th>
+                <th>Função</th>
+                <th>Departamento</th>
+                <th>Email</th>
+                <th>Produto</th>
+                <th>Código</th>
+                <th>Marca</th>
+                <th>Cor</th>
+                <th>Tamanho</th>
+                <th>Gênero</th>
+                <th>Observação</th>
+                <th>Produto possui avaria?</th>
+                <th>Descrição da Avaria</th>
+                <th>Produto está Pendente</th>
+                <th>Data de Retirada</th>
+                <th>Data de Devolução</th>
+                <th>Dias em Uso</th>
+            </tr>
+        </thead>
        <tr>
-        <th>ID</th>
-        <th>Nome</th>
-        <th>Registro</th>
-        <th>Função</th>
-        <th>Departamento</th>
-        <th>Email</th>
-        <th>Produto</th>
-        <th>Código</th>
-        <th>Marca</th>
-        <th>Cor</th>
-        <th>Tamanho</th>
-        <th>Gênero</th>
-        <th>Observação</th>
-        <th>Produto possui avaria?</th>
-        <th>Descrição da Avaria</th>
-        <th>Produto está Pendente</th>
-        <th>Data de Retirada</th>
-        <th>Data de Devolução</th>
-        <th>Dias em Uso</th>
+      
+      
        </tr>
     </thead>
     <tbody>
         @foreach($historics as $historic) 
         <tr>
-           <td>{{ $historic -> id }}</td>
+            <td>{{ $historic -> active_register }}</td>
+            <td>{{ $historic -> active_name }}</td>
+            <td></td>
+            <td></td>
+            <td></td>
            <td>{{ $historic -> name }}</td>
            <td>{{ $historic -> register }}</td>
            <td>{{ $historic -> function }}</td>
@@ -52,7 +74,7 @@
            @endif
            <td>{{ date('d/m/Y H:i:s',strtotime($historic -> withdraw)) }}</td>
            <td>{{ date('d/m/Y H:i:s',strtotime($historic -> devolution)) }}</td>
-           <td>{{ $historic -> days }}</td>
+           <td>{{ $historic -> days }}</td> 
         </tr>
         @endforeach
     </tbody>

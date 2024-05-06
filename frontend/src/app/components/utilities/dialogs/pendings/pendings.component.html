@@ -2,7 +2,7 @@
    
         <div class="header-container">
             <p class="title" *ngIf="currentPage === '/pendings'">Produto está em uso por:</p>
-            <p class="title">Produto foi entregue por:</p>
+            <p class="title" *ngIf="currentPage === '/historic'">Produto foi entregue por:</p>
 
             <p class="close-modal" (click)="closeModal()"><i class="bi bi-x-circle"></i></p>
         </div>

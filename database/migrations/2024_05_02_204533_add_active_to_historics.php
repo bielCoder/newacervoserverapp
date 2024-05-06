@@ -14,7 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::table('historics', function (Blueprint $table) {
-            $table -> string('active') -> after('register');
+            $table -> string('active_register') -> after('register');
+            $table -> string('active_name') -> after('active_register');
+
         });
     }
 
@@ -26,7 +28,9 @@ return new class extends Migration
     public function down()
     {
         Schema::table('historics', function (Blueprint $table) {
-            $table -> string('active') -> after('register');
+            $table -> string('active_register') -> after('register');
+            $table -> string('active_name') -> after('active_register');
+
         });
     }
 };

@@ -56,7 +56,8 @@ class WithdrawController extends Controller
                $baggage -> create([
                     "user_id" =>  $request -> withdraw["users"]["id"],
                     "product_id" => $request -> withdraw["products"][$i]["id"],
-                    "amount" => $request -> withdraw["products"][$i]["amount"]
+                    "amount" => $request -> withdraw["products"][$i]["amount"],
+                   
                 ]);
 
                  $amount = $baggage -> where('user_id', $request -> withdraw["users"]["id"]) -> get();
@@ -83,7 +84,8 @@ class WithdrawController extends Controller
                 $historic -> create([
                     "name" => $userToRegisterHistoric -> name,
                     "register" => $userToRegisterHistoric -> register,
-                    "active" => Auth::user() -> id,
+                    "active_register" => Auth::user() -> register,
+                    "active_name" => Auth::user() -> name,
                     "function" => $userToRegisterHistoric -> function,
                     "department" => $userToRegisterHistoric -> department,
                     "email" => $userToRegisterHistoric -> email,
@@ -205,7 +207,8 @@ class WithdrawController extends Controller
                     $historic -> where('code','=',$request -> all()[$i]["code"],'AND','register','=',$user -> register) -> whereNull('devolution') -> update([
                             "name" => $user -> name,
                             "register" => $user -> register,
-                            "active" => Auth::user() -> id,
+                            "active_register" => Auth::user() -> register,
+                            "active_name" => Auth::user() -> name,
                             "function" => $user -> function,
                             "department" => $user -> department,
                             "email" => $user -> email,
