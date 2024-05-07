@@ -37,8 +37,8 @@
 /*  Section of the auth  */
 .image-logo-auth {
     width: 120px;
-    height: 120px;
-    background-image: url(../../../../../assets/img/logo.jpg);
+    height: 155px;
+    background-image: url(../../../../../assets/img/logo.png);
     background-size: cover;
     mix-blend-mode: darken;
     margin-bottom: 3em;
@@ -46,7 +46,7 @@
 }
 
 .auth-login-container {
-    width: 30%;
+    width: 18%;
     height: 100vh;
     display: flex;
     justify-content: center;

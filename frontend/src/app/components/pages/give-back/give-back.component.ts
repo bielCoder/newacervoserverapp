@@ -68,12 +68,13 @@ export class GiveBackComponent implements OnInit {
         }
       )
 
-      // clear message 
-
-      window.localStorage.removeItem('message');
-      this.success = null;
+       // message
+       this.success = window.localStorage.getItem('message')
+       window.localStorage.removeItem('message');
 
     }
+
+    
 
 
 

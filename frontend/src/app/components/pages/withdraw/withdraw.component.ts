@@ -28,6 +28,8 @@ export class WithdrawComponent implements OnInit {
     productListSession:any = [];
     observation!:any;
     counter!:any;
+    incrementLimit!: number;
+    productFindById: any;
 
     @ViewChild('lignProduct') lignProduct!: ElementRef
     @ViewChild('userSearchInputProduct') userSearchInputProduct!: ElementRef
@@ -169,7 +171,7 @@ export class WithdrawComponent implements OnInit {
 
  
 
-  async counterMore(id: number) {
+  counterMore(id: number) {
 
   
   const productFind = this.search.find((product: Products) => product.id === id)
@@ -186,34 +188,36 @@ export class WithdrawComponent implements OnInit {
     
     // Exemplo: Filtrar o objeto com ID 1
     const productId = id;
-    const product = filterProductById(productId);
+    this.productFindById = filterProductById(productId);
     
     // Verifique se o objeto foi encontrado
-    if (product) {     
+    if (this.productFindById) {     
         // Defina o limite de incremento
-        const incrementLimit = productFind.available; // Defina o limite desejado
+        this.incrementLimit = productFind.available; // Defina o limite desejado
         
         // Verifique se a quantidade é um número válido
-        if (!isNaN(product.amount) && typeof product.amount === 'number') {
+        if (!isNaN(this.productFindById.amount) && typeof this.productFindById.amount === 'number') {
             // Verifique se o incremento excede o limite
-            if (product.amount < incrementLimit) {
+            if (this.productFindById.amount < this.incrementLimit) {
                 // Incrementa a quantidade apenas se não exceder o limite
-                product.amount += 1; // Novo valor para a chave "amount"
+                this.productFindById.amount += 1; // Novo valor para a chave "amount"
                 
                 let find = document.getElementById(`${id}`);
                 
                 if (find) { 
-                    find.textContent = product.amount;
+                    find.textContent = this.productFindById.amount;
                 }
                 
                 // Salve o objeto filtrado de volta no localStorage com a chave "products"
                 localStorage.setItem("products", JSON.stringify(products));
             } else {
-                console.log("Quantidade Excedida.");
+              let find = document.getElementsByClassName(`${id} limit`);
+                
+              find[0].innerHTML = "* Quantidade Excedida"
             }
         } else {
             // Se a quantidade não for válida, defina-a como 0 antes de incrementar
-            product.amount = 0;
+            this.productFindById.amount = 0;
             this.counterMore(id); // Chame a função novamente para tentar incrementar
         }
     }
@@ -222,7 +226,9 @@ export class WithdrawComponent implements OnInit {
     counterLess(id: number)
     {
   
-
+      let find = document.getElementsByClassName(`${id} limit`);
+                
+      find[0].innerHTML = ""
       // Recupere os dados do localStorage
       const productsString = localStorage.getItem("products") || '';
       const products: any[] = JSON.parse(productsString);

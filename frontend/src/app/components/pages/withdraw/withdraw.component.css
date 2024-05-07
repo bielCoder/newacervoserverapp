@@ -446,3 +446,7 @@ a i {
 .btn-danger {
     z-index: 9;
 }
+
+.limit {
+    color: #b54141;
+}

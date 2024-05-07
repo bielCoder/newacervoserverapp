@@ -82,10 +82,10 @@
                   <td></td>
                   <td>{{ product.available }}</td>
                   <td></td>
-                  <td class="available" *ngIf="!product.pending; else pending">Disponíveis.</td>
+                  <td class="unavailable" *ngIf="product.unavailable === product.amount else pending">Indisponível</td>
                   <td></td>
                   <ng-template #pending>
-                    <td class="unavailable">Há produtos em uso.</td>
+                    <td class="available">Disponíveis</td>
                   </ng-template>
                 </tr>
             </tbody>

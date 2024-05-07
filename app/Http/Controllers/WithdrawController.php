@@ -188,6 +188,7 @@ class WithdrawController extends Controller
             
             $user = User::find($id);
             $find = $products -> where('code',$request -> all()[$i]["code"]) -> get(); 
+            $inUse = $withdraw -> where('product_id',$request -> all()[$i]["id"]) -> get();
             $counterLess =  $find[0] -> getOriginal()["unavailable"] - $request -> all()[$i]["amount"];
             $counterMore = $find[0] -> getOriginal()["available"] + $request -> all()[$i]["amount"];
 
@@ -196,37 +197,60 @@ class WithdrawController extends Controller
                 "unavailable" => $counterLess,
                 "available" => $counterMore
             ]);
+            // 2 opções
+            // inverter
 
-            $withdraw -> where('product_id',$request -> all()[$i]["id"]) -> delete();
-                    $dataProductToId = $historic -> where('code','=',$request -> all()[$i]["code"],'AND','register','=',$user -> register) -> whereNull('devolution') -> get();
+            // tirar do se não
 
-                    $nowDate = new DateTime('now');
-                    $dataBank = new DateTime($dataProductToId[0] -> withdraw);
-                    $days = $nowDate -> diff($dataBank);
-              
-                    $historic -> where('code','=',$request -> all()[$i]["code"],'AND','register','=',$user -> register) -> whereNull('devolution') -> update([
-                            "name" => $user -> name,
-                            "register" => $user -> register,
-                            "active_register" => Auth::user() -> register,
-                            "active_name" => Auth::user() -> name,
-                            "function" => $user -> function,
-                            "department" => $user -> department,
-                            "email" => $user -> email,
-                            "product" => $dataProductToId[0] -> product,
-                            "code" => $dataProductToId[0] -> code,
-                            "brand" =>$dataProductToId[0] -> brand,
-                            "color" => $dataProductToId[0] -> color,
-                            "size" => $dataProductToId[0] -> size,
-                            "sexo" => $dataProductToId[0] -> sexo,
-                            "observation" => $dataProductToId[0]-> observation,
-                            "breakdown" => $dataProductToId[0] -> breakdown,
-                            "description" => $dataProductToId[0] -> description,
-                            "pending" => false,
-                            "amount" => $dataProductToId[0] -> amount,
-                            "withdraw" => $dataProductToId[0] -> withdraw,
-                            "devolution" => now(),
-                            "days" => $days -> days
+
+                if($inUse[$i] -> amount >  0)
+                {
+                    $withdraw -> where('product_id',$request -> all()[$i]["id"]) -> update([
+                        "amount" => $inUse[$i] -> amount - $request -> all()[$i]["amount"]
                     ]);
+                } else {
+                    $withdraw -> where('product_id',$request -> all()[$i]["id"]) -> delete();
+                }
+
+                  
+                      
+                    // Parei aqui , ao reduzir a quantidade ao devolver se igual a zero , dev excluir, se não apenas diminuir
+                    // pede ajuda ao GPT
+                    
+                    
+
+                   
+
+
+                    // $dataProductToId = $historic -> where('code','=',$request -> all()[$i]["code"],'AND','register','=',$user -> register) -> whereNull('devolution') -> get();
+
+                    // $nowDate = new DateTime('now');
+                    // $dataBank = new DateTime($dataProductToId[0] -> withdraw);
+                    // $days = $nowDate -> diff($dataBank);
+              
+                    // $historic -> where('code','=',$request -> all()[$i]["code"],'AND','register','=',$user -> register) -> whereNull('devolution') -> update([
+                    //         "name" => $user -> name,
+                    //         "register" => $user -> register,
+                    //         "active_register" => Auth::user() -> register,
+                    //         "active_name" => Auth::user() -> name,
+                    //         "function" => $user -> function,
+                    //         "department" => $user -> department,
+                    //         "email" => $user -> email,
+                    //         "product" => $dataProductToId[0] -> product,
+                    //         "code" => $dataProductToId[0] -> code,
+                    //         "brand" =>$dataProductToId[0] -> brand,
+                    //         "color" => $dataProductToId[0] -> color,
+                    //         "size" => $dataProductToId[0] -> size,
+                    //         "sexo" => $dataProductToId[0] -> sexo,
+                    //         "observation" => $dataProductToId[0]-> observation,
+                    //         "breakdown" => $dataProductToId[0] -> breakdown,
+                    //         "description" => $dataProductToId[0] -> description,
+                    //         "pending" => false,
+                    //         "amount" => $dataProductToId[0] -> amount,
+                    //         "withdraw" => $dataProductToId[0] -> withdraw,
+                    //         "devolution" => now(),
+                    //         "days" => $days -> days
+                    // ]);
         }
                 try {
                 return $this -> response -> format("withdraw","application/json","delete",null,null,"Produtos devolvidos com sucesso!",200);
