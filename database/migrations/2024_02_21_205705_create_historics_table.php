@@ -33,7 +33,7 @@ return new class extends Migration
             $table->boolean('pending') -> nullable(false);
             $table->integer('amount') -> nullable(false);
             $table->timestamp('withdraw');
-            $table->timestamp('devolution') -> nullable(true);
+            $table->string('devolution',255) -> nullable(true);
             $table->integer('days');
             $table->timestamps();
         });

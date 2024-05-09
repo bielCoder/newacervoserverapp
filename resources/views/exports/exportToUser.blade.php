@@ -73,7 +73,11 @@
            <td>não</td>
            @endif
            <td>{{ date('d/m/Y H:i:s',strtotime($historic -> withdraw)) }}</td>
-           <td>{{ date('d/m/Y H:i:s',strtotime($historic -> devolution)) }}</td>
+            @if($historic -> devolution === "pendente")
+           <td>pendente</td>
+            @else
+            <td>{{ date('d/m/Y H:i:s',strtotime($historic -> devolution)) }}</td>
+            @endif
            <td>{{ $historic -> days }}</td> 
         </tr>
         @endforeach

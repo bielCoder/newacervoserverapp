@@ -39,7 +39,7 @@ class HistoricController extends Controller
        
             if(!is_null($this -> historics -> paginate((int)$perPage)))
             {   
-                return $this -> response -> format("historics","application\json","get",$this -> historics -> paginate((int)$perPage),null,null,200);
+                return $this -> response -> format("historics","application\json","get",$this -> historics -> orderBy('id','desc') -> paginate((int)$perPage),null,null,200);
             }
                 return $this -> response -> error("historics","application\json","get","Not Found",404);
         } catch(\PDOException $e)

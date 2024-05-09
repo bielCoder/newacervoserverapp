@@ -11,6 +11,8 @@ class AllHistorics implements FromView
   
     public function view(): View
     {
-        return view('exports.exportToUser',["historics"=>Historic::all()]);
+        return view('exports.exportToUser',["historics"=>Historic::orderBy('id', 'desc')->get()]);
     }
+
+ 
 }

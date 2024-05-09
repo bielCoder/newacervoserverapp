@@ -101,7 +101,7 @@ class WithdrawController extends Controller
                     "pending" => $productToRegisterHistoric[0] -> pending,
                     "amount" => $amount[$i] -> getOriginal()["amount"],
                     "withdraw" => now(),
-                    "devolution" => null,
+                    "devolution" => "pendente",
                     "days" => 0
                 ]);
              

@@ -14,7 +14,6 @@
         <table class="table table-hover">
             <thead>
               <tr>
-                <th>#</th>
                 <th>Matrícula</th>
                 <th>Nome</th>
              
@@ -39,7 +38,6 @@
             </thead>
             <tbody class="table-group-divider">
                 <tr *ngFor="let historic of historics" (click)="onWhoIsLogged(historic.active_register)">
-                  <td>{{ historic.id }}</td>
                   <td>{{ historic.register }}</td>
                   <td>{{ historic.name }}</td>
                   <!-- <td>{{ historic.function }}</td> -->
