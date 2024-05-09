@@ -184,223 +184,93 @@ class WithdrawController extends Controller
      * 
      * 
      */
-    public function destroy(Withdraw $withdraw, Request $request, Product $products, Historic $historic, $id)
-    {
-        foreach ($request->all() as $item) {
-            $code = $item["code"] ?? null; // Verifica se 'code' está definido
-            $find = $products->where('code', $code)->get()->first();
-            $amount = $item["amount"] ?? 0; // Define um valor padrão caso 'amount' não esteja definido
-    
-            
-            if ($code !== null) {
-                $user = User::find($id);
 
-                $counterLess = $find->getOriginal()["unavailable"] - $amount;
-                $counterMore = $find->getOriginal()["available"] + $amount;
+     public function destroy(Withdraw $withdraw, Request $request, Product $products, Historic $historic, $id)
+     {
+         foreach ($request->all() as $item) {
+             $code = $item["code"] ?? null;
+             $amount = $item["amount"] ?? 0;
+     
+             if ($code !== null) {
+                 $user = User::find($id);
+                 $product = $products->where('code', $code)->first();
+     
+                 $counterLess = $product->unavailable - $amount;
+                 $counterMore = $product->available + $amount;
+     
+                
+     
+                 $inUse = $withdraw->where('product_id', $item["id"])->first();
 
-                $products->where('code', $code)->update([
-                    "pending" => false,
+                
+                 $newAmount = $inUse->amount - $amount;
+
+                 $products->where('code', $code)->update([
+                    "pending" => $newAmount === 0 ? false : true,
                     "unavailable" => $counterLess,
                     "available" => $counterMore
                 ]);
-                $inUse = $withdraw->where('product_id', $item["id"]) ->get();
-             
-                $newAmount = $inUse[0]["amount"] - $amount;
-                $withdraw->where('product_id', $item["id"])->update(["amount" => $newAmount]);
-       
-             
-
-
-                $dataProductToId = $historic->where('code', '=', $code)
-                ->where('register', '=', $user->register)
-                ->get();
-    
-
-                $nowDate = new DateTime('now');
-                $dataBank = new DateTime($dataProductToId[0] -> withdraw);
-                $days = $nowDate -> diff($dataBank);
-
-                
-                $findUpdate = $historic->where('code', '=', $code)
-                ->where('register', '=', $user->register)
-                ->whereNull('devolution')
-                ->update([
-                    "devolution" =>  $nowDate,
-                    "amount" => $amount,
-                    "days" => $days -> days
-                ]);
-
-                if($newAmount === 0)
-                {
-                    $withdraw -> where('product_id',$item["id"]) -> delete();
-                }
-                
-               if(!$findUpdate)
-               {
-                if($newAmount === 0 && !$findUpdate)
-                {
-                    $withdraw -> where('product_id',$item["id"]) -> delete();
-                    $historic->create([
-                        "name" => $user -> name,
-                        "register" => $user -> register,
-                        "active_register" => Auth::user() -> register,
-                        "active_name" => Auth::user() -> name,
-                        "function" => $user -> function,
-                        "department" => $user -> department,
-                        "email" => $user -> email,
-                        "product" => $dataProductToId[0] -> product,
-                        "code" => $dataProductToId[0] -> code,
-                        "brand" => $dataProductToId[0] -> brand,
-                        "color" => $dataProductToId[0] -> color,
-                        "size" => $dataProductToId[0] -> size,
-                        "sexo" => $dataProductToId[0] -> sexo,
-                        "observation" => $dataProductToId[0] -> observation,
-                        "breakdown" => $dataProductToId[0] -> breakdown,
-                        "description" => $dataProductToId[0] -> description,
-                        "pending" => $dataProductToId[0] -> pending,
-                        "amount" =>$inUse[0]["amount"] - $amount === 0 ? 1 : $inUse[0]["amount"] - $amount,
-                        "withdraw" => $nowDate,
-                        "devolution" => $nowDate,
-                        "days" => 0
-                    ]);
-                } else {
-                    for($i = 0; $i < count($dataProductToId); $i++)
-                    {
-                        $historic->create([
-                            "name" => $user -> name,
-                            "register" => $user -> register,
-                            "active_register" => Auth::user() -> register,
-                            "active_name" => Auth::user() -> name,
-                            "function" => $user -> function,
-                            "department" => $user -> department,
-                            "email" => $user -> email,
-                            "product" => $dataProductToId[0] -> product,
-                            "code" => $dataProductToId[0] -> code,
-                            "brand" => $dataProductToId[0] -> brand,
-                            "color" => $dataProductToId[0] -> color,
-                            "size" => $dataProductToId[0] -> size,
-                            "sexo" => $dataProductToId[0] -> sexo,
-                            "observation" => $dataProductToId[0] -> observation,
-                            "breakdown" => $dataProductToId[0] -> breakdown,
-                            "description" => $dataProductToId[0] -> description,
-                            "pending" => $dataProductToId[0] -> pending,
-                            "amount" =>$inUse[0]["amount"] - $amount === 0 ? 1 : $inUse[0]["amount"] - $amount,
-                            "withdraw" => $nowDate,
-                            "devolution" => $nowDate,
-                            "days" => 0
-                        ]);
-                    
-                    }
-                   
-                } 
-               }
-
-           
-          
-              
-            }
-        }
-    
-        try {
-            return $this->response->format("withdraw", "application/json", "delete", null, null, "Produtos devolvidos com sucesso!", 200);
-        } catch (\Exception $e) {
-            return $this->response->error("withdraw", "application/json", "delete", $e->getMessage(), null, null, 500);
-        }
-    }
-
-    // public function destroy(Withdraw $withdraw,Request $request, Product $products, Historic $historic,$id)
-    // {
-    //     for($i = 0; $i < count($request -> all()); $i++) {
-            
-    //         $user = User::find($id);
-    //         $find = $products -> where('code',$request -> all()[$i]["code"]) -> get(); 
-    //         $inUse = $withdraw -> where('product_id',$request -> all()[$i]["id"]) -> get();
-    //         $counterLess =  $find[0] -> getOriginal()["unavailable"] - $request -> all()[$i]["amount"];
-    //         $counterMore = $find[0] -> getOriginal()["available"] + $request -> all()[$i]["amount"];
-
-    //         $products -> where('code',$request -> all()[$i]["code"]) -> update([
-    //             "pending" => false,
-    //             "unavailable" => $counterLess,
-    //             "available" => $counterMore
-    //         ]);
-         
+                 $withdraw->where('product_id', $item["id"])->update(["amount" => $newAmount]);
      
+                 $dataProductToId = $historic->where('code', '=', $code)
+                             ->where('register', '=', $user->register)
+                             ->latest('created_at') // Assuming 'created_at' is your timestamp column
+                             ->first();
+     
+                 $nowDate = new DateTime('now');
+                 $dataBank = new DateTime($dataProductToId->withdraw);
+                 $days = $nowDate->diff($dataBank);
+     
+                 $findUpdate = $historic->where('code', '=', $code)
+                     ->where('register', '=', $user->register)
+                     ->whereNull('devolution')
+                     ->update([
+                         "devolution" => now(),
+                         "amount" => $amount,
+                         "days" => $days->days
+                     ]);
+     
+                 if ($newAmount === 0) {
+                     $withdraw->where('product_id', $item["id"])->delete();
+                 }
+     
+                 if (!$findUpdate) {
+                     $historic->create([
+                         "name" => $user->name,
+                         "register" => $user->register,
+                         "active_register" => Auth::user()->register,
+                         "active_name" => Auth::user()->name,
+                         "function" => $user->function,
+                         "department" => $user->department,
+                         "email" => $user->email,
+                         "product" => $dataProductToId->product,
+                         "code" => $dataProductToId->code,
+                         "brand" => $dataProductToId->brand,
+                         "color" => $dataProductToId->color,
+                         "size" => $dataProductToId->size,
+                         "sexo" => $dataProductToId->sexo,
+                         "observation" => $dataProductToId->observation,
+                         "breakdown" => $dataProductToId->breakdown,
+                         "description" => $dataProductToId->description,
+                         "pending" => $dataProductToId->pending,
+                         "amount" => $newAmount === 0 ? 1 : $newAmount,
+                         "withdraw" => $dataProductToId->withdraw,
+                         "devolution" => now(),
+                         "days" => $days->days
+                     ]);
+                 }
+             }
+         }
+     
+         try {
+             return $this->response->format("withdraw", "application/json", "delete", null, null, "Produtos devolvidos com sucesso!", 200);
+         } catch (\Exception $e) {
+             return $this->response->error("withdraw", "application/json", "delete", $e->getMessage(), null, null, 500);
+         }
+     }
 
-    //              $withdraw -> where('product_id',$request -> all()[$i]["id"]) -> update([
-    //             "amount" => $inUse[$i] -> amount - $request -> all()[$i]["amount"]
-    //             ]);   
-                
-    //             if($inUse[$i] -> amount === $request -> all()[$i]["amount"] )
-    //             {
-    //                 $withdraw -> where('product_id',$request -> all()[$i]["id"]) -> delete();
-    //             }
-            
 
-                    
-    //                 $dataProductToId = $historic -> where('code','=',$request -> all()[$i]["code"],'AND','register','=',$user -> register) -> whereNull('devolution') -> get();
-
-    //                 if(count($dataProductToId) === 0)
-    //                 {
-    //                     $historic -> create([
-    //                         "name" => $user -> name,
-    //                         "register" => $user -> register,
-    //                         "active_register" => Auth::user() -> register,
-    //                         "active_name" => Auth::user() -> name,
-    //                         "function" => $user -> function,
-    //                         "department" => $user -> department,
-    //                         "email" => $user -> email,
-    //                         "product" => $dataProductToId[0] -> product,
-    //                         "code" => $dataProductToId[0] -> code,
-    //                         "brand" => $dataProductToId[0] -> brand,
-    //                         "color" => $dataProductToId[0] -> color,
-    //                         "size" => $dataProductToId[0] -> size,
-    //                         "sexo" => $dataProductToId[0] -> sexo,
-    //                         "observation" => $dataProductToId[0] -> observation,
-    //                         "breakdown" => $dataProductToId[0] -> breakdown,
-    //                         "description" => $dataProductToId[0] -> description,
-    //                         "pending" => $dataProductToId[0] -> pending,
-    //                         "amount" =>$request -> all()[$i]["amount"],
-    //                         "withdraw" => now(),
-    //                         "devolution" => null,
-    //                         "days" => 0
-    //                     ]);
-    //                 }
-                  
-    //                 $nowDate = new DateTime('now');
-    //                 $dataBank = new DateTime($dataProductToId[0] -> withdraw);
-    //                 $days = $nowDate -> diff($dataBank);
-                
-              
-    //                 $historic -> where('code','=',$request -> all()[$i]["code"],'AND','register','=',$user -> register) -> whereNull('devolution') -> update([
-    //                         "name" => $user -> name,
-    //                         "register" => $user -> register,
-    //                         "active_register" => Auth::user() -> register,
-    //                         "active_name" => Auth::user() -> name,
-    //                         "function" => $user -> function,
-    //                         "department" => $user -> department,
-    //                         "email" => $user -> email,
-    //                         "product" => $dataProductToId[0] -> product,
-    //                         "code" => $dataProductToId[0] -> code,
-    //                         "brand" =>$dataProductToId[0] -> brand,
-    //                         "color" => $dataProductToId[0] -> color,
-    //                         "size" => $dataProductToId[0] -> size,
-    //                         "sexo" => $dataProductToId[0] -> sexo,
-    //                         "observation" => $dataProductToId[0]-> observation,
-    //                         "breakdown" => $dataProductToId[0] -> breakdown,
-    //                         "description" => $dataProductToId[0] -> description,
-    //                         "pending" => false,
-    //                         "amount" => $dataProductToId[0] -> amount,
-    //                         "withdraw" => $dataProductToId[0] -> withdraw,
-    //                         "devolution" => now(),
-    //                         "days" => $days -> days
-    //                 ]);
-    //     }
-    //             try {
-    //             return $this -> response -> format("withdraw","application/json","delete",null,null,"Produtos devolvidos com sucesso!",200);
-    //             } catch(\Exception $e) {
-    //             return $this -> response -> error("withdraw","application/json","delete",$e -> getMessage(), null, null, 500);
-    //             }
-    //     }
+   
       
     }
 

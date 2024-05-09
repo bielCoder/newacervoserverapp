@@ -4,6 +4,7 @@ import { Users } from 'src/app/interfaces/users';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog'
 import { DialogComponent } from '../../utilities/dialogs/users/edit-dialog/dialog.component';
+import { CreateDialogComponent } from '../../utilities/dialogs/users/create-dialog/create-dialog.component';
 
 
 @Component({
@@ -89,10 +90,15 @@ export class OperatorsComponent implements OnInit {
     this.users = event.users.data[2].data
   }
 // página cadastrar
-  navigateRegister()
-  {
-   return this.router.navigate(['create']);
-  }
+navigateRegister()
+{
+  this.dialog.open(CreateDialogComponent,{
+    width: '50%',
+    height:'auto',
+    position:{top: '3em'},
+    disableClose:true,
+  })
+}
 
   // abre o modal de atualização de dados
    openDialog(element: HTMLElement)

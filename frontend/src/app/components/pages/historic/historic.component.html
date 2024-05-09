@@ -31,7 +31,7 @@
                 <th>Observação</th>
                 <th><abbr title="Avariado ?">Avaria.</abbr></th>
                 <th><abbr title="Descrição da Avaria">Descrição</abbr></th>
-                <th colspan="1"><abbr title="Em uso">Uso</abbr></th>
+                <!-- <th colspan="1"><abbr title="Em uso">Uso</abbr></th> -->
                 <th>Retirada</th>
                 <th>Devolução</th>
                 <th><abbr title="Dias em Uso">Dias.</abbr></th>
@@ -57,7 +57,7 @@
                     <td>não</td>
                   </ng-template>
                   <td>{{ historic.description }}</td>
-                  <td *ngIf="historic.pending; else notPending">sim</td>
+                  <!-- <td *ngIf="historic.pending; else notPending">sim</td> -->
                   <ng-template #notPending>
                     <td>não</td>
                   </ng-template>
