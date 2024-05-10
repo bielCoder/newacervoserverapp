@@ -52,6 +52,10 @@
                 <th><i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-up"></i></th>
                 <th><abbr title="Quantidade de items disponíveis ">Disp.</abbr></th>
                 <th><i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-down"></i></th>
+
+                <th><abbr title="Quantidade de items pendentes ">Pend.</abbr></th>
+
+                <th><i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-up"></i></th>
                 <th>status</th>
               </tr>
             </thead>
@@ -81,6 +85,8 @@
                   <td>{{ product.description }}</td>
                   <td></td>
                   <td>{{ product.available }}</td>
+                  <td></td>
+                  <td>{{ product.unavailable }}</td>
                   <td></td>
                   <td class="unavailable" *ngIf="product.unavailable === product.amount else pending">Indisponível</td>
                   <td></td>
