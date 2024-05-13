@@ -25,11 +25,11 @@
     border-top: 1px solid #c1c1c1;
     justify-content: flex-end;
     align-items: center;
-    padding: 2em;
+    padding: .5em;
     text-align: center;
     padding-right: 0.5em;
     gap: 0.5em;
-  }
+}
   
   .container-content {
     height: auto;
@@ -317,3 +317,27 @@
  .size-title {
     font-size: .80em;
  }
+
+
+
+ tbody  th tr {
+    vertical-align: middle;
+ }
+
+
+ .align-center {
+    vertical-align: middle;
+ }
+
+
+ .table {
+    margin: 0 auto;
+    width: 70%;
+ }
+
+ .footer-container .spacing-margin-pagination {
+  position: relative;
+  bottom: 0px;
+  width: 100%;
+  margin-top: 4em;
+}

@@ -387,8 +387,8 @@ a i {
 }
 
 .cart-in-use {
-    position: absolute;
-    margin-top: -25px;
+    position: relative;
+    margin-top: 0px;
 }
 .container-position-btn-success {
     position: relative;
@@ -471,5 +471,35 @@ tbody tr.cart:hover {
 
 .less:hover {
     background-color: #b54141;
+    color: #fff;
+}
+
+.container-position-header {
+    display: flex;
+    padding-right: .5em;
+    padding-left: 0em;
+}
+
+.return-everything {
+    color: #b54641;
+    border: 1px solid #b54641;
+    padding: .5em;
+    cursor: pointer;
+    font-size: .89em;
+}
+
+.return-everything:hover {
+    background-color: #b54641;
+    color: #fff;
+}
+
+.btn-outline-danger {
+    color: #b54641;
+    border: 1px solid #b54641;
+    font-size: .89em;
+}
+
+.btn-outline-danger:hover {
+    background-color: #b54641;
     color: #fff;
 }

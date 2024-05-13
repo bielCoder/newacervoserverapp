@@ -227,10 +227,10 @@ export class GiveBackComponent implements OnInit {
       // Remover o item do array
       const removedItem = this.productsInUse[0].product.splice(index, 1)[0];
       removedItem.amount = objectAmount[0].amount
-  
       // Adicionar o item removido de volta à lista de produtos
       this.productsList.push(removedItem);
       this.productsList.sort((a: any, b: any) => a.id - b.id);
+
    
     }
   }
@@ -247,6 +247,31 @@ export class GiveBackComponent implements OnInit {
     })
   }
 
+
+  returnEverything()
+  {
+   // Mover todos os itens de productsInUse para productsList
+   while (this.productsInUse[0].product.length > 0) {
+    // Remove o primeiro item de productsInUse e armazena-o em removedItem
+    const removedItem = this.productsInUse[0].product.splice(0, 1)[0];
+
+    // Encontre o valor de amount correspondente a este item em productsInUse
+    const objectAmount = this.productsInUse[0].amount.find((data: any) => {
+      return data.product_id === removedItem.id;
+    });
+
+    // Se o valor de amount for encontrado, defina-o no item removido
+    if (objectAmount) {
+      removedItem.amount = objectAmount.amount;
+    }
+
+    // Adiciona o item removido de volta à lista de produtos
+    this.productsList.push(removedItem);
+  }
+
+  // Ordena productsList após adicionar todos os itens
+  this.productsList.sort((a: any, b: any) => a.id - b.id);
+  }
 
 
 

@@ -26,7 +26,7 @@
                 <input type="text" formControlName="department" id="department" class="department form-control" placeholder=" " autocomplete="off" [class.is-invalid]="!createUserForms.controls['department'].valid && createUserForms.controls['department'].touched">
                 <label for="department">departamento</label>
             </div> 
-            <p class="error" *ngIf="error !== undefined && error !== '* campo aceita apenas e-mail.'  && error !== '* insira o seu nome completo'" [class.generic-error]="error !== undefined && error !== '* campo aceita apenas e-mail.'  && error !== '* insira o seu nome completo'" [class.erro-undefined]="error !== undefined && error !== '* campo aceita apenas e-mail.'  && error !== '* insira o seu nome completo' && error">{{ error }}</p>
+            <p class="error size-correct" *ngIf="error !== undefined && error !== '* campo aceita apenas e-mail.'  && error !== '* insira o seu nome completo'" [class.generic-error]="error !== undefined && error !== '* campo aceita apenas e-mail.'  && error !== '* insira o seu nome completo'" [class.erro-undefined]="error !== undefined && error !== '* campo aceita apenas e-mail.'  && error !== '* insira o seu nome completo' && error">{{ error }}</p>
             <p class="error" *ngIf="!createUserForms.controls['department'].valid && createUserForms.controls['department'].touched" >* campo obrigatório</p>
             </div>
            
