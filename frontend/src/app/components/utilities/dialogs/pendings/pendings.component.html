@@ -7,29 +7,35 @@
             <p class="close-modal" (click)="closeModal()"><i class="bi bi-x-circle"></i></p>
         </div>
             <div class="container-content">
-                <div class="info-group">
-                    <span class="name-info">Nome do Funcionário</span>
-                    <p class="name">{{ user.name }}</p>
-                </div>
-
-                <div class="info-group">
-                    <span class="name-info">Matrícula</span>
-                    <p class="email">{{ user.register }}</p>
-                </div>
-
-                <div class="info-group">
-                    <span class="name-info">E-mail</span>
-                    <p class="email">{{ user.email }}</p>
-                </div>
-
-                <div class="info-group">
-                    <span class="name-info"><abbr title="Departamento">Depart</abbr></span>
-                    <p class="email">{{ user.department }}</p>
-                </div>
-
+                <table>
+                   <thead>
+                    <tr class="size-title">
+                        <th>Matrícula</th>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th><abbr title="Departamento">Departamento</abbr></th>
+                        <th><abbr title="Quantidade">Quantidade</abbr></th>
+                        <th>Ação</th>
+                    </tr>
+                   </thead>
+                   <tbody>
+                    <ng-container *ngFor="let user of users">
+                    <tr *ngFor="let subUser of user.user.data let i = index">
+                        <td>{{ subUser.register }}</td>
+                        <td>{{ subUser.name }}</td>
+                        <td>{{ subUser.email }}</td>
+                        <td>{{ subUser.department }}</td>
+                        <td>{{ user.amount[i].amount }}</td>
+                        <td>
+                            <button (click)="redirectUseProduct(subUser.id)" class="btn btn-outline-info" *ngIf="currentPage === '/pendings'"><i class="bi bi-arrow-bar-down"></i> Devolver Produto</button>
+                        </td>
+                    </tr>
+                    </ng-container> 
+                   </tbody>
+                </table>
             </div>     
         <div class="footer-container">
-            <button (click)="openModalDevolution()" class="btn btn-outline-info" *ngIf="currentPage === '/pendings'"><i class="bi bi-arrow-bar-down"></i> Devolver Produto</button>
+            <app-paginator [paginator]="paginator" [alpha]="alpha" (paginatorEvent)="nextPage($event)" ></app-paginator>
         </div>
 </div>
 

@@ -82,7 +82,7 @@ import { PendingsDialogComponent } from './components/utilities/dialogs/pendings
     HistoricComponent,
     HistoricToUserComponent,
     PendingComponent,
-    PendingsDialogComponent
+    PendingsDialogComponent,
   ],
   imports: [
   AppRoutingModule,

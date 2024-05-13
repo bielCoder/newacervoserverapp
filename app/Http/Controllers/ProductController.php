@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRegister;
 use App\Http\Requests\ProductUpdate;
+use App\Models\Withdraw;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -196,15 +197,24 @@ class ProductController extends Controller
     }
 
 
-    public function whoIsUseProduct($id)
+    public function whoIsUseProduct($id,Withdraw $withdraw,Request $request)
     {
-        $product = $this -> product -> find($id);
+        if(!empty($request -> order))
+        {
+          $this -> order = $request -> order;
+        }
+    
         try {
-        $userFind = $product -> users() -> first();
-          
+            $perPage = $request -> per_page ?? 20; // Define o valor padrão como 15 caso não seja fornecido um valor
+
+            $product = $this -> product -> find($id);
+            $userFind = $product -> users() -> paginate($perPage);
+            $amount = $withdraw -> where('product_id',$id) -> get();
+     
+        $ArrayObject = array(["user" => $userFind,"amount" => $amount]);
             if(!is_null($userFind))
             {
-                return $this -> response -> format("users","application\json","get",$userFind,null,null,200);
+                return $this -> response -> format("users","application\json","get",$ArrayObject,null,null,200);
             }
                 return $this -> response -> error("users","application\json","get","Not Found",404);
         } catch(\PDOException $e)

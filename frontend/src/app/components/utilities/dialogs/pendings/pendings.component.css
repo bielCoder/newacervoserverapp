@@ -1,4 +1,6 @@
-::ng-deep .mat-mdc-dialog-container {
+
+
+  ::ng-deep .mat-mdc-dialog-container {
     --mdc-dialog-container-color: #f1f1f1;
   }
   
@@ -18,29 +20,32 @@
   }
   
   .footer-container {
+    position: relative;
     display: flex;
     border-top: 1px solid #c1c1c1;
     justify-content: flex-end;
     align-items: center;
-    padding: 0.5em;
+    padding: 2em;
     text-align: center;
     padding-right: 0.5em;
     gap: 0.5em;
   }
   
   .container-content {
-  height: auto;
-  display: flex;
-  gap: 2em;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding-top: 2em;
-  padding-bottom: 2em;
-  position: relative;
-  flex-wrap: wrap;
-  
-  }
+    height: auto;
+    max-height: 50vh;
+    overflow-y: scroll;
+    display: flex;
+    gap: 2em;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    position: relative;
+    flex-wrap: wrap;
+    margin-bottom: 0em;
+}
   
   .btn-outline-dark {
   font-size: .89em;
@@ -283,6 +288,8 @@
     background-color: transparent;
     border-color: #290661;
     font-size: .89em;
+    margin-bottom: 1em;
+    margin-top: .5em;
   }
 
   .btn-outline-info:hover {
@@ -306,3 +313,7 @@
   .info-group p {
     font-size: .75em;
   }
+
+ .size-title {
+    font-size: .80em;
+ }

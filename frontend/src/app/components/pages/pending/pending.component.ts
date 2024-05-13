@@ -135,11 +135,12 @@ export class PendingComponent implements OnInit {
   {
     this.productService.whoIsPending(element).subscribe((data: any) => {
       this.dialog.open(PendingsDialogComponent,{
-        width: '35vw',
-        height:'auto',
+        width: '50vw',
+        maxHeight:'50vh',
         position:{top: '100px'},
         disableClose:true,
         data:{withdraw: {users: data.users.data, products: [element]}}})
+
     })
    
   }
