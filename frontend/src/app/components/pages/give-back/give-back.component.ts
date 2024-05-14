@@ -55,7 +55,7 @@ export class GiveBackComponent implements OnInit {
       this.backDrop.show(this.route.snapshot.params['id']).subscribe(
         (data) => {
           this.productsInUse = data;
-          this.productsInUse = this.productsInUse?.withdraw.data;      
+          this.productsInUse = this.productsInUse?.withdraw.data; 
         }
       )
 
