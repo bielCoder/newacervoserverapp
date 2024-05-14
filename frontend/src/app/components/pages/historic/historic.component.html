@@ -60,7 +60,10 @@
                     <td>não</td>
                   </ng-template>
                   <td>{{ historic.withdraw | date: 'dd/MM/YY HH:mm'}}</td>
-                  <td>{{ historic.devolution | date: 'dd/MM/YY HH:mm'}}</td>
+                  <td *ngIf="historic.devolution !== 'pendente'; else pending">{{ historic.devolution | date: 'dd/MM/YY HH:mm'}}</td>
+                  <ng-template #pending>
+                    <td>Pendente</td>
+                  </ng-template>
                   <td *ngIf="historic.days == 0 || historic.days > 1; else notDays">{{ historic.days }} dias</td>
                   <ng-template #notDays>
                     <td>{{ historic.days }} dia</td>

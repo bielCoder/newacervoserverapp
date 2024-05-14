@@ -12,7 +12,7 @@ import { NavigationEnd, Router } from '@angular/router';
 })
 export class PendingsDialogComponent implements OnInit {
 
-    users!: any[]; 
+    users!: any; 
     currentPage!: string;
     @Output() paginator!:any;
     @Output() alpha:string = 'products/whoispending/';
@@ -24,12 +24,20 @@ export class PendingsDialogComponent implements OnInit {
     }
     
     ngOnInit(): void {
-      this.users = this.data.withdraw.users
-      this.paginator = this.data.withdraw.users[0].user;
+      
+      // this.paginator = this.data.withdraw.users[0].user;
       const currentUrl = this.router.url;
       this.currentPage = currentUrl;
-      this.alpha += `${this.data.withdraw.products[0].id}`
-    
+     
+
+      if(currentUrl ===  '/pendings')
+      {
+        this.users = this.data.withdraw.users
+        this.alpha += `${this.data.withdraw.products[0].id}`
+      }
+
+      this.users = this.data.withdraw.users
+   
 
     }
 

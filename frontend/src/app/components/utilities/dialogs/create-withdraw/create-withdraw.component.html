@@ -17,10 +17,14 @@
                     <input type="password" formControlName="password" id="password" class="password" placeholder=" " autocomplete="off">
                     <label for="password">Senha</label>
                 </div>
+                <div class="container-message">
+                    <app-message-error [failed]="error" ></app-message-error>
+                </div>
         </div>
         <div class="footer-container">
             <button type="submit" class="btn btn-success"><i class="bi bi-cart-plus-fill"></i> Confirmar Retirada</button>
             <button type="button" (click)="closeModal()" class="btn btn-secondary">Cancelar</button>
+           
         </div>
     </form>
 </div>

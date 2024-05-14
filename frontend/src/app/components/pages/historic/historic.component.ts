@@ -91,11 +91,12 @@ export class HistoricComponent implements OnInit {
        this.whoIsLogged = this.whoIsLogged.users.data[0];
 
         this.dialog.open(PendingsDialogComponent,{
-        width: '35vw',
+        width: '40vw',
         height:'auto',
         position:{top: '100px'},
         disableClose:true,
         data:{withdraw: {users: this.whoIsLogged, products: []}}})
+     
   
     });
 

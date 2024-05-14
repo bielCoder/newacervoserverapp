@@ -6,19 +6,19 @@
 
             <p class="close-modal" (click)="closeModal()"><i class="bi bi-x-circle"></i></p>
         </div>
-            <div class="container-content container-table-user">
-                <table class="table table-hover">
+            <div class="container-content" [class.container-table-user]="currentPage === '/pendings'">
+                <table class="table table-hover" [class.table-historic]="currentPage !== '/pendings'">
                    <thead>
                     <tr class="size-title">
                         <th>Matrícula</th>
                         <th>Nome</th>
                         <th>E-mail</th>
                         <th><abbr title="Departamento">Departamento</abbr></th>
-                        <th><abbr title="Quantidade">Quantidade</abbr></th>
-                        <th>Ação</th>
+                        <th *ngIf="currentPage === '/pendings'"><abbr title="Quantidade">Quantidade</abbr></th>
+                        <th *ngIf="currentPage === '/pendings'">Ação</th>
                     </tr>
                    </thead>
-                   <tbody class="table-group-divider">
+                   <tbody class="table-group-divider" *ngIf="currentPage === '/pendings'">
                     <ng-container *ngFor="let user of users">
                     <tr *ngFor="let subUser of user.user.data let i = index" class="align-center">
                         <td>{{ subUser.register }}</td>
@@ -32,9 +32,17 @@
                     </tr>
                     </ng-container> 
                    </tbody>
+                   <tbody class="table-group-divider">
+                        <tr>
+                            <td>{{ users.register }}</td>
+                            <td>{{ users.name }}</td>
+                            <td>{{ users.email }}</td>
+                            <td>{{ users.department }}</td>
+                        </tr>
+                   </tbody>
                 </table>
             </div>     
-        <div class="footer-container">
+        <div class="footer-container" *ngIf="currentPage === '/pendings'">
             <div class="spacing-margin-pagination">
                 <app-paginator [paginator]="paginator" [alpha]="alpha" (paginatorEvent)="nextPage($event)" ></app-paginator>
             </div>
