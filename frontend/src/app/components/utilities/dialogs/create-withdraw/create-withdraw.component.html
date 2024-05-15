@@ -8,7 +8,10 @@
     </div>
     <form class="main-form" [formGroup]="formulario" (ngSubmit)="onSubmit()">
         <div class="main-container">
-            <p class="title-confirmation">Deseja realmente retirar esses produtos ? <br>Confirme com sua senha:</p>
+            <p class="title-confirmation" *ngIf="route.url === '/withdraw' else giveBack">Deseja realmente retirar esses produtos ? <br>Confirme com sua senha:</p>
+            <ng-template #giveBack>
+                <p class="title-confirmation" >Deseja realmente devolver esses produtos ? <br>Confirme com sua senha:</p>
+            </ng-template>
                 <div class="form-group">
                     <input type="text" formControlName="register" id="register" class="register" placeholder=" " autocomplete="off" value="{{data.withdraw.users.register}}" readonly>
                     <label for="register">Matrícula</label>
