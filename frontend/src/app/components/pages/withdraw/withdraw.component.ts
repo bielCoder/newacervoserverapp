@@ -7,6 +7,7 @@ import { Users } from 'src/app/interfaces/users';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateWithdrawComponent } from '../../utilities/dialogs/create-withdraw/create-withdraw.component';
 import { ProductDialogComponent } from '../../utilities/dialogs/products/edit-product-dialog/product-dialog.component';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-withdraw',
@@ -30,6 +31,8 @@ export class WithdrawComponent implements OnInit {
     counter!:any;
     incrementLimit!: number;
     productFindById: any;
+    formulario!: FormGroup;
+
 
     @ViewChild('lignProduct') lignProduct!: ElementRef
     @ViewChild('userSearchInputProduct') userSearchInputProduct!: ElementRef
@@ -38,7 +41,7 @@ export class WithdrawComponent implements OnInit {
 
 
     
-    constructor(private userService: UsersService, private productService: ProductsService, private dialogs: MatDialog,  public dialog: MatDialog)
+    constructor(private userService: UsersService, private productService: ProductsService, private dialogs: MatDialog,  public dialog: MatDialog, private formBuilder: FormBuilder)
     {
 
     }
@@ -56,6 +59,7 @@ export class WithdrawComponent implements OnInit {
         }
       )
   
+
   
        // set search users
        this.productService.search().subscribe(
@@ -102,6 +106,9 @@ export class WithdrawComponent implements OnInit {
         }
 
 
+        this.formulario = this.formBuilder.group({
+            amount: new FormControl(1)
+        })
        
     }
 
@@ -202,11 +209,9 @@ export class WithdrawComponent implements OnInit {
                 // Incrementa a quantidade apenas se não exceder o limite
                 this.productFindById.amount += 1; // Novo valor para a chave "amount"
                 
-                let find = document.getElementById(`${id}`);
-                
-                if (find) { 
-                    find.textContent = this.productFindById.amount;
-                }
+               this.formulario.setValue({
+                  amount: this.productFindById.amount
+               })
                 
                 // Salve o objeto filtrado de volta no localStorage com a chave "products"
                 localStorage.setItem("products", JSON.stringify(products));
@@ -257,18 +262,84 @@ export class WithdrawComponent implements OnInit {
      
     
       
-      let find = document.getElementById(`${id}`)
-      
-      if(find)
-      { 
-        find.textContent = product.amount
-      }
+      this.formulario.setValue({
+        amount: product.amount
+     })
       // Salve o objeto filtrado de volta no localStorage com a chave "products"
       localStorage.setItem("products", JSON.stringify(products));
       }
     }
 
+
+    counterVerifyValidation(object: any, id: number) {
+      // Encontre o produto na lista de busca
+      const productFind = this.search.find((product: Products) => product.id === id);
   
+      // Recupere os dados do localStorage
+      const productsString = localStorage.getItem("products") || '[]';
+      const products: any[] = JSON.parse(productsString);
+  
+      // Função para filtrar um objeto pelo ID
+      const filterProductById = (id: number): any | undefined => {
+          return products.find(product => product.id === id);
+      }
+  
+      // Filtrar o objeto com ID específico
+      const productFindById = filterProductById(id);
+  
+      // Verifique se o objeto foi encontrado
+      if (productFindById) {
+          // Defina o limite de incremento
+          const incrementLimit = productFind.available; // Defina o limite desejado
+  
+          // Verifique se o valor é um número válido
+          const parsedValue = parseFloat(object.value); // Converta para número
+          if (!isNaN(parsedValue) && typeof parsedValue === 'number') {
+              if (parsedValue !== 0) { // Verifica se o valor é diferente de zero
+                  if (parsedValue <= incrementLimit) {
+                      // Incrementa a quantidade apenas se não exceder o limite
+                      productFindById.amount = parsedValue; // Novo valor para a chave "amount"
+  
+                      // Atualiza o valor no localStorage
+                      const productIndex = products.findIndex(product => product.id === id);
+                      if (productIndex !== -1) {
+                          products[productIndex].amount = parsedValue;
+                          localStorage.setItem("products", JSON.stringify(products));
+                      }
+  
+                      // Atualiza o formulário com o novo valor
+                      this.formulario.setValue({
+                          amount: parsedValue
+                      });
+  
+                      // Limpar a mensagem de erro
+                      const find = document.getElementsByClassName(`${id} limit`);
+                      if (find.length > 0) {
+                          find[0].innerHTML = "";
+                      }
+                  } else {
+                      // Se o valor excede o limite, exiba uma mensagem de erro
+                      const find = document.getElementsByClassName(`${id} limit`);
+                      if (find.length > 0) {
+                          find[0].innerHTML = "* Quantidade Excedida";
+                      }
+                  }
+              } else {
+                  // Se o valor for zero, exiba uma mensagem de erro
+                  const find = document.getElementsByClassName(`${id} limit`);
+                  if (find.length > 0) {
+                      find[0].innerHTML = "* Nenhum valor definido";
+                  }
+              }
+          } else {
+              // Caso o valor não seja um número válido
+              const find = document.getElementsByClassName(`${id} limit`);
+              if (find.length > 0) {
+                  find[0].innerHTML = "* Nenhum valor definido";
+              }
+          }
+      }
+  }
   
  
 

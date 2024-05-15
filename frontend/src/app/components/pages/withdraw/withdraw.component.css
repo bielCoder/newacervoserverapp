@@ -450,3 +450,23 @@ a i {
 .limit {
     color: #b54141;
 }
+
+.input-number::-webkit-inner-spin-button,
+.input-number::-webkit-outer-spin-button,
+.input-number::-webkit-inner-spin-button,
+.input-number::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+
+    
+}
+
+.input-number {
+        width: 48px;
+        outline: none;
+        border: none;
+        text-align: center;
+        background-color: #f1f1f1;
+}
