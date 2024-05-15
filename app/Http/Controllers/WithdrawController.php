@@ -215,63 +215,64 @@ class WithdrawController extends Controller
                             $withdrawItem->delete();
                         }
         
-                        // Process each amount to return
+                       // Process each amount to return
                         while ($amountToReturn > 0) {
-                            // Retrieve the earliest 'pendente' historic item
-                            $historicItem = $historic->where('code', $code)
-                                                     ->where('register', $user->register)
-                                                     ->where('devolution', 'pendente')
-                                                     ->orderBy('withdraw', 'asc')
-                                                     ->first();
-        
-                            if ($historicItem) {
-                                $now = new DateTime('now');
-                                $withdrawDate = new DateTime($historicItem->withdraw);
-                                $daysDiff = $now->diff($withdrawDate)->days;
-        
-                                $historicReturnAmount = min($amountToReturn, $historicItem->amount);
-        
-                                // Update the historic item with the amount being returned in this iteration
-                                $historicItem->update([
-                                    "devolution" => now(),
-                                    "amount" => $historicItem->amount - $historicReturnAmount,
-                                    "days" => $daysDiff,
-                                    "pending" => $historicItem->amount - $historicReturnAmount !== 0,
-                                    "withdraw" => $withdrawDate
+                        // Retrieve the earliest 'pendente' historic item
+                        $historicItem = $historic->where('code', $code)
+                                                ->where('register', $user->register)
+                                                ->where('devolution', 'pendente')
+                                                ->orderBy('withdraw', 'asc')
+                                                ->first();
+
+                        if ($historicItem) {
+                            $now = new DateTime('now');
+                            $withdrawDate = new DateTime($historicItem->withdraw);
+                            $daysDiff = $now->diff($withdrawDate)->days;
+
+                            $historicReturnAmount = min($amountToReturn, $historicItem->amount);
+
+                            // Update the historic item with the amount being returned in this iteration
+                            $historicItem->update([
+                                "devolution" => now(),
+                                "amount" =>  $amountToReturn, // Ajuste aqui
+                                "days" => $daysDiff,
+                                "pending" =>  $remainingWithdrawAmount,
+                                "withdraw" => $withdrawDate
+                            ]);
+
+                            if ($remainingWithdrawAmount !== 0) {
+                                // Log this return as a new historical entry
+                                $historic->create([
+                                    "name" => $user->name,
+                                    "register" => $user->register,
+                                    "active_register" => Auth::user()->register,
+                                    "active_name" => Auth::user()->name,
+                                    "function" => $user->function,
+                                    "department" => $user->department,
+                                    "email" => $user->email,
+                                    "product" => $historicItem->product,
+                                    "code" => $historicItem->code,
+                                    "brand" => $historicItem->brand,
+                                    "color" => $historicItem->color,
+                                    "size" => $historicItem->size,
+                                    "sexo" => $historicItem->sexo,
+                                    "observation" => $historicItem->observation,
+                                    "breakdown" => $historicItem->breakdown,
+                                    "description" => $historicItem->description,
+                                    "pending" => false,
+                                    "amount" =>  $remainingWithdrawAmount, // Ajuste aqui
+                                    "withdraw" =>  $withdrawDate,  // Preserve the original withdraw date
+                                    "devolution" => 'pendente',
+                                    "days" => $daysDiff
                                 ]);
-        
-                                if ($remainingWithdrawAmount !== 0) {
-                                    // Log this return as a new historical entry
-                                    $historic->create([
-                                        "name" => $user->name,
-                                        "register" => $user->register,
-                                        "active_register" => Auth::user()->register,
-                                        "active_name" => Auth::user()->name,
-                                        "function" => $user->function,
-                                        "department" => $user->department,
-                                        "email" => $user->email,
-                                        "product" => $historicItem->product,
-                                        "code" => $historicItem->code,
-                                        "brand" => $historicItem->brand,
-                                        "color" => $historicItem->color,
-                                        "size" => $historicItem->size,
-                                        "sexo" => $historicItem->sexo,
-                                        "observation" => $historicItem->observation,
-                                        "breakdown" => $historicItem->breakdown,
-                                        "description" => $historicItem->description,
-                                        "pending" => false,
-                                        "amount" => $historicReturnAmount === 0 ? 1 : $historicReturnAmount,
-                                        "withdraw" =>  $withdrawDate,  // Preserve the original withdraw date
-                                        "devolution" => 'pendente',
-                                        "days" => $daysDiff
-                                    ]);
-                                }
-        
-                                $amountToReturn -= $historicReturnAmount;
-                            } else {
-                                break;
                             }
+
+                            $amountToReturn -= $historicReturnAmount;
+                        } else {
+                            break;
                         }
+                    }
+
                     }
                 }
             }

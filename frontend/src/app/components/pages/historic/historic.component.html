@@ -33,6 +33,7 @@
                 <!-- <th colspan="1"><abbr title="Em uso">Uso</abbr></th> -->
                 <th>Retirada</th>
                 <th>Devolução</th>
+                <th>Quantidade</th>
                 <th><abbr title="Dias em Uso">Dias.</abbr></th>
               </tr>
             </thead>
@@ -61,6 +62,7 @@
                   </ng-template>
                   <td>{{ historic.withdraw | date: 'dd/MM/YY HH:mm'}}</td>
                   <td *ngIf="historic.devolution !== 'pendente'; else pending">{{ historic.devolution | date: 'dd/MM/YY HH:mm'}}</td>
+                  <td>{{ historic.amount }}</td>
                   <ng-template #pending>
                     <td>Pendente</td>
                   </ng-template>

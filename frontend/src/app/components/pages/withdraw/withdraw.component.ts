@@ -133,48 +133,46 @@ export class WithdrawComponent implements OnInit {
     }
 
 
-
     getProductSend(data: HTMLInputElement) {
       const find = this.search.filter((value: any) => {
           return value.code == data.value;
       });
-    
-      
-
+  
       const findTwo = this.searchTwo.filter((value: any) => {
-        this.failed = undefined;
-        return value.code == data.value;
+          this.failed = undefined;
+          return value.code == data.value;
       });
-    
+  
       if (findTwo.length > 0) {
-        this.failed = 'Indísponivel em Estoque.';
-        return;
+          this.failed = 'Indísponivel em Estoque.';
+          return;
       }
       
       // Produto não encontrado
       if (find.length < 1) {
-        this.failed = 'Produto não encontrado';
-        return;
+          this.failed = 'Produto não encontrado';
+          return;
       }
-    
+  
       // Verificar se o produto já existe no carrinho
       const exists = this.productListSession.filter((value: Products) => {
-        return value.code === data.value;
+          return value.code === data.value;
       });
-    
+  
       if (exists.length !== 0) {
-        this.failed = 'Produto já foi adicionado no carrinho';
-        return;
+          this.failed = 'Produto já foi adicionado no carrinho';
+          return;
       } else {
-        const newProduct = { ...find[0], amount: 1 }; // Inicializa amount com 1
-     
-        this.productsList.push(newProduct);
-        this.productListSession.push(newProduct);
-        localStorage.setItem('products', JSON.stringify(this.productsList));
+          const newProduct = { ...find[0], amount: 1 }; // Inicializa amount com 1
+          this.productsList.push(newProduct);
+          this.productListSession.push(newProduct);
+          
+          // Salvando apenas o novo produto no localStorage
+          localStorage.setItem('products', JSON.stringify([newProduct]));
       }
-    
+  
       this.userSearchInputProduct.nativeElement.value = '';
-    }
+  }
 
  
 
@@ -343,17 +341,32 @@ export class WithdrawComponent implements OnInit {
   
  
 
-  removeProductList(id: number)
-  {
-
+  removeProductList(id: number) {
     const findProduct = localStorage.getItem("products") || '';
+    this.productListSession = JSON.parse(findProduct);
 
-    this.productListSession = JSON.parse(findProduct).filter((data: Products) => {
+    // Verifica se o produto a ser removido está no carrinho
+    const removedProductIndex = this.productListSession.findIndex((data: Products) => {
+        return data.id === id;
+    });
+
+    if (removedProductIndex !== -1) {
+        // Redefine a quantidade do produto removido para 1
+        this.productListSession[removedProductIndex].amount = 1;
+    }
+
+    // Filtra e remove o produto da lista
+    this.productListSession = this.productListSession.filter((data: Products) => {
         return data.id !== id;
-    })
+    });
 
-    localStorage.setItem("products",JSON.stringify(this.productListSession));
-  }
+    this.formulario.setValue({
+      amount: 1
+    });
+
+    // Atualiza o localStorage com a nova lista de produtos
+    localStorage.setItem("products", JSON.stringify(this.productListSession));
+}
 
 
   openDialog(element: Products)
