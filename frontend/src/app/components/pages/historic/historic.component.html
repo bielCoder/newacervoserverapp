@@ -13,60 +13,98 @@
     <div class="container-table-user">
         <table class="table table-hover">
             <thead>
-              <tr>
+         
+              <tr  (click)="changeOrderBy()"  (mouseover)="effectIconOrderBYOver()" (mouseout)="effectIconOrderBYOut()">
                 <th>Matrícula</th>
+                <th><i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-up"></i></th>
                 <th>Nome</th>
-             
+                <th><i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-down"></i></th>
                 <!-- <th>Função</th> -->
                 <th>Departamento</th>
+                <th><i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-up"></i></th>
                 <!-- <th>Email</th> -->
                 <th>Código</th>
+                <th><i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-down"></i></th>
                 <th>Produto</th>
-               
+                <th><i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-up"></i></th>
                 <th>Marca</th>
+                <th><i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-down"></i></th>
                 <!-- <th>Cor</th> -->
                 <!-- <th>Tamanho</th> -->
                 <!-- <th>Gênero</th> -->
                 <th>Observação</th>
+                <th><i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-up"></i></th>
                 <th><abbr title="Avariado ?">Avaria.</abbr></th>
+                <th><i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-down"></i></th>
                 <th><abbr title="Descrição da Avaria">Descrição</abbr></th>
+                <th><i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-up"></i></th>
                 <!-- <th colspan="1"><abbr title="Em uso">Uso</abbr></th> -->
                 <th>Retirada</th>
+                <th><i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-down"></i></th>
                 <th>Devolução</th>
+                <th><i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-up"></i></th>
                 <th>Quantidade</th>
+                <th><i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-down"></i></th>
                 <th><abbr title="Dias em Uso">Dias.</abbr></th>
               </tr>
             </thead>
             <tbody class="table-group-divider">
                 <tr *ngFor="let historic of historics" (click)="onWhoIsLogged(historic.active_register)">
                   <td>{{ historic.register }}</td>
+                  <td></td>
                   <td>{{ historic.name }}</td>
+                  <td></td>
+
                   <!-- <td>{{ historic.function }}</td> -->
                   <td>{{ historic.department }}</td>
+                  <td></td>
+
                   <!-- <td>{{ historic.email }}</td> -->
                   <td>{{ historic.code }}</td>
+                  <td></td>
+
                   <td>{{ historic.product }}</td>
+                  <td></td>
                   <td>{{ historic.brand }}</td>
+                  <td></td>
                   <!-- <td>{{ historic.color }}</td> -->
                   <!-- <td>{{ historic.size }}</td> -->
                   <!-- <td>{{ historic.sexo }}</td> -->
                   <td>{{ historic.observation }}</td>
+                  <td></td>
+
+
+
+
+
                   <td  *ngIf="historic.breakdown; else notBreakdown">sim</td>
+                  <td></td>
                   <ng-template #notBreakdown>
                     <td>não</td>
+                    
                   </ng-template>
+                  
                   <td>{{ historic.description }}</td>
+                  <td></td>
+            
                   <!-- <td *ngIf="historic.pending; else notPending">sim</td> -->
                   <ng-template #notPending>
                     <td>não</td>
                   </ng-template>
                   <td>{{ historic.withdraw | date: 'dd/MM/YY HH:mm'}}</td>
+         
+
+                  <td></td>
                   <td *ngIf="historic.devolution !== 'pendente'; else pending">{{ historic.devolution | date: 'dd/MM/YY HH:mm'}}</td>
+
+                  <td></td>
                   <td>{{ historic.amount }}</td>
+                  <td></td>
                   <ng-template #pending>
                     <td>Pendente</td>
                   </ng-template>
                   <td *ngIf="historic.days == 0 || historic.days > 1; else notDays">{{ historic.days }} dias</td>
+                  <td></td>
                   <ng-template #notDays>
                     <td>{{ historic.days }} dia</td>
                   </ng-template>

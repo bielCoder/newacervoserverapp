@@ -22,9 +22,12 @@ export class HistoricComponent implements OnInit {
   search: any;
   download!: any;
   whoIsLogged!: any;
-  
+  orderByIcon: string = 'bi bi-arrow-down-up';
   @Output() paginator!:any;
-  @Output() alpha:string = "users"
+  @Output() alpha:string = "historics"
+  trueOrFalse: boolean = false;
+  order: string =  'asc';
+
 
   constructor(private historicsService: HistoricsService,private usersService: UsersService, public dialog: MatDialog){}
 
@@ -39,8 +42,8 @@ export class HistoricComponent implements OnInit {
         this.historicsService.index().subscribe(
           (data: Historics[]) => {
             this.historics = data;
-            this.paginator = this.historics.historics.data
-            this.historics = this.historics.historics.data.data;
+            this.paginator = this.historics.historics?.data
+            this.historics = this.historics.historics.data?.data;
           }
         );
 
@@ -84,7 +87,7 @@ export class HistoricComponent implements OnInit {
     if(data === '' || data === null)
     {
       return
-    }
+    } 
     this.usersService.find(data).subscribe((dataService: Users) => {
        this.whoIsLogged = dataService;
        this.whoIsLogged = this.whoIsLogged;
@@ -103,6 +106,89 @@ export class HistoricComponent implements OnInit {
 
     
   }
+
+
+  changeOrderBy()
+  {
+    this.trueOrFalse = !this.trueOrFalse;
+    if(!this.trueOrFalse)
+    {
+      this.order = 'asc';
+    } else {
+      this.order = 'desc'
+    }
+
+    this.historicsService.orderBy(this.order).subscribe(
+      (data: any) => {
+        this.historics = data;
+        this.historics = this.historics.historics.data.data;
+            this.paginator = this.historics.historics.data
+        console.log(this.historics)
+    
+   
+  
+      },(error) => {
+        console.log(error)
+      }
+    );
+  }
+
+  effectIconOrderBYOver()
+  {
+    // get elements by class
+   const twoArrows = document.getElementsByClassName('bi bi-arrow-down-up');
+
+   const upArrow = document.getElementsByClassName('bi bi-arrow-up')
+
+   const upDown = document.getElementsByClassName('bi bi-arrow-down')
+
+
+  //  set visibilities
+   for(let i=0; i < twoArrows.length; i++)
+   {
+    twoArrows[i].setAttribute('style','display:none');
+   }
+
+   for(let i=0; i < upArrow.length; i++)
+   {
+    upArrow[i].setAttribute('style','display:inline');
+   }
+
+   for(let i=0; i < upDown.length; i++)
+   {
+    upDown[i].setAttribute('style','display:inline');
+   }
+    
+  }
+
+  effectIconOrderBYOut()
+  {
+    // get elements by class
+   const twoArrows = document.getElementsByClassName('bi bi-arrow-down-up');
+
+   const upArrow = document.getElementsByClassName('bi bi-arrow-up')
+
+   const upDown = document.getElementsByClassName('bi bi-arrow-down')
+
+
+  //  set visibilities
+   for(let i=0; i < twoArrows.length; i++)
+   {
+    twoArrows[i].setAttribute('style','display:inline');
+   }
+
+   for(let i=0; i < upArrow.length; i++)
+   {
+    upArrow[i].setAttribute('style','display:none');
+   }
+
+   for(let i=0; i < upDown.length; i++)
+   {
+    upDown[i].setAttribute('style','display:none');
+   }
+    
+  }
+
  
 
 }

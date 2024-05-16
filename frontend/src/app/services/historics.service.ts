@@ -27,5 +27,13 @@ export class HistoricsService {
   {
     return this.http.get<Historics[]>(`${this.historics}/${register}`);
   }
+
+  orderBy(order: string):Observable<Historics[]>
+  {
+    const object = {
+      "order": order
+    }
+    return this.http.put<Historics[]>(`${environment.server}/historics/orderby`,object);
+  }
   
 }

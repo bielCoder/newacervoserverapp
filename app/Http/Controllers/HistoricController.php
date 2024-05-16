@@ -16,7 +16,7 @@ class HistoricController extends Controller
 
     private $historics;
     private $response;
-    private $products;
+    private $order = "asc";
 
     /**
      * Display a listing of the resource.
@@ -24,22 +24,25 @@ class HistoricController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function __construct(Historic $historics, Response $response, Product $products)
+    public function __construct(Historic $historics, Response $response)
     {
         $this -> historics = $historics;
         $this -> response = $response;
-        $this -> products = $products;
     }
 
 
     public function index(Request $request)
     {
+        if(!empty($request -> order))
+        {
+          $this -> order = $request -> order;
+        }
         try {
             $perPage = $request -> per_page ?? 20; // Define o valor padrão como 15 caso não seja fornecido um valor
        
             if(!is_null($this -> historics -> paginate((int)$perPage)))
             {   
-                return $this -> response -> format("historics","application\json","get",$this -> historics -> orderBy('id','desc') -> paginate((int)$perPage),null,null,200);
+                return $this -> response -> format("historics","application\json","get",$this -> historics -> orderBy('id',$this -> order) -> paginate((int)$perPage),null,null,200);
             }
                 return $this -> response -> error("historics","application\json","get","Not Found",404);
         } catch(\PDOException $e)

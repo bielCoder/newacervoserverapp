@@ -24,7 +24,7 @@ export class TIComponent implements OnInit {
   search!:any;
   @Output() alpha:string = 'users';
   trueOrFalse: boolean = false;
-  order: string =  'asc'
+  order: string =  'asc';
   data: Date = new Date();
   orderByIcon: string = 'bi bi-arrow-down-up';
   

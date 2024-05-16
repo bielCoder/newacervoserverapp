@@ -86,7 +86,9 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::controller(HistoricController::class) -> group(function(){
             Route::get('/search','search');
             Route::get('/','index');
+            Route::put('orderby','index') -> name('Products - OrderBy');
             Route::get('/{user}','show');   
+
         });
     });
 });

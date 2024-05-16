@@ -30,33 +30,33 @@
     margin-top: -10px;
 }
 
-.bi-arrow-down-up  {
+/* .bi-arrow-down-up  {
     position: relative;
     left: 44px;
-}
+} */
 
 .bi-arrow-down {
-    position: relative;
-    left: 44px;
+    /* position: relative;
+    left: 44px; */
     display: none;
 }
 
 .bi-arrow-up {
-    position: relative;
-    left: 44px;
+    /* position: relative;
+    left: 44px; */
     display: none;
 }
 
 
-.to-right {
+/* .to-right {
         position: relative;
         left: 70px;
-}
+} */
 
-.to-right-too {
+/* .to-right-too {
     position: relative;
     left: 60px;
-}
+} */
 
 
 thead tr {

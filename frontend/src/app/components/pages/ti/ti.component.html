@@ -13,23 +13,33 @@
         <table class="table table-hover">
             <thead>
               <tr (click)="changeOrderBy()" (mouseover)="effectIconOrderBYOver()" (mouseout)="effectIconOrderBYOut()">
-                <th>#<i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-down"></i></th>
-                <th>nome<i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-up"></i></th>
-                <th>matrícula<i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-down"></i></th>
-                <th>função<i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-up"></i></th>
-                <th>departamento<i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-down"></i></th>
-                <th>e-mail<i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-up"></i></th>
+               
+                <th>nome</th>
+                <th><i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-up"></i></th>
+                <th>matrícula</th>
+                <th><i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-down"></i></th>
+                <th>função</th>
+                <th><i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-up"></i></th>
+                <th>departamento</th>
+                <th><i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-down"></i></th>
+                <th>e-mail</th>
+                <th><i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-up"></i></th>
                 <th>acesso</th>
               </tr>
             </thead>
             <tbody class="table-group-divider">
                 <tr *ngFor="let user of users" (click)="openDialog(list)" #list>
-                  <td>{{user.id}}</td>
+                 
                   <td class="name">{{user.name}}</td>
+                  <td></td>
                   <td>{{user.register}}</td>
+                  <td></td>
                   <td>{{user.function}}</td>
+                  <td></td>
                   <td>{{user.department}}</td>
+                  <td></td>
                   <td>{{user.email}}</td>
+                  <td></td>
                   <td *ngIf="user.access" id="{{user.access}}">
                    Root
                   </td>

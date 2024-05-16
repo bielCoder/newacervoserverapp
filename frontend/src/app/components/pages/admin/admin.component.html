@@ -13,7 +13,6 @@
         <table class="table table-hover">
             <thead>
               <tr (click)="changeOrderBy()" (mouseover)="effectIconOrderBYOver()" (mouseout)="effectIconOrderBYOut()">
-                <th>#<i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-down"></i></th>
                 <th>nome<i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-up"></i></th>
                 <th>matrícula<i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-down"></i></th>
                 <th>função<i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-up"></i></th>
@@ -24,7 +23,6 @@
             </thead>
             <tbody class="table-group-divider">
                 <tr *ngFor="let user of users" (click)="openDialog(list)" #list>
-                  <td>{{user.id}}</td>
                   <td class="name">{{user.name}}</td>
                   <td>{{user.register}}</td>
                   <td>{{user.function}}</td>

@@ -13,8 +13,6 @@
         <table class="table table-hover">
             <thead>
                 <tr (click)="changeOrderBy()" (mouseover)="effectIconOrderBYOver()" (mouseout)="effectIconOrderBYOut()">
-                    <th>#</th>
-                    <th><i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-up"></i></th>
                     <th>código</th>
                     <th><i class="{{ orderByIcon }}"></i><i class="bi bi-arrow-down"></i></th>
                     <th>produto</th>
@@ -40,8 +38,7 @@
             </thead>
             <tbody class="table-group-divider">
                 <tr *ngFor="let product of products" (click)="openDialog(product)">
-                    <td>{{ product.id }}</td>
-                    <td></td>
+
                     <td>{{ product.code }}</td>
                     <td></td>
                     <td>{{ product.product }}</td>
