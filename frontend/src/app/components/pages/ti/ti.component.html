@@ -28,7 +28,7 @@
               </tr>
             </thead>
             <tbody class="table-group-divider">
-                <tr *ngFor="let user of users" (click)="openDialog(list)" #list>
+                <tr *ngFor="let user of users" (click)="openDialog(user)" #list>
                  
                   <td class="name">{{user.name}}</td>
                   <td></td>

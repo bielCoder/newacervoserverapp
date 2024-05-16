@@ -102,15 +102,8 @@ export class TIComponent implements OnInit {
       height:'auto',
       position:{top: '3em'},
       disableClose:true,
-      data:{
-        id: `${ element.children[0].innerHTML }`, 
-        name:  `${ element.children[1].innerHTML }`,
-        register: `${ element.children[2].innerHTML }`,
-        function: `${ element.children[3].innerHTML }`,
-        department: `${ element.children[4].innerHTML }`,
-        email: `${ element.children[5].innerHTML }`,
-        access: `${ element.children[6].getAttribute('id')}`
-        }})
+      data:element})
+
   }
 
 
