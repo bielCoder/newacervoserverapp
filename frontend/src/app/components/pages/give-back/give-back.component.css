@@ -523,3 +523,7 @@ tbody tr.cart:hover {
         text-align: center;
         background-color: #f1f1f1;
 }
+
+.limit {
+    color: #b54141;
+}

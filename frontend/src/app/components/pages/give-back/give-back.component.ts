@@ -160,8 +160,13 @@ export class GiveBackComponent implements OnInit {
      
       if(find[0].amount >= objectAmount[0].amount)
       {
+        const findProduct = document.getElementsByClassName(`${id} limit`);
+        if (findProduct.length > 0) {
+          findProduct[0].innerHTML = "* Quantidade Excedida";
+        }
         return
       }
+       
 
       find[0].amount = find[0].amount + 1;
       
@@ -174,6 +179,10 @@ export class GiveBackComponent implements OnInit {
 
   counterLess(id: number)
   {
+    const findProduct = document.getElementsByClassName(`${id} limit`);
+    if (findProduct.length > 0) {
+      findProduct[0].innerHTML = "";
+    }
     const find = this.productsList.filter((data: Products) => {
       return data.id === id;
     })
