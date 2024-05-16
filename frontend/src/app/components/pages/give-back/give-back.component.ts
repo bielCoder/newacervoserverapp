@@ -9,6 +9,7 @@ import { CreateWithdrawComponent } from '../../utilities/dialogs/create-withdraw
 import { ActivatedRoute } from '@angular/router';
 import { WithdrawService } from 'src/app/services/withdraw.service';
 import { ProductDialogComponent } from '../../utilities/dialogs/products/edit-product-dialog/product-dialog.component';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -29,14 +30,14 @@ export class GiveBackComponent implements OnInit {
     failed!: any;
     success!: any;
     data: Date = new Date();
-  
+    formulario!: FormGroup;
     
 
     @ViewChild('lignProduct') lignProduct!: ElementRef
     @ViewChild('userSearchInputProduct') userSearchInputProduct!: ElementRef
 
     
-    constructor(private userService: UsersService, private dialogs: MatDialog, private route: ActivatedRoute, private backDrop: WithdrawService, private productsService: ProductsService)
+    constructor(private userService: UsersService, private dialogs: MatDialog, private route: ActivatedRoute, private backDrop: WithdrawService, private productsService: ProductsService, private formBuilder: FormBuilder)
     {
 
     }
@@ -71,6 +72,11 @@ export class GiveBackComponent implements OnInit {
        // message
        this.success = window.localStorage.getItem('message')
        window.localStorage.removeItem('message');
+
+
+       this.formulario = this.formBuilder.group({
+        amount: new FormControl(1)
+    })
 
     }
 
@@ -151,12 +157,18 @@ export class GiveBackComponent implements OnInit {
       const find = this.productsList.filter((data: Products) => {
         return data.id === id;
       })
+     
       if(find[0].amount >= objectAmount[0].amount)
       {
         return
       }
-      find[0].amount = find[0].amount + 1;
 
+      find[0].amount = find[0].amount + 1;
+      
+      this.formulario.setValue({
+        amount: find[0].amount
+      });
+     
   }
 
 
@@ -173,6 +185,23 @@ export class GiveBackComponent implements OnInit {
 
     find[0].amount = find[0].amount - 1;
 
+    this.formulario.setValue({
+      amount: find[0].amount
+    });
+
+  }
+
+  counterVerifyValidation(object: any,id: number)
+  {
+    const find = this.productsList.filter((data: Products) => {
+      return data.id === id;
+    })
+
+    if(find[0].amount <= 1)
+    {
+      return
+    }
+    find[0].amount = object.value;   
   }
 
   
