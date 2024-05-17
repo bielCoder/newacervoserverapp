@@ -191,15 +191,15 @@ cursor: pointer;
 padding: 0.18em;
 }
 
-.error{
-font-size: .75em;
-background-color: #eed5d5;
-color: #b54641;
-border-color: #b54641;
-padding: 0.5em;
-width: 13.3vw;
-margin-top: -1.5em;
-margin-bottom: 1.5em;
+.error {
+  font-size: .75em;
+  background-color: #eed5d5;
+  color: #b54641;
+  border-color: #b54641;
+  padding: 0.5em;
+  width: 13.3vw;
+  margin-top: -1.5em;
+  margin-bottom: 2.5em;
 }
 
 .error-condition {
@@ -224,22 +224,24 @@ display: none;
 
 
 .generic-error {
-position: absolute;
-bottom: 0em;
+  position: absolute;
+  bottom: 0em;
+  width: 300px;
 } 
 
-.erro-undefined  {
-position: absolute;
-bottom: 0em;
-margin-bottom: 0em;
+.erro-undefined {
+  position: absolute;
+  bottom: 8px;
+  margin-bottom: 0em;
 }
 
 .second-group-form {
-  margin-top: -69.9px;
+  margin-top: -13px;
   width: 45%;
 }
+
 .first-group-form {
-width: 45%;
+  width: 45%;
 }
 
 .purple {
@@ -252,3 +254,26 @@ width: 45%;
   background-color: #290661;
   color: #fff;
 }
+
+.unique-error {
+  width: 100%;
+}
+
+.space-btn {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.container-message-separation {
+    width: 100%;
+    display: flex;
+}
+
+.spacing-between-btn {
+  display: flex;
+  gap: .5em;
+}
+
+
+
